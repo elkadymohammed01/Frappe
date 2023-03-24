@@ -28,7 +28,7 @@ frappe.views.Container = class Container {
 		});
 	}
 	add_page(label) {
-		var page = $('<div class="content page-container"></div>')
+		var page = $('<div class="page-container"></div>')
 			.attr("id", "page-" + label)
 			.attr("data-page-route", label)
 			.hide()

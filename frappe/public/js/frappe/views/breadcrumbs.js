@@ -200,8 +200,13 @@ frappe.breadcrumbs = {
 	toggle(show) {
 		if (show) {
 			$("body").addClass("no-breadcrumbs");
+			$(".head-page-one").css("display", "");
+			$(".layout-head-section").css("display", "none");
 		} else {
 			$("body").removeClass("no-breadcrumbs");
+			$(".head-page-one").css("display", "none");
+			$(".layout-head-section").css("display", "");
+			$(".sidebar-toggle-btn").css("display", "")
 		}
 	},
 };
