@@ -100,7 +100,7 @@ frappe.ui.Page = class Page {
 				"main",
 				`
 				<div class="row layout-main">
-					<div class="col-lg-2 layout-side-section"></div>
+					<div class="col-lg-2 layout-side-section" style="background: -webkit-gradient(linear, left top, left bottom, from(#e6e5f2), to(#4599cd));"></div>
 					<div class="col layout-main-section-wrapper">
 						<div class="layout-head-section"><div class="page-head flex" >
 							<div class="w-100">
