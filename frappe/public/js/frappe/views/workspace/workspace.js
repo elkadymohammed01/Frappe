@@ -137,8 +137,7 @@ frappe.views.Workspace = class Workspace {
 		);
 
 		let $title = $(`<div class="standard-sidebar-label">
-			<span>${frappe.utils.icon("small-down", "xs")}</span>
-			<span class="section-title">${__(title)}<span>
+			<span class="section-title"><span>
 		</div>`).appendTo(sidebar_section);
 		this.prepare_sidebar(root_pages, sidebar_section, this.sidebar);
 

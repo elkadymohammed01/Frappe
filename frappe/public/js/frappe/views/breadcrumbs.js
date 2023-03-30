@@ -201,10 +201,14 @@ frappe.breadcrumbs = {
 		if (show) {
 			$("body").addClass("no-breadcrumbs");
 			$(".head-page-one").css("display", "");
+			$(".layout-side-section").css("background", "");
+			$(".layout-side-section").css("border-radius", "");
 			$(".layout-head-section").css("display", "none");
 		} else {
 			$("body").removeClass("no-breadcrumbs");
 			$(".head-page-one").css("display", "none");
+			$(".layout-side-section").css("background", "-webkit-gradient(linear, left top, left bottom, from(#7dd87d), to(#4c9173))");
+			$(".layout-side-section").css("border-radius", "25px");
 			$(".layout-head-section").css("display", "");
 			$(".sidebar-toggle-btn").css("display", "")
 		}
