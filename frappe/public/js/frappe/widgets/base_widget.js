@@ -73,7 +73,7 @@ export default class Widget {
 	}
 
 	make_widget() {
-		this.widget = $(`<div class="widget" data-widget-name="${this.name ? this.name : ""}">
+		this.widget = $(`<div class="widget card" data-widget-name="${this.name ? this.name : ""}">
 			<div class="widget-head">
 				<div class="widget-label">
 					<div class="widget-title"></div>
@@ -100,7 +100,7 @@ export default class Widget {
 
 		if (this.icon) {
 			let icon = frappe.utils.icon(this.icon, "lg");
-			this.title_field[0].innerHTML = `${icon} <span class="ellipsis" title="${title}">${title}</span>`;
+			this.title_field[0].innerHTML = `<span class="ellipsis" title="${title}">${icon} ${title}</span>`;
 		} else {
 			this.title_field[0].innerHTML = `<span class="ellipsis" title="${title}">${title}</span>`;
 			if (max_chars) {

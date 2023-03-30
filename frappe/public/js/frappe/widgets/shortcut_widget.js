@@ -52,7 +52,7 @@ export default class ShortcutWidget extends Widget {
 	set_actions() {
 		if (this.in_customize_mode) return;
 
-		this.widget.addClass("shortcut-widget-box");
+		this.widget.addClass("shortcut-widget-box p-2");
 
 		let filters = frappe.utils.get_filter_from_json(this.stats_filter);
 		if (this.type == "DocType" && filters) {

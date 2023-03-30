@@ -37,6 +37,8 @@ $input-height: 28px !default;
 	--cyan-100: #c7fcfc;
 	--cyan-50 : #dafafa;
 
+	--selected-dark: #cdd28c;
+	--selected: #faf4d3;
 	--green-900: #2D401D;
 	--green-800: #44622A;
 	--green-700: #518B21;
@@ -230,7 +232,7 @@ $input-height: 28px !default;
 	--btn-default-hover-bg: var(--gray-300);
 
 	// Other Colors
-	--sidebar-select-color: var(--gray-200);
+	--sidebar-select-color: var(--selected);
 
 	--scrollbar-thumb-color: var(--gray-400);
 	--scrollbar-track-color: var(--gray-200);
