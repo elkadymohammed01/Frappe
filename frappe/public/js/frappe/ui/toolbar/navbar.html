@@ -67,6 +67,24 @@
 				<li class="vertical-bar d-none d-sm-block"></li>
 				<li class="nav-item dropdown dropdown-help dropdown-mobile d-none d-lg-block">
 					<a class="nav-link" data-toggle="dropdown" href="#" onclick="return false;">
+						<img class="app-logo" src="/assets/frappe/icons/workspace/language.png">
+						<span>
+							<svg class="icon icon-xs"><use href="#icon-small-down"></use></svg>
+						</span>
+					</a>
+					<div class="dropdown-menu dropdown-menu-right" id="toolbar-help" role="menu">
+						<!-- <div id="help-links"></div> -->
+						<!-- <div class="dropdown-divider documentation-links"></div> -->
+						<a class="dropdown-item" onclick="frappe.ui.toolbar.changeLanguage(this)" data-idx="{{ __('ar') }}">
+							<img src="/assets/frappe/icons/workspace/{{ __('ar') }}.png" style="height:25px"> &nbsp;<b>{{ __('العربية') }}</b>
+						</a>
+						<a class="dropdown-item" onclick="frappe.ui.toolbar.changeLanguage(this)" data-idx="{{ __('en') }}">
+							<img src="/assets/frappe/icons/workspace/{{ __('en') }}.png" style="height:25px"> &nbsp;<b>{{ __('English') }}</b>
+						</a>
+					</div>
+				</li>
+				<li class="nav-item dropdown dropdown-help dropdown-mobile d-none d-lg-block">
+					<a class="nav-link" data-toggle="dropdown" href="#" onclick="return false;">
 						{{ __("Help") }}
 						<span>
 							<svg class="icon icon-xs"><use href="#icon-small-down"></use></svg>

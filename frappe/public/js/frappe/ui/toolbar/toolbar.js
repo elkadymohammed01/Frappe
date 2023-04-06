@@ -290,3 +290,34 @@ frappe.ui.toolbar.setup_session_defaults = function () {
 		},
 	});
 };
+frappe.ui.toolbar.changeLangAr = function () {
+	frappe
+		.call("frappe.translate.change_user_language", {
+			preferred_language: "ar",
+			user: frappe.session.user,
+		})
+		.then(() => {
+			window.location.reload(false);
+	});
+
+};
+
+frappe.ui.toolbar.changeLangEn = function () {
+	frappe
+		.call("frappe.translate.change_user_language", {
+			preferred_language: "en",
+			user: frappe.session.user,
+		})
+		.then(() => {
+			window.location.reload(false);
+	});
+};
+
+frappe.ui.toolbar.changeLanguage = (e) => {
+	if (e.getAttribute("data-idx") == "en") {
+		frappe.ui.toolbar.changeLangEn();
+	}
+	if (e.getAttribute("data-idx") == "ar") {
+		frappe.ui.toolbar.changeLangAr();
+	}
+}

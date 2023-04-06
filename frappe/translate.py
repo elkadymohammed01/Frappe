@@ -1302,6 +1302,14 @@ def set_preferred_language_cookie(preferred_language):
 	frappe.local.cookie_manager.set_cookie("preferred_language", preferred_language)
 
 
+@frappe.whitelist(allow_guest=True)
+def change_user_language(preferred_language, user):
+	# frappe.local.cookie_manager.set_cookie("preferred_language", preferred_language)
+	user = frappe.get_doc("User",  user)
+	user.language = preferred_language
+	user.save()
+	print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa", user.language)
+
 def get_preferred_language_cookie():
 	return frappe.request.cookies.get("preferred_language")
 
