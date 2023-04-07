@@ -313,11 +313,25 @@ frappe.ui.toolbar.changeLangEn = function () {
 	});
 };
 
+frappe.ui.toolbar.changeLangUr = function () {
+	frappe
+		.call("frappe.translate.change_user_language", {
+			preferred_language: "ur",
+			user: frappe.session.user,
+		})
+		.then(() => {
+			window.location.reload(false);
+	});
+};
+
 frappe.ui.toolbar.changeLanguage = (e) => {
 	if (e.getAttribute("data-idx") == "en") {
 		frappe.ui.toolbar.changeLangEn();
 	}
 	if (e.getAttribute("data-idx") == "ar") {
 		frappe.ui.toolbar.changeLangAr();
+	}
+	if (e.getAttribute("data-idx") == "ur") {
+		frappe.ui.toolbar.changeLangUr();
 	}
 }

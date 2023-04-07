@@ -515,11 +515,7 @@ export default class OnboardingWidget extends Widget {
 
 	set_body() {
 		this.widget.addClass("onboarding-widget-box");
-		if (this.is_dismissed()) {
 			this.widget.hide();
-		} else {
-			this.make_body();
-		}
 	}
 
 	is_dismissed() {
