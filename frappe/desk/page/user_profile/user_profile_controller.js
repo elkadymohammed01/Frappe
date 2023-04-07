@@ -392,8 +392,8 @@ class UserProfile {
 			return `<div class="user-stats-item mt-4">
 				${frappe.utils.icon(icon, "lg", "no-stroke")}
 				<div>
-					<div class="stat-value">${value}</div>
-					<div class="stat-label">${label}</div>
+					<div class="stat-value text-light">${value}</div>
+					<div class="stat-label text-light">${label}</div>
 				</div>
 			</div>`;
 		};
