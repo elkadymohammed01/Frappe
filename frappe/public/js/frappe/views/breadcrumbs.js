@@ -207,7 +207,7 @@ frappe.breadcrumbs = {
 		} else {
 			$("body").removeClass("no-breadcrumbs");
 			$(".head-page-one").css("display", "none");
-			$(".layout-side-section").css("background", "-webkit-gradient(linear, left top, left bottom, from(#7dd87d), to(#4c9173))");
+			$(".layout-side-section").css("background", "linear-gradient(195deg, #42424a 0%, #191919 100%)");
 			$(".layout-side-section").css("border-radius", "25px");
 			$(".layout-head-section").css("display", "");
 			$(".sidebar-toggle-btn").css("display", "")

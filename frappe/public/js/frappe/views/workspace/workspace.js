@@ -84,7 +84,7 @@ frappe.views.Workspace = class Workspace {
 				item-name="${item.title}"
 				item-public="${item.public || 0}"
 				item-is-hidden="${item.is_hidden || 0}"
-				style="border-bottom: 1px solid #add8e6;"
+				style="border-bottom: 1px solid #191919;"
 			>
 				<div class="desk-sidebar-item standard-sidebar-item ${item.selected ? "selected" : ""}">
 					<a
@@ -96,7 +96,7 @@ frappe.views.Workspace = class Workspace {
 						class="item-anchor ${item.is_editable ? "" : "block-click"}" title="${__(item.title)} text-center"
 					>
 						<img class="sidebar-item-icon" src="/assets/frappe/icons/workspace/${item.icon || "default"}.png" style="width: 32px;"></img>
-						<span class="sidebar-item-label pt-2 pl-2 pr-2">${__(item.title)}<span>
+						<span class="sidebar-item-label pt-2 pl-2 pr-2 text-light">${__(item.title)}<span>
 					</a>
 					<div class="sidebar-item-control"></div>
 				</div>

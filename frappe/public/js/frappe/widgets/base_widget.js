@@ -73,7 +73,7 @@ export default class Widget {
 	}
 
 	make_widget() {
-		this.widget = $(`<div class="widget card" data-widget-name="${this.name ? this.name : ""}">
+		this.widget = $(`<div class="widget card shadow-primary" data-widget-name="${this.name ? this.name : ""}">
 			<div class="widget-head">
 				<div class="widget-label">
 					<div class="widget-title"></div>
