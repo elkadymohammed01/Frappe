@@ -136,39 +136,6 @@ frappe.ui.Page = class Page {
 										</div>
 									</div>
 									<div class="flex col page-actions justify-content-end">
-										<!-- buttons -->
-										<div class="custom-actions hide hidden-xs hidden-md"></div>
-										<div class="standard-actions flex">
-											<span class="page-icon-group hide hidden-xs hidden-sm"></span>
-											<div class="menu-btn-group hide">
-												<button type="button" class="btn btn-default icon-btn" data-toggle="dropdown" aria-expanded="false">
-													<span>
-														<span class="menu-btn-group-label">
-															<svg class="icon icon-sm">
-																<use href="#icon-dot-horizontal">
-																</use>
-															</svg>
-														</span>
-													</span>
-												</button>
-												<ul class="dropdown-menu dropdown-menu-right" role="menu"></ul>
-											</div>
-											<button class="btn btn-secondary btn-default btn-sm hide"></button>
-											<div class="actions-btn-group hide">
-												<button type="button" class="btn btn-primary btn-sm" data-toggle="dropdown" aria-expanded="false">
-													<span>
-														<span class="hidden-xs actions-btn-group-label">{%= __("Actions") %}</span>
-														<svg class="icon icon-xs">
-															<use href="#icon-select">
-															</use>
-														</svg>
-													</span>
-												</button>
-												<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												</ul>
-											</div>
-											<button class="btn btn-primary btn-sm hide primary-action"></button>
-										</div>
 									</div>
 								</div>
 							</div>
@@ -296,7 +263,7 @@ frappe.ui.Page = class Page {
 	add_action_icon(icon, click, css_class = "", tooltip_label) {
 		const button = $(`
 			<button class="text-muted btn btn-default ${css_class} icon-btn">
-				${frappe.utils.icon(icon)}
+				<img src="/assets/frappe/icons/workspace/${icon}.png" style="width: 25px">
 			</button>
 		`);
 
