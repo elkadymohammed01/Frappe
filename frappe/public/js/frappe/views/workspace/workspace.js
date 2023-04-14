@@ -77,9 +77,13 @@ frappe.views.Workspace = class Workspace {
 	}
 
 	sidebar_item_container(item) {
+		var child = "";
+		if(item.parent_page){
+			child = "ml-4 mr-4"
+		}
 		return $(`
 			<div
-				class="sidebar-item-container ${item.is_editable ? "is-draggable" : ""}"
+				class="sidebar-item-container ${item.is_editable ? "is-draggable" : ""} ${child}"
 				item-parent="${item.parent_page}"
 				item-name="${item.title}"
 				item-public="${item.public || 0}"
@@ -95,7 +99,7 @@ frappe.views.Workspace = class Workspace {
 						}"
 						class="item-anchor ${item.is_editable ? "" : "block-click"}" title="${__(item.title)} text-center"
 					>
-						<img class="sidebar-item-icon" src="/assets/frappe/icons/workspace/${item.icon || "default"}.png" style="width: 32px;"></img>
+						<img class="sidebar-item-icon" src="/assets/frappe/icons/workspace/${item.icon || "default"}.png" style="width: 32px;">
 						<span class="sidebar-item-label pt-2 pl-2 pr-2 text-light">${__(item.title)}<span>
 					</a>
 					<div class="sidebar-item-control"></div>
@@ -211,7 +215,7 @@ frappe.views.Workspace = class Workspace {
 
 		let $child_item_section = item_container.find(".sidebar-child-item");
 		let $drop_icon = $(
-			`<span class="drop-icon hidden">${frappe.utils.icon(drop_icon, "sm")}</span>`
+			`<span class="drop-icon  hidden">${frappe.utils.icon(drop_icon, "sm")}</span>`
 		).appendTo(sidebar_control);
 		let pages = item.public ? this.public_pages : this.private_pages;
 		if (

@@ -133,8 +133,8 @@
    "type": "Link"
   }
  ],
- "modified": "2022-08-28 20:56:24.980719",
- "modified_by": "Administrator",
+ "modified": "2023-04-14 22:58:48.456763",
+ "modified_by": "Mohammed M Elkady",
  "module": "Custom",
  "name": "Customization",
  "owner": "Administrator",
@@ -143,7 +143,7 @@
  "quick_lists": [],
  "restrict_to_domain": "",
  "roles": [],
- "sequence_id": 8.0,
+ "sequence_id": 50.0,
  "shortcuts": [
   {
    "label": "Customize Form",
