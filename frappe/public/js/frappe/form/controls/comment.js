@@ -26,7 +26,7 @@ frappe.ui.form.ControlComment = class ControlComment extends frappe.ui.form.Cont
 
 		this.comment_wrapper.appendTo(this.parent);
 
-		// wrapper should point to frappe-control
+		// wrapper should point to Ehsan-control
 		this.$wrapper = !this.no_wrapper
 			? this.comment_wrapper.find(".frappe-control")
 			: this.comment_wrapper;

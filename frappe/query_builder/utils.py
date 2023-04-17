@@ -114,7 +114,7 @@ def patch_query_execute():
 
 
 def patch_query_aggregation():
-	"""Patch aggregation functions to frappe.qb"""
+	"""Patch aggregation functions to Ehsan.qb"""
 	from frappe.query_builder.functions import _avg, _max, _min, _sum
 
 	frappe.qb.max = _max

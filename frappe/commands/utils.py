@@ -580,7 +580,7 @@ def jupyter(context):
 	print(
 		"""
 Starting Jupyter notebook
-Run the following in your first cell to connect notebook to frappe
+Run the following in your first cell to connect notebook to Ehsan
 ```
 import frappe
 frappe.init(site='{site}', sites_path='{sites_path}')
