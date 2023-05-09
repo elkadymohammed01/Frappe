@@ -27,18 +27,18 @@ frappe.xcall = function (method, params) {
 
 // generic server call (call page, object)
 frappe.call = function (opts) {
-	if (!frappe.is_online()) {
-		frappe.show_alert(
-			{
-				indicator: "orange",
-				message: __("Connection Lost"),
-				subtitle: __("You are not connected to Internet. Retry after sometime."),
-			},
-			3
-		);
-		opts.always && opts.always();
-		return $.ajax();
-	}
+	// if (!frappe.is_online()) {
+	// 	frappe.show_alert(
+	// 		{
+	// 			indicator: "orange",
+	// 			message: __("Connection Lost"),
+	// 			subtitle: __("You are not connected to Internet. Retry after sometime."),
+	// 		},
+	// 		3
+	// 	);
+	// 	opts.always && opts.always();
+	// 	return $.ajax();
+	// }
 	if (typeof arguments[0] === "string") {
 		opts = {
 			method: arguments[0],
