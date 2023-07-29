@@ -48,7 +48,11 @@ frappe.ui.form.Dashboard = class FormDashboard {
 			body_html: this.stats_area_row,
 		});
 
+<<<<<<< HEAD
 		this.transactions_area = $(`<div class="transactions"></div`);
+=======
+		this.transactions_area = $(`<div class="transactions"></div>`);
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 		this.links_area = this.make_section({
 			label: __("Connections"),
@@ -69,6 +73,15 @@ frappe.ui.form.Dashboard = class FormDashboard {
 		this.progress_area.body.empty();
 		this.progress_area.hide();
 
+<<<<<<< HEAD
+=======
+		// clear heatmap
+		this.heatmap_area.hide();
+
+		// clear chart
+		this.chart_area.hide();
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		// clear links
 		this.links_area.body.find(".count, .open-notification").addClass("hidden");
 		this.links_area.hide();
@@ -199,6 +212,11 @@ frappe.ui.form.Dashboard = class FormDashboard {
 			show = true;
 		}
 
+<<<<<<< HEAD
+=======
+		this._fetched_counts = false;
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		if (this.data.heatmap) {
 			this.render_heatmap();
 			show = true;
@@ -221,7 +239,25 @@ frappe.ui.form.Dashboard = class FormDashboard {
 				$(el).removeClass("hidden");
 			}
 		});
+<<<<<<< HEAD
 		!this.frm.is_new() && this.set_open_count();
+=======
+		this.observe_link_render();
+	}
+
+	observe_link_render() {
+		let me = this;
+		let element = this.links_area.wrapper[0];
+
+		new IntersectionObserver((entries, observer) => {
+			entries.forEach((entry) => {
+				if (entry.intersectionRatio > 0) {
+					me.set_open_count();
+					observer.disconnect(); // only required for first load.
+				}
+			});
+		}).observe(element);
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	}
 
 	init_data() {
@@ -381,7 +417,17 @@ frappe.ui.form.Dashboard = class FormDashboard {
 	}
 
 	set_open_count() {
+<<<<<<< HEAD
 		if (!this.data || !this.data.transactions || !this.data.fieldname) {
+=======
+		if (
+			!this.data ||
+			!this.data.transactions ||
+			!this.data.fieldname ||
+			this.frm.is_new() ||
+			this._fetched_counts
+		) {
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			return;
 		}
 
@@ -437,6 +483,10 @@ frappe.ui.form.Dashboard = class FormDashboard {
 				});
 
 				me.frm.dashboard_data = r.message;
+<<<<<<< HEAD
+=======
+				me._fetched_counts = true;
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				me.frm.trigger("dashboard_update");
 			},
 		});
@@ -478,6 +528,7 @@ frappe.ui.form.Dashboard = class FormDashboard {
 
 	// heatmap
 	render_heatmap() {
+<<<<<<< HEAD
 		if (!this.heatmap) {
 			this.heatmap = new frappe.Chart("#heatmap-" + frappe.model.scrub(this.frm.doctype), {
 				type: "heatmap",
@@ -499,6 +550,27 @@ frappe.ui.form.Dashboard = class FormDashboard {
 			} else {
 				heatmap_message.addClass("hidden");
 			}
+=======
+		this.heatmap = new frappe.Chart("#heatmap-" + frappe.model.scrub(this.frm.doctype), {
+			type: "heatmap",
+			start: new Date(moment().subtract(1, "year").toDate()),
+			count_label: "interactions",
+			discreteDomains: 1,
+			radius: 3,
+			data: {},
+		});
+
+		// center the heatmap
+		this.heatmap_area.show();
+		this.heatmap_area.body.find("svg").css({ margin: "auto" });
+
+		// message
+		let heatmap_message = this.heatmap_area.body.find(".heatmap-message");
+		if (this.data.heatmap_message) {
+			heatmap_message.removeClass("hidden").html(this.data.heatmap_message);
+		} else {
+			heatmap_message.addClass("hidden");
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		}
 	}
 
@@ -567,7 +639,11 @@ frappe.ui.form.Dashboard = class FormDashboard {
 		this.chart_area.show();
 		this.chart_area.body.empty();
 		$.extend(args, {
+<<<<<<< HEAD
 			type: "line",
+=======
+			type: args.type || "line",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			colors: args.colors || ["green"],
 			truncateLegends: 1,
 			axisOptions: {

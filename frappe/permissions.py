@@ -94,6 +94,12 @@ def has_permission(
 	if user == "Administrator":
 		return True
 
+<<<<<<< HEAD
+=======
+	if ptype == "share" and frappe.get_system_settings("disable_document_sharing"):
+		return False
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	if not doc and hasattr(doctype, "doctype"):
 		# first argument can be doc or doctype
 		doc = doctype
@@ -133,6 +139,7 @@ def has_permission(
 
 	def false_if_not_shared():
 		if ptype in ("read", "write", "share", "submit", "email", "print"):
+<<<<<<< HEAD
 			shared = frappe.share.get_shared(
 				doctype, user, ["read" if ptype in ("email", "print") else ptype]
 			)
@@ -144,6 +151,26 @@ def has_permission(
 						return True
 
 			elif shared:
+=======
+
+			rights = ["read" if ptype in ("email", "print") else ptype]
+
+			if doc:
+				doc_name = get_doc_name(doc)
+				shared = frappe.share.get_shared(
+					doctype,
+					user,
+					rights=rights,
+					filters=[["share_name", "=", doc_name]],
+					limit=1,
+				)
+
+				if shared:
+					if ptype in ("read", "write", "share", "submit") or meta.permissions[0].get(ptype):
+						return True
+
+			elif frappe.share.get_shared(doctype, user, rights=rights, limit=1):
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				# if atleast one shared doc of that type, then return True
 				# this is used in db_query to check if permission on DocType
 				return True
@@ -220,7 +247,11 @@ def get_role_permissions(doctype_meta, user=None, is_owner=None):
 	if not user:
 		user = frappe.session.user
 
+<<<<<<< HEAD
 	cache_key = (doctype_meta.name, user)
+=======
+	cache_key = (doctype_meta.name, user, bool(is_owner))
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 	if user == "Administrator":
 		return allow_everything()

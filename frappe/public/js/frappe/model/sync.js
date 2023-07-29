@@ -62,7 +62,11 @@ Object.assign(frappe.model, {
 			}
 			frappe.model.docinfo[doctype][name] = r.docinfo;
 
+<<<<<<< HEAD
 			// copy values to Ehsan.boot.user_info
+=======
+			// copy values to frappe.boot.user_info
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			Object.assign(frappe.boot.user_info, r.docinfo.user_info);
 		}
 

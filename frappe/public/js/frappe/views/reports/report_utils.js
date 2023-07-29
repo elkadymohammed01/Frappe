@@ -126,6 +126,16 @@ frappe.report_utils = {
 			.then((r) => {
 				frappe.dom.eval(r.script || "");
 				return frappe.after_ajax(() => {
+<<<<<<< HEAD
+=======
+					if (
+						frappe.query_reports[report_name] &&
+						!frappe.query_reports[report_name].filters &&
+						r.filters
+					) {
+						return (frappe.query_reports[report_name].filters = r.filters);
+					}
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 					return (
 						frappe.query_reports[report_name] &&
 						frappe.query_reports[report_name].filters

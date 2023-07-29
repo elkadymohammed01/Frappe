@@ -101,6 +101,13 @@ def authorize(**kwargs):
 				frappe.local.response["type"] = "redirect"
 				frappe.local.response["location"] = success_url
 			else:
+<<<<<<< HEAD
+=======
+				if "openid" in scopes:
+					scopes.remove("openid")
+					scopes.extend(["First Name", "Last Name", "Email", "Password", "User Image", "Roles"])
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				# Show Allow/Deny screen.
 				response_html_params = frappe._dict(
 					{
@@ -113,7 +120,11 @@ def authorize(**kwargs):
 				resp_html = frappe.render_template(
 					"templates/includes/oauth_confirmation.html", response_html_params
 				)
+<<<<<<< HEAD
 				frappe.respond_as_web_page("Confirm Access", resp_html)
+=======
+				frappe.respond_as_web_page("Confirm Access", resp_html, primary_action=None)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		except (FatalClientError, OAuth2Error) as e:
 			return generate_json_error_response(e)
 

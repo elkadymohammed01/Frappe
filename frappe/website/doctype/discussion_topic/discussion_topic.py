@@ -39,6 +39,7 @@ def save_message(reply, topic):
 	frappe.get_doc({"doctype": "Discussion Reply", "reply": reply, "topic": topic}).save(
 		ignore_permissions=True
 	)
+<<<<<<< HEAD
 
 
 @frappe.whitelist(allow_guest=True)
@@ -46,3 +47,5 @@ def get_docname(route):
 	if not route:
 		route = frappe.db.get_single_value("Website Settings", "home_page")
 	return frappe.db.get_value("Web Page", {"route": route}, ["name"])
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)

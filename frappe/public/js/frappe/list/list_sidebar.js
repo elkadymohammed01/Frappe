@@ -34,10 +34,19 @@ frappe.views.ListSidebar = class ListSidebar {
 		) {
 			this.sidebar.find(".list-tags").remove();
 		} else {
+<<<<<<< HEAD
 			this.sidebar.find(".list-stats").on("click", (e) => {
 				this.reload_stats();
 			});
 		}
+=======
+			this.sidebar.find(".list-stats").on("show.bs.dropdown", (e) => {
+				this.reload_stats();
+			});
+		}
+
+		this.add_insights_banner();
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	}
 
 	setup_views() {
@@ -185,6 +194,13 @@ frappe.views.ListSidebar = class ListSidebar {
 
 	get_stats() {
 		var me = this;
+<<<<<<< HEAD
+=======
+
+		let dropdown_options = me.sidebar.find(".list-stats-dropdown .stat-result");
+		this.set_loading_state(dropdown_options);
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		frappe.call({
 			method: "frappe.desk.reportview.get_sidebar_stats",
 			type: "GET",
@@ -206,6 +222,17 @@ frappe.views.ListSidebar = class ListSidebar {
 		});
 	}
 
+<<<<<<< HEAD
+=======
+	set_loading_state(dropdown) {
+		dropdown.html(`<li>
+			<div class="empty-state">
+				${__("Loading...")}
+			</div>
+		</li>`);
+	}
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	render_stat(stats) {
 		let args = {
 			stats: stats,
@@ -239,4 +266,43 @@ frappe.views.ListSidebar = class ListSidebar {
 		this.sidebar.find(".stat-no-records").remove();
 		this.get_stats();
 	}
+<<<<<<< HEAD
+=======
+
+	add_insights_banner() {
+		try {
+			if (this.list_view.view != "Report") {
+				return;
+			}
+
+			if (localStorage.getItem("show_insights_banner") == "false") {
+				return;
+			}
+
+			if (this.insights_banner) {
+				this.insights_banner.remove();
+			}
+
+			const message = "Get more insights with";
+			const link = "https://frappe.io/s/insights";
+			const cta = "Frappe Insights";
+
+			this.insights_banner = $(`
+				<div style="position: relative;">
+					<div class="pr-3">
+						${message} <a href="${link}" target="_blank" style="color: var(--primary-color)">${cta} &rarr; </a>
+					</div>
+					<div style="position: absolute; top: -1px; right: -4px; cursor: pointer;" title="Dismiss"
+						onclick="localStorage.setItem('show_insights_banner', 'false') || this.parentElement.remove()">
+						<svg class="icon  icon-sm" style="">
+							<use class="" href="#icon-close"></use>
+						</svg>
+					</div>
+				</div>
+			`).appendTo(this.sidebar);
+		} catch (error) {
+			console.error(error);
+		}
+	}
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 };

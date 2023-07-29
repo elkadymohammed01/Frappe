@@ -77,6 +77,7 @@ frappe.views.Workspace = class Workspace {
 	}
 
 	sidebar_item_container(item) {
+<<<<<<< HEAD
 		var child = "";
 		if(item.parent_page){
 			child = "ml-4 mr-4"
@@ -84,11 +85,19 @@ frappe.views.Workspace = class Workspace {
 		return $(`
 			<div
 				class="sidebar-item-container ${item.is_editable ? "is-draggable" : ""} ${child}"
+=======
+		return $(`
+			<div
+				class="sidebar-item-container ${item.is_editable ? "is-draggable" : ""}"
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				item-parent="${item.parent_page}"
 				item-name="${item.title}"
 				item-public="${item.public || 0}"
 				item-is-hidden="${item.is_hidden || 0}"
+<<<<<<< HEAD
 				style="border-bottom: 1px solid #191919;"
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			>
 				<div class="desk-sidebar-item standard-sidebar-item ${item.selected ? "selected" : ""}">
 					<a
@@ -97,10 +106,20 @@ frappe.views.Workspace = class Workspace {
 								? frappe.router.slug(item.title)
 								: "private/" + frappe.router.slug(item.title)
 						}"
+<<<<<<< HEAD
 						class="item-anchor ${item.is_editable ? "" : "block-click"}" title="${__(item.title)} text-center"
 					>
 						<img class="sidebar-item-icon" src="/assets/frappe/icons/workspace/${item.icon || "default"}.png" style="width: 32px;">
 						<span class="sidebar-item-label pt-2 pl-2 pr-2 text-light">${__(item.title)}<span>
+=======
+						class="item-anchor ${item.is_editable ? "" : "block-click"}" title="${__(item.title)}"
+					>
+						<span class="sidebar-item-icon" item-icon=${item.icon || "folder-normal"}>${frappe.utils.icon(
+			item.icon || "folder-normal",
+			"md"
+		)}</span>
+						<span class="sidebar-item-label">${__(item.title)}<span>
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 					</a>
 					<div class="sidebar-item-control"></div>
 				</div>
@@ -141,7 +160,12 @@ frappe.views.Workspace = class Workspace {
 		);
 
 		let $title = $(`<div class="standard-sidebar-label">
+<<<<<<< HEAD
 			<span class="section-title"><span>
+=======
+			<span>${frappe.utils.icon("small-down", "xs")}</span>
+			<span class="section-title">${__(title)}<span>
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		</div>`).appendTo(sidebar_section);
 		this.prepare_sidebar(root_pages, sidebar_section, this.sidebar);
 
@@ -159,7 +183,11 @@ frappe.views.Workspace = class Workspace {
 		}
 
 		if (
+<<<<<<< HEAD
 			sidebar_section.find("sidebar-item-container").length &&
+=======
+			sidebar_section.find(".sidebar-item-container").length &&
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			sidebar_section.find("> [item-is-hidden='0']").length == 0
 		) {
 			sidebar_section.addClass("hidden show-in-edit-mode");
@@ -215,7 +243,11 @@ frappe.views.Workspace = class Workspace {
 
 		let $child_item_section = item_container.find(".sidebar-child-item");
 		let $drop_icon = $(
+<<<<<<< HEAD
 			`<span class="drop-icon  hidden">${frappe.utils.icon(drop_icon, "sm")}</span>`
+=======
+			`<span class="drop-icon hidden">${frappe.utils.icon(drop_icon, "sm")}</span>`
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		).appendTo(sidebar_control);
 		let pages = item.public ? this.public_pages : this.private_pages;
 		if (
@@ -248,6 +280,15 @@ frappe.views.Workspace = class Workspace {
 		this.update_selected_sidebar(this.current_page, false); //remove selected from old page
 		this.update_selected_sidebar(page, true); //add selected on new page
 
+<<<<<<< HEAD
+=======
+		if (!frappe.router.current_route[0]) {
+			frappe.router.current_route = !page.public
+				? ["Workspaces", "private", page.name]
+				: ["Workspaces", page.name];
+		}
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		this.show_page(page);
 	}
 
@@ -350,7 +391,11 @@ frappe.views.Workspace = class Workspace {
 			let current_page = pages.filter((p) => p.title == page.name)[0];
 			this.content = current_page && JSON.parse(current_page.content);
 
+<<<<<<< HEAD
 			this.add_custom_cards_in_content();
+=======
+			this.content && this.add_custom_cards_in_content();
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 			$(".item-anchor").addClass("disable-click");
 
@@ -395,6 +440,10 @@ frappe.views.Workspace = class Workspace {
 				this.editor.configuration.tools.onboarding.config.page_data = this.page_data;
 				this.editor.configuration.tools.quick_list.config.page_data = this.page_data;
 				this.editor.configuration.tools.number_card.config.page_data = this.page_data;
+<<<<<<< HEAD
+=======
+				this.editor.configuration.tools.custom_block.config.page_data = this.page_data;
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				this.editor.render({ blocks: this.content || [] });
 			});
 		} else {
@@ -597,6 +646,10 @@ frappe.views.Workspace = class Workspace {
 			],
 			primary_action_label: __("Update"),
 			primary_action: (values) => {
+<<<<<<< HEAD
+=======
+				values.title = frappe.utils.escape_html(values.title);
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				let is_title_changed = values.title != old_item.title;
 				let is_section_changed = values.is_public != old_item.public;
 				if (
@@ -1143,6 +1196,10 @@ frappe.views.Workspace = class Workspace {
 			],
 			primary_action_label: __("Create"),
 			primary_action: (values) => {
+<<<<<<< HEAD
+=======
+				values.title = frappe.utils.escape_html(values.title);
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				if (!this.validate_page(values)) return;
 				d.hide();
 				this.initialize_editorjs_undo();
@@ -1345,6 +1402,15 @@ frappe.views.Workspace = class Workspace {
 					page_data: this.page_data || [],
 				},
 			},
+<<<<<<< HEAD
+=======
+			custom_block: {
+				class: this.blocks["custom_block"],
+				config: {
+					page_data: this.page_data || [],
+				},
+			},
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			spacer: this.blocks["spacer"],
 			HeaderSize: frappe.workspace_block.tunes["header_size"],
 		};

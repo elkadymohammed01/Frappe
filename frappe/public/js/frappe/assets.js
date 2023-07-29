@@ -28,8 +28,16 @@ frappe.assets = {
 		}
 
 		if (localStorage._last_load) {
+<<<<<<< HEAD
 			var not_updated_since = new Date() - new Date(localStorage._last_load);
 			if (not_updated_since < 10000 || not_updated_since > 86400000) {
+=======
+			let not_updated_since = new Date() - new Date(localStorage._last_load);
+			// Evict cache every 2 days
+			// Evict cache if page is reloaded within 10 seconds. Which could be user trying to
+			// refresh if things feel broken.
+			if ((not_updated_since < 5000 && is_reload()) || not_updated_since > 2 * 86400000) {
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				frappe.assets.clear_local_storage();
 			}
 		} else {
@@ -184,3 +192,18 @@ frappe.assets = {
 		return path;
 	},
 };
+<<<<<<< HEAD
+=======
+
+function is_reload() {
+	try {
+		return window.performance
+			?.getEntriesByType("navigation")
+			.map((nav) => nav.type)
+			.includes("reload");
+	} catch (e) {
+		// Safari probably
+		return true;
+	}
+}
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)

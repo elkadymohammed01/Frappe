@@ -10,7 +10,11 @@ import frappe
 import frappe.permissions
 from frappe import _
 from frappe.core.doctype.access_log.access_log import make_access_log
+<<<<<<< HEAD
 from frappe.model import child_table_fields, default_fields, optional_fields
+=======
+from frappe.model import child_table_fields, default_fields, get_permitted_fields, optional_fields
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 from frappe.model.base_document import get_controller
 from frappe.model.db_query import DatabaseQuery
 from frappe.model.utils import is_virtual_doctype
@@ -204,7 +208,14 @@ def update_wildcard_field_param(data):
 	if (isinstance(data.fields, str) and data.fields == "*") or (
 		isinstance(data.fields, (list, tuple)) and len(data.fields) == 1 and data.fields[0] == "*"
 	):
+<<<<<<< HEAD
 		data.fields = frappe.db.get_table_columns(data.doctype)
+=======
+		if frappe.get_system_settings("apply_perm_level_on_api_calls"):
+			data.fields = get_permitted_fields(data.doctype, parenttype=data.parenttype)
+		else:
+			data.fields = frappe.db.get_table_columns(data.doctype)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		return True
 
 	return False
@@ -403,7 +414,11 @@ def export_query():
 
 		xlsx_file = make_xlsx(data, doctype)
 
+<<<<<<< HEAD
 		frappe.response["filename"] = title + ".xlsx"
+=======
+		frappe.response["filename"] = _(title) + ".xlsx"
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		frappe.response["filecontent"] = xlsx_file.getvalue()
 		frappe.response["type"] = "binary"
 
@@ -539,6 +554,7 @@ def get_stats(stats, doctype, filters=None):
 
 	if filters is None:
 		filters = []
+<<<<<<< HEAD
 	tags = json.loads(stats)
 	if filters:
 		filters = json.loads(filters)
@@ -553,17 +569,40 @@ def get_stats(stats, doctype, filters=None):
 
 	for tag in tags:
 		if tag not in columns:
+=======
+	columns = json.loads(stats)
+	if filters:
+		filters = json.loads(filters)
+	results = {}
+
+	try:
+		db_columns = frappe.db.get_table_columns(doctype)
+	except (frappe.db.InternalError, frappe.db.ProgrammingError):
+		# raised when _user_tags column is added on the fly
+		# raised if its a virtual doctype
+		db_columns = []
+
+	for column in columns:
+		if column not in db_columns:
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			continue
 		try:
 			tag_count = frappe.get_list(
 				doctype,
+<<<<<<< HEAD
 				fields=[tag, "count(*)"],
 				filters=filters + [[tag, "!=", ""]],
 				group_by=tag,
+=======
+				fields=[column, "count(*)"],
+				filters=filters + [[column, "!=", ""]],
+				group_by=column,
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				as_list=True,
 				distinct=1,
 			)
 
+<<<<<<< HEAD
 			if tag == "_user_tags":
 				stats[tag] = scrub_user_tags(tag_count)
 				no_tag_count = frappe.get_list(
@@ -573,13 +612,30 @@ def get_stats(stats, doctype, filters=None):
 					as_list=True,
 					group_by=tag,
 					order_by=tag,
+=======
+			if column == "_user_tags":
+				results[column] = scrub_user_tags(tag_count)
+				no_tag_count = frappe.get_list(
+					doctype,
+					fields=[column, "count(*)"],
+					filters=filters + [[column, "in", ("", ",")]],
+					as_list=True,
+					group_by=column,
+					order_by=column,
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				)
 
 				no_tag_count = no_tag_count[0][1] if no_tag_count else 0
 
+<<<<<<< HEAD
 				stats[tag].append([_("No Tags"), no_tag_count])
 			else:
 				stats[tag] = tag_count
+=======
+				results[column].append([_("No Tags"), no_tag_count])
+			else:
+				results[column] = tag_count
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 		except frappe.db.SQLError:
 			pass
@@ -587,7 +643,11 @@ def get_stats(stats, doctype, filters=None):
 			# raised when _user_tags column is added on the fly
 			pass
 
+<<<<<<< HEAD
 	return stats
+=======
+	return results
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 
 @frappe.whitelist()
@@ -697,7 +757,12 @@ def get_filters_cond(
 			for f in filters:
 				if isinstance(f[1], str) and f[1][0] == "!":
 					flt.append([doctype, f[0], "!=", f[1][1:]])
+<<<<<<< HEAD
 				elif isinstance(f[1], (list, tuple)) and f[1][0] in (
+=======
+				elif isinstance(f[1], (list, tuple)) and f[1][0].lower() in (
+					"=",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 					">",
 					"<",
 					">=",
@@ -708,6 +773,10 @@ def get_filters_cond(
 					"in",
 					"not in",
 					"between",
+<<<<<<< HEAD
+=======
+					"is",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				):
 
 					flt.append([doctype, f[0], f[1][0], f[1][1]])

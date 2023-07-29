@@ -161,7 +161,13 @@ $.extend(frappe.model, {
 
 				if (!user_default) {
 					user_default = frappe.defaults.get_user_default(df.fieldname);
+<<<<<<< HEAD
 				} else if (
+=======
+				}
+
+				if (
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 					!user_default &&
 					df.remember_last_selected_value &&
 					frappe.boot.user.last_selected_values
@@ -306,6 +312,13 @@ $.extend(frappe.model, {
 		newdoc.lft = null;
 		newdoc.rgt = null;
 
+<<<<<<< HEAD
+=======
+		if (from_amend && parent_doc) {
+			newdoc._amended_from = doc.name;
+		}
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		return newdoc;
 	},
 

@@ -16,6 +16,7 @@ frappe.ui.form.on("Bulk Update", {
 			if (!frm.doc.update_value) {
 				frappe.throw(__('Field "value" is mandatory. Please specify value to be updated'));
 			} else {
+<<<<<<< HEAD
 				frappe
 					.call({
 						method: "frappe.desk.doctype.bulk_update.bulk_update.update",
@@ -48,6 +49,29 @@ frappe.ui.form.on("Bulk Update", {
 						frappe.hide_progress();
 						frm.save();
 					});
+=======
+				frm.call("bulk_update").then((r) => {
+					let failed = r.message;
+					if (!failed) failed = [];
+
+					if (failed.length && !r._server_messages) {
+						frappe.throw(
+							__("Cannot update {0}", [
+								failed.map((f) => (f.bold ? f.bold() : f)).join(", "),
+							])
+						);
+					} else {
+						frappe.msgprint({
+							title: __("Success"),
+							message: __("Updated Successfully"),
+							indicator: "green",
+						});
+					}
+
+					frappe.hide_progress();
+					frm.save();
+				});
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			}
 		});
 	},

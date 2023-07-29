@@ -624,6 +624,10 @@ svg_attributes = [
 	"color",
 	"color-rendering",
 	"content",
+<<<<<<< HEAD
+=======
+	"colwidth",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	"cx",
 	"cy",
 	"d",

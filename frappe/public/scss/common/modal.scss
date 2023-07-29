@@ -222,12 +222,37 @@ body.modal-open[style^="padding-right"] {
 			margin-bottom: -24px;
 			button {
 				// same as form-control input
+<<<<<<< HEAD
 				height: calc(1.5em + .75rem + 2px);
+=======
+				height: calc(1.5em + .7rem);
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			}
 		}
 	}
 }
 
+<<<<<<< HEAD
+=======
+.modal [data-fieldname="email_template_section_break"] {
+	form {
+		display: flex;
+		align-items: center;
+
+		.frappe-control:first-child {
+			&[data-fieldname="email_template"] {
+				margin-right: 10px;
+			}
+			flex: 1;
+		}
+
+		.frappe-control:last-child {
+			margin-bottom: -8px;
+		}
+	}
+}
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 // modal is xs (for grids)
 .modal .hidden-xs {
 	display: none !important;

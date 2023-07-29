@@ -219,7 +219,17 @@ def decrypt(txt, encryption_key=None):
 		return cstr(cipher_suite.decrypt(encode(txt)))
 	except InvalidToken:
 		# encryption_key in site_config is changed and not valid
+<<<<<<< HEAD
 		frappe.throw(_("Encryption key is invalid! Please check site_config.json"))
+=======
+		frappe.throw(
+			_("Encryption key is invalid! Please check site_config.json")
+			+ "<br>"
+			+ _(
+				"If you have recently restored the site you may need to copy the site config contaning original Encryption Key."
+			)
+		)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 
 def get_encryption_key():

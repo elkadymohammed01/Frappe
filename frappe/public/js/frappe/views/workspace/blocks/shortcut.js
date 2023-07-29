@@ -67,7 +67,13 @@ export default class Shortcut extends Block {
 				"stroke: grey",
 				"ml-2"
 			);
+<<<<<<< HEAD
 
+=======
+			$(this.wrapper).find(".widget .widget-title").append($shortcut_icon);
+
+			$(this.wrapper).append($(`<div class="divider"></div>`));
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		}
 		return this.wrapper;
 	}

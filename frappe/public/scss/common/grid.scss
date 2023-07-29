@@ -362,6 +362,13 @@
 	}
 }
 
+<<<<<<< HEAD
+=======
+#freeze.grid-form {
+	z-index: 1020;
+}
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 .recorder-form-in-grid {
 	z-index: 0;
 	@include base-grid();

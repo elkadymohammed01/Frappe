@@ -68,6 +68,13 @@ io.on("connection", function (socket) {
 		});
 	});
 
+<<<<<<< HEAD
+=======
+	socket.on("doctype_unsubscribe", function (doctype) {
+		socket.leave(get_doctype_room(socket, doctype));
+	});
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	socket.on("task_subscribe", function (task_id) {
 		var room = get_task_room(socket, task_id);
 		socket.join(room);

@@ -89,8 +89,16 @@ class Monitor:
 			self.data.duration = int(timediff.total_seconds() * 1000000)
 
 			if self.data.transaction_type == "request":
+<<<<<<< HEAD
 				self.data.request.status_code = response.status_code
 				self.data.request.response_length = int(response.headers.get("Content-Length", 0))
+=======
+				if response:
+					self.data.request.status_code = response.status_code
+					self.data.request.response_length = int(response.headers.get("Content-Length", 0))
+				else:
+					self.data.request.status_code = 500
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 				if hasattr(frappe.local, "rate_limiter"):
 					limiter = frappe.local.rate_limiter

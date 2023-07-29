@@ -102,7 +102,11 @@ frappe.views.KanbanView = class KanbanView extends frappe.views.ListView {
 			this.menu_items.push({
 				label: __("Delete Kanban Board"),
 				action: () => {
+<<<<<<< HEAD
 					frappe.confirm("Are you sure you want to proceed?", () => {
+=======
+					frappe.confirm(__("Are you sure you want to proceed?"), () => {
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 						frappe.db.delete_doc("Kanban Board", this.board_name).then(() => {
 							frappe.show_alert(`Kanban Board ${this.board_name} deleted.`);
 							frappe.set_route("List", this.doctype, "List");

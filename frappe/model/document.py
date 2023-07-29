@@ -156,7 +156,11 @@ class Document(BaseDocument):
 		for df in self._get_table_fields():
 			# Make sure not to query the DB for a child table, if it is a virtual one.
 			# During frappe is installed, the property "is_virtual" is not available in tabDocType, so
+<<<<<<< HEAD
 			# we need to filter those cases for the access to Ehsan.db.get_value() as it would crash otherwise.
+=======
+			# we need to filter those cases for the access to frappe.db.get_value() as it would crash otherwise.
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			if hasattr(self, "doctype") and not hasattr(self, "module") and is_virtual_doctype(df.options):
 				self.set(df.fieldname, [])
 				continue
@@ -1211,9 +1215,18 @@ class Document(BaseDocument):
 		):
 			return
 
+<<<<<<< HEAD
 		version = frappe.new_doc("Version")
 
 		if is_useful_diff := version.update_version_info(self._doc_before_save, self):
+=======
+		doc_to_compare = self._doc_before_save
+		if not doc_to_compare and (amended_from := self.get("amended_from")):
+			doc_to_compare = frappe.get_doc(self.doctype, amended_from)
+
+		version = frappe.new_doc("Version")
+		if is_useful_diff := version.update_version_info(doc_to_compare, self):
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			version.insert(ignore_permissions=True)
 
 			if not frappe.flags.in_migrate:

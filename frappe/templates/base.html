@@ -47,8 +47,12 @@
 		window.show_language_picker = {{ show_language_picker or 'false' }};
 	</script>
 </head>
+<<<<<<< HEAD
 <body frappe-session-status="{{ 'logged-in' if frappe.session.user != 'Guest' else 'logged-out'}}" data-path="{{ path | e }}" {%- if template and template.endswith('.md') %} frappe-content-type="markdown" {%- endif %} class="{{ body_class or ''}}"
 style="background:url(assets/frappe/bg-masthead.jpg)">
+=======
+<body frappe-session-status="{{ 'logged-in' if frappe.session.user != 'Guest' else 'logged-out'}}" data-path="{{ path | e }}" {%- if template and template.endswith('.md') %} frappe-content-type="markdown" {%- endif %} class="{{ body_class or ''}}">
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	{% include "public/icons/timeless/icons.svg" %}
 	{%- block banner -%}
 		{% include "templates/includes/banner_extension.html" ignore missing %}

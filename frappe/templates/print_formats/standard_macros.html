@@ -56,9 +56,15 @@
 							<td class="{{ get_align_class(tdf) }}" {{ fieldmeta(df) }}>
 							{% if doc.child_print_templates %}
 								{%- set child_templates = doc.child_print_templates.get(df.fieldname) -%}
+<<<<<<< HEAD
 								<div class="value">{{ print_value(tdf, d, doc, visible_columns, child_templates) }}</div></td>
 							{% else %}
 								<div class="value">{{ print_value(tdf, d, doc, visible_columns) }}</div></td>
+=======
+								<div class="value">{{ _(print_value(tdf, d, doc, visible_columns, child_templates)) }}</div></td>
+							{% else %}
+								<div class="value">{{ _(print_value(tdf, d, doc, visible_columns)) }}</div></td>
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 							{% endif %}
 						{% endfor %}
 					</tr>

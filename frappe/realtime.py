@@ -108,10 +108,15 @@ def can_subscribe_doc(doctype, docname):
 		return True
 
 	from frappe.exceptions import PermissionError
+<<<<<<< HEAD
 	from frappe.sessions import Session
 
 	session = Session(None, resume=True).get_session_data()
 	if not frappe.has_permission(user=session.user, doctype=doctype, doc=docname, ptype="read"):
+=======
+
+	if not frappe.has_permission(doctype=doctype, doc=docname, ptype="read"):
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		raise PermissionError()
 
 	return True
@@ -121,7 +126,11 @@ def can_subscribe_doc(doctype, docname):
 def can_subscribe_doctype(doctype: str) -> bool:
 	from frappe.exceptions import PermissionError
 
+<<<<<<< HEAD
 	if not frappe.has_permission(user=frappe.session.user, doctype=doctype, ptype="read"):
+=======
+	if not frappe.has_permission(doctype=doctype, ptype="read"):
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		raise PermissionError()
 
 	return True
@@ -129,6 +138,7 @@ def can_subscribe_doctype(doctype: str) -> bool:
 
 @frappe.whitelist(allow_guest=True)
 def get_user_info():
+<<<<<<< HEAD
 	from frappe.sessions import Session
 
 	session = Session(None, resume=True).get_session_data()
@@ -136,6 +146,11 @@ def get_user_info():
 	return {
 		"user": session.user,
 		"user_type": session.user_type,
+=======
+	return {
+		"user": frappe.session.user,
+		"user_type": frappe.session.data.user_type,
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	}
 
 

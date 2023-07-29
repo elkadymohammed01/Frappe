@@ -133,4 +133,10 @@ frappe.ui.form.ControlSignature = class ControlSignature extends frappe.ui.form.
 		this.set_my_value(base64_img);
 		this.set_image(this.get_value());
 	}
+<<<<<<< HEAD
+=======
+	on_section_collapse() {
+		this.refresh();
+	}
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 };

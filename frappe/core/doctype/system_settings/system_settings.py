@@ -5,14 +5,23 @@ import frappe
 from frappe import _
 from frappe.model import no_value_fields
 from frappe.model.document import Document
+<<<<<<< HEAD
 from frappe.translate import set_default_language
 from frappe.twofactor import toggle_two_factor_auth
 from frappe.utils import cint, today
 from frappe.utils.momentjs import get_all_timezones
+=======
+from frappe.utils import cint, today
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 
 class SystemSettings(Document):
 	def validate(self):
+<<<<<<< HEAD
+=======
+		from frappe.twofactor import toggle_two_factor_auth
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		enable_password_policy = cint(self.enable_password_policy) and True or False
 		minimum_password_score = cint(getattr(self, "minimum_password_score", 0)) or 0
 		if enable_password_policy and minimum_password_score <= 0:
@@ -44,6 +53,10 @@ class SystemSettings(Document):
 			frappe.flags.update_last_reset_password_date = True
 
 		self.validate_user_pass_login()
+<<<<<<< HEAD
+=======
+		self.validate_backup_limit()
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 	def validate_user_pass_login(self):
 		if not self.disable_user_pass_login:
@@ -59,6 +72,14 @@ class SystemSettings(Document):
 				)
 			)
 
+<<<<<<< HEAD
+=======
+	def validate_backup_limit(self):
+		if not self.backup_limit or self.backup_limit < 1:
+			frappe.msgprint(_("Number of backups must be greater than zero."), alert=True)
+			self.backup_limit = 1
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	def on_update(self):
 		self.set_defaults()
 
@@ -69,6 +90,11 @@ class SystemSettings(Document):
 			update_last_reset_password_date()
 
 	def set_defaults(self):
+<<<<<<< HEAD
+=======
+		from frappe.translate import set_default_language
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		for df in self.meta.get("fields"):
 			if df.fieldtype not in no_value_fields and self.has_value_changed(df.fieldname):
 				frappe.db.set_default(df.fieldname, self.get(df.fieldname))
@@ -90,6 +116,11 @@ def update_last_reset_password_date():
 
 @frappe.whitelist()
 def load():
+<<<<<<< HEAD
+=======
+	from frappe.utils.momentjs import get_all_timezones
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	if not "System Manager" in frappe.get_roles():
 		frappe.throw(_("Not permitted"), frappe.PermissionError)
 

@@ -539,7 +539,11 @@ frappe.views.QueryReport = class QueryReport extends frappe.views.BaseList {
 						if (this.prepared_report) {
 							this.reset_report_view();
 						} else if (!this._no_refresh) {
+<<<<<<< HEAD
 							this.refresh();
+=======
+							this.refresh(true);
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 						}
 					}
 				};
@@ -595,10 +599,32 @@ frappe.views.QueryReport = class QueryReport extends frappe.views.BaseList {
 		this.page.clear_fields();
 	}
 
+<<<<<<< HEAD
 	refresh() {
 		this.toggle_message(true);
 		this.toggle_report(false);
 		let filters = this.get_filter_values(true);
+=======
+	refresh(have_filters_changed) {
+		this.toggle_message(true);
+		this.toggle_report(false);
+		let filters = this.get_filter_values(true);
+
+		// for custom reports,
+		// are_default_filters is true if the filters haven't been modified and for all filters,
+		// the filter value is the default value or there's no default value for the filter and the current value is empty.
+		// are_default_filters is false otherwise.
+
+		let are_default_filters = this.filters
+			.map((filter) => {
+				return (
+					!have_filters_changed &&
+					(filter.default === filter.value || (!filter.default && !filter.value))
+				);
+			})
+			.every((res) => res === true);
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		this.show_loading_screen();
 
 		// only one refresh at a time
@@ -621,6 +647,10 @@ frappe.views.QueryReport = class QueryReport extends frappe.views.BaseList {
 					filters: filters,
 					is_tree: this.report_settings.tree,
 					parent_field: this.report_settings.parent_field,
+<<<<<<< HEAD
+=======
+					are_default_filters: are_default_filters,
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				},
 				callback: resolve,
 				always: () => this.page.btn_secondary.prop("disabled", false),
@@ -633,6 +663,14 @@ frappe.views.QueryReport = class QueryReport extends frappe.views.BaseList {
 
 				this.execution_time = data.execution_time || 0.1;
 
+<<<<<<< HEAD
+=======
+				if (data.custom_filters) {
+					this.set_filters(data.custom_filters);
+					this.previous_filters = data.custom_filters;
+				}
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				if (data.prepared_report) {
 					this.prepared_report = true;
 					this.prepared_report_document = data.doc;
@@ -724,9 +762,21 @@ frappe.views.QueryReport = class QueryReport extends frappe.views.BaseList {
 				);
 			});
 
+<<<<<<< HEAD
 			const part1 = __("This report was generated {0}.", [
 				frappe.datetime.comment_when(doc.report_end_time),
 			]);
+=======
+			let pretty_diff = frappe.datetime.comment_when(doc.report_end_time);
+			const days_old = frappe.datetime.get_day_diff(
+				frappe.datetime.now_datetime(),
+				doc.report_end_time
+			);
+			if (days_old > 1) {
+				pretty_diff = `<span style="color:var(--red-600)">${pretty_diff}</span>`;
+			}
+			const part1 = __("This report was generated {0}.", [pretty_diff]);
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			const part2 = __("To get the updated report, click on {0}.", [__("Rebuild")]);
 			const part3 = __("See all past reports.");
 
@@ -867,7 +917,10 @@ frappe.views.QueryReport = class QueryReport extends frappe.views.BaseList {
 			return new Promise((resolve) =>
 				frappe.call({
 					method: "frappe.desk.query_report.background_enqueue_run",
+<<<<<<< HEAD
 					type: "GET",
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 					args: {
 						report_name: this.report_name,
 						filters: filters,
@@ -1201,7 +1254,13 @@ frappe.views.QueryReport = class QueryReport extends frappe.views.BaseList {
 
 			return Object.assign(column, {
 				id: column.fieldname,
+<<<<<<< HEAD
 				name: __(column.label, null, `Column of report '${this.report_name}'`), // context has to match context in   get_messages_from_report in translate.py
+=======
+				// The column label should have already been translated in the
+				// backend. Translating it again would cause unexpected behaviour.
+				name: column.label,
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				width: parseInt(column.width) || null,
 				editable: false,
 				compareValue: compareFn,
@@ -1345,6 +1404,10 @@ frappe.views.QueryReport = class QueryReport extends frappe.views.BaseList {
 			columns: this.get_columns_for_print(print_settings, custom_format),
 			original_data: this.data,
 			report: this,
+<<<<<<< HEAD
+=======
+			can_use_smaller_font: this.report_doc.is_standard === "Yes" && custom_format ? 0 : 1,
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		});
 	}
 
@@ -1381,6 +1444,10 @@ frappe.views.QueryReport = class QueryReport extends frappe.views.BaseList {
 			columns: columns,
 			lang: frappe.boot.lang,
 			layout_direction: frappe.utils.is_rtl() ? "rtl" : "ltr",
+<<<<<<< HEAD
+=======
+			can_use_smaller_font: this.report_doc.is_standard === "Yes" && custom_format ? 0 : 1,
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		});
 
 		let filter_values = [],
@@ -1398,9 +1465,15 @@ frappe.views.QueryReport = class QueryReport extends frappe.views.BaseList {
 		const applied_filters = this.get_filter_values();
 		return Object.keys(applied_filters)
 			.map((fieldname) => {
+<<<<<<< HEAD
 				const label = frappe.query_report.get_filter(fieldname).df.label;
 				const value = applied_filters[fieldname];
 				return `<h6>${__(label)}: ${value}</h6>`;
+=======
+				const docfield = frappe.query_report.get_filter(fieldname).df;
+				const value = applied_filters[fieldname];
+				return `<h6>${__(docfield.label)}: ${frappe.format(value, docfield)}</h6>`;
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			})
 			.join("");
 	}
@@ -1725,6 +1798,10 @@ frappe.views.QueryReport = class QueryReport extends frappe.views.BaseList {
 									reference_report: this.report_name,
 									report_name: values.report_name,
 									columns: this.get_visible_columns(),
+<<<<<<< HEAD
+=======
+									filters: this.get_filter_values(),
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 								},
 								callback: function (r) {
 									this.show_save = false;

@@ -13,9 +13,12 @@ from frappe.utils import cint
 
 
 class TestRateLimiter(FrappeTestCase):
+<<<<<<< HEAD
 	def setUp(self):
 		pass
 
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	def test_apply_with_limit(self):
 		frappe.conf.rate_limit = {"window": 86400, "limit": 1}
 		frappe.rate_limiter.apply()

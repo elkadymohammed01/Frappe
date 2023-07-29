@@ -3,6 +3,10 @@
 
 import frappe
 from frappe.utils import strip_html_tags
+<<<<<<< HEAD
+=======
+from frappe.utils.html_utils import clean_html
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 no_cache = 1
 
@@ -26,9 +30,16 @@ def get_context(context):
 				frappe.local.response["http_status_code"] = message["http_status_code"]
 
 	if not message_context.title:
+<<<<<<< HEAD
 		message_context.title = frappe.form_dict.title
 
 	if not message_context.message:
 		message_context.message = frappe.form_dict.message
+=======
+		message_context.title = clean_html(frappe.form_dict.title)
+
+	if not message_context.message:
+		message_context.message = clean_html(frappe.form_dict.message)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 	return message_context

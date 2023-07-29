@@ -74,7 +74,11 @@ frappe.ui.form.ControlSelect = class ControlSelect extends frappe.ui.form.Contro
 		if (this.$input) {
 			var selected = this.$input.find(":selected").val();
 			this.$input.empty();
+<<<<<<< HEAD
 			frappe.ui.form.add_options(this.$input, options || []);
+=======
+			frappe.ui.form.add_options(this.$input, options || [], this.df.sort_options);
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 			if (value === undefined && selected) {
 				this.$input.val(selected);
@@ -102,11 +106,16 @@ frappe.ui.form.ControlSelect = class ControlSelect extends frappe.ui.form.Contro
 	}
 };
 
+<<<<<<< HEAD
 frappe.ui.form.add_options = function (input, options_list) {
+=======
+frappe.ui.form.add_options = function (input, options_list, sort) {
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	let $select = $(input);
 	if (!Array.isArray(options_list)) {
 		return $select;
 	}
+<<<<<<< HEAD
 	// create options
 	for (var i = 0, j = options_list.length; i < j; i++) {
 		var v = options_list[i];
@@ -134,6 +143,24 @@ frappe.ui.form.add_options = function (input, options_list) {
 			.prop("selected", is_selected)
 			.appendTo($select.get(0));
 	}
+=======
+
+	let options = options_list.map((raw_option) => parse_option(raw_option));
+	if (sort) {
+		options = options.sort((a, b) => a.label.localeCompare(b.label));
+	}
+
+	options
+		.map((option) =>
+			$("<option>")
+				.html(cstr(option.label))
+				.attr("value", option.value)
+				.prop("disabled", option.is_disabled)
+				.prop("selected", option.is_selected)
+		)
+		.forEach(($option) => $option.appendTo($select.get(0)));
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	// select the first option
 	$select.get(0).selectedIndex = 0;
 	$select.trigger("select-change");
@@ -142,8 +169,13 @@ frappe.ui.form.add_options = function (input, options_list) {
 
 // add <option> list to <select>
 (function ($) {
+<<<<<<< HEAD
 	$.fn.add_options = function (options_list) {
 		return frappe.ui.form.add_options(this.get(0), options_list);
+=======
+	$.fn.add_options = function (options_list, sort) {
+		return frappe.ui.form.add_options(this.get(0), options_list, sort);
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	};
 	$.fn.set_working = function () {
 		this.prop("disabled", true);
@@ -159,3 +191,35 @@ frappe.ui.form.add_options = function (input, options_list) {
 		return result;
 	};
 })(jQuery);
+<<<<<<< HEAD
+=======
+
+function parse_option(v) {
+	let value = null;
+	let label = null;
+	let is_disabled = false;
+	let is_selected = false;
+
+	if (!is_null(v)) {
+		const is_value_null = is_null(v.value);
+		const is_label_null = is_null(v.label);
+		is_disabled = Boolean(v.disabled);
+		is_selected = Boolean(v.selected);
+
+		if (is_value_null && is_label_null) {
+			value = v;
+			label = __(v);
+		} else {
+			value = is_value_null ? "" : v.value;
+			label = is_label_null ? __(value) : __(v.label);
+		}
+	}
+
+	return {
+		value,
+		label,
+		is_disabled,
+		is_selected,
+	};
+}
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)

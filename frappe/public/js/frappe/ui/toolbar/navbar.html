@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 <header class="navbar navbar-expand sticky-top pl-2 pr-2" role="navigation">
 	<div class="w-100 h-100 row">
 		<a class="navbar-brand navbar-home col-2 pl-4 pr-4" href="/app">
 			<img class="app-logo" style="width: 55px" src="/assets/frappe/ehsan.png">
+=======
+<header class="navbar navbar-expand sticky-top" role="navigation">
+	<div class="container">
+		<a class="navbar-brand navbar-home" href="/app">
+			<img class="app-logo" style="width: {{ navbar_settings.logo_width || 24 }}px" src="{{ frappe.boot.app_logo_url }}">
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		</a>
 		<ul class="nav navbar-nav d-none d-sm-flex" id="navbar-breadcrumbs"></ul>
 		<div class="collapse navbar-collapse justify-content-end">
@@ -20,7 +27,11 @@
 						aria-haspopup="true"
 					>
 					<span class="search-icon">
+<<<<<<< HEAD
 						<img src="/assets/frappe/icons/workspace/search.png" style="width: 24px;">
+=======
+						<svg class="icon icon-sm"><use href="#icon-search"></use></svg>
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 					</span>
 				</div>
 			</form>
@@ -34,7 +45,11 @@
 						href="#"
 						onclick="return false;">
 						<span class="notifications-seen">
+<<<<<<< HEAD
 							<img src="/assets/frappe/icons/workspace/notification.png" style="width: 32px;">
+=======
+							<svg class="icon icon-md"><use href="#icon-notification"></use></svg>
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 						</span>
 						<span class="notifications-unseen">
 							<svg class="icon icon-md"><use href="#icon-notification-with-indicator"></use></svg>
@@ -67,6 +82,7 @@
 				<li class="vertical-bar d-none d-sm-block"></li>
 				<li class="nav-item dropdown dropdown-help dropdown-mobile d-none d-lg-block">
 					<a class="nav-link" data-toggle="dropdown" href="#" onclick="return false;">
+<<<<<<< HEAD
 						<img class="app-logo" src="/assets/frappe/icons/workspace/language.png">
 						<span>
 							<svg class="icon icon-xs"><use href="#icon-small-down"></use></svg>
@@ -88,6 +104,8 @@
 				</li>
 				<li class="nav-item dropdown dropdown-help dropdown-mobile d-none d-lg-block">
 					<a class="nav-link" data-toggle="dropdown" href="#" onclick="return false;">
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 						{{ __("Help") }}
 						<span>
 							<svg class="icon icon-xs"><use href="#icon-small-down"></use></svg>

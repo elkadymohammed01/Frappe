@@ -222,6 +222,10 @@ class UserPermissions:
 				"mute_sounds",
 				"send_me_a_copy",
 				"user_type",
+<<<<<<< HEAD
+=======
+				"onboarding_status",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			],
 			as_dict=True,
 		)
@@ -230,6 +234,10 @@ class UserPermissions:
 			self.build_permissions()
 
 		d.name = self.name
+<<<<<<< HEAD
+=======
+		d.onboarding_status = frappe.parse_json(d.onboarding_status)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		d.roles = self.get_roles()
 		d.defaults = self.get_defaults()
 		for key in (

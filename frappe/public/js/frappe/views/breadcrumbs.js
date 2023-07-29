@@ -83,12 +83,22 @@ frappe.breadcrumbs = {
 		this.$breadcrumbs.append(html);
 	},
 
+<<<<<<< HEAD
 	set_workspace_breadcrumb(breadcrumbs) {
 		// get preferred module for breadcrumbs, based on sent via module
+=======
+	get last_route() {
+		return frappe.route_history.slice(-2)[0];
+	},
+
+	set_workspace_breadcrumb(breadcrumbs) {
+		// get preferred module for breadcrumbs, based on history and module
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 		if (!breadcrumbs.workspace) {
 			this.set_workspace(breadcrumbs);
 		}
+<<<<<<< HEAD
 
 		if (breadcrumbs.workspace) {
 			if (
@@ -102,6 +112,25 @@ frappe.breadcrumbs = {
 				).appendTo(this.$breadcrumbs);
 			}
 		}
+=======
+		if (!breadcrumbs.workspace) {
+			return;
+		}
+
+		if (
+			breadcrumbs.module_info &&
+			(breadcrumbs.module_info.blocked ||
+				!frappe.visible_modules.includes(breadcrumbs.module_info.module))
+		) {
+			return;
+		}
+
+		$(
+			`<li><a href="/app/${frappe.router.slug(breadcrumbs.workspace)}">${__(
+				breadcrumbs.workspace
+			)}</a></li>`
+		).appendTo(this.$breadcrumbs);
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	},
 
 	set_workspace(breadcrumbs) {
@@ -118,6 +147,22 @@ frappe.breadcrumbs = {
 			breadcrumbs.module = this.preferred[breadcrumbs.doctype];
 		}
 
+<<<<<<< HEAD
+=======
+		// guess from last route
+		if (this.last_route?.[0] == "Workspaces") {
+			let last_workspace = this.last_route[1];
+
+			if (
+				breadcrumbs.module &&
+				frappe.boot.module_wise_workspaces[breadcrumbs.module]?.includes(last_workspace)
+			) {
+				breadcrumbs.workspace = last_workspace;
+				return;
+			}
+		}
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		if (breadcrumbs.module) {
 			if (this.module_map[breadcrumbs.module]) {
 				breadcrumbs.module = this.module_map[breadcrumbs.module];
@@ -126,8 +171,16 @@ frappe.breadcrumbs = {
 			breadcrumbs.module_info = frappe.get_module(breadcrumbs.module);
 
 			// set workspace
+<<<<<<< HEAD
 			if (breadcrumbs.module_info && frappe.boot.module_page_map[breadcrumbs.module]) {
 				breadcrumbs.workspace = frappe.boot.module_page_map[breadcrumbs.module];
+=======
+			if (
+				breadcrumbs.module_info &&
+				frappe.boot.module_wise_workspaces[breadcrumbs.module]
+			) {
+				breadcrumbs.workspace = frappe.boot.module_wise_workspaces[breadcrumbs.module][0];
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			}
 		}
 	},
@@ -200,6 +253,7 @@ frappe.breadcrumbs = {
 	toggle(show) {
 		if (show) {
 			$("body").addClass("no-breadcrumbs");
+<<<<<<< HEAD
 			$(".head-page-one").css("display", "");
 			$(".layout-side-section").css("background", "");
 			$(".layout-side-section").css("border-radius", "");
@@ -211,6 +265,10 @@ frappe.breadcrumbs = {
 			$(".layout-side-section").css("border-radius", "25px");
 			$(".layout-head-section").css("display", "");
 			$(".sidebar-toggle-btn").css("display", "")
+=======
+		} else {
+			$("body").removeClass("no-breadcrumbs");
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		}
 	},
 };

@@ -33,6 +33,23 @@ class TestMonitor(FrappeTestCase):
 		self.assertEqual(log.transaction_type, "request")
 		self.assertEqual(log.request["method"], "GET")
 
+<<<<<<< HEAD
+=======
+	def test_no_response(self):
+		set_request(method="GET", path="/api/method/frappe.ping")
+
+		frappe.monitor.start()
+		frappe.monitor.stop(response=None)
+
+		logs = frappe.cache().lrange(MONITOR_REDIS_KEY, 0, -1)
+		self.assertEqual(len(logs), 1)
+
+		log = frappe.parse_json(logs[0].decode())
+		self.assertEqual(log.request["status_code"], 500)
+		self.assertEqual(log.transaction_type, "request")
+		self.assertEqual(log.request["method"], "GET")
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	def test_job(self):
 		frappe.utils.background_jobs.execute_job(
 			frappe.local.site, "frappe.ping", None, None, {}, is_async=False

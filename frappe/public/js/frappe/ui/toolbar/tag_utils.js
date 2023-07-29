@@ -8,6 +8,14 @@ frappe.tags.utils = {
 		txt = txt.slice(1);
 		let out = [];
 
+<<<<<<< HEAD
+=======
+		if (!frappe.tags.tags) {
+			frappe.tags.utils.fetch_tags();
+			return [];
+		}
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		for (let i in frappe.tags.tags) {
 			let tag = frappe.tags.tags[i];
 			let level = frappe.search.utils.fuzzy_search(txt, tag);

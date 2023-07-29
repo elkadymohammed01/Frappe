@@ -157,11 +157,19 @@
   {
    "collapsible": 1,
    "collapsible_depends_on": "filters",
+<<<<<<< HEAD
+=======
+   "depends_on": "eval:doc.report_type != \"Custom Report\"",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
    "fieldname": "filters_section",
    "fieldtype": "Section Break",
    "label": "Filters"
   },
   {
+<<<<<<< HEAD
+=======
+   "depends_on": "eval:doc.report_type != \"Custom Report\"",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
    "fieldname": "filters",
    "fieldtype": "Table",
    "label": "Filters",
@@ -170,11 +178,19 @@
   {
    "collapsible": 1,
    "collapsible_depends_on": "columns",
+<<<<<<< HEAD
+=======
+   "depends_on": "eval:doc.report_type != \"Custom Report\"",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
    "fieldname": "columns_section",
    "fieldtype": "Section Break",
    "label": "Columns"
   },
   {
+<<<<<<< HEAD
+=======
+   "depends_on": "eval:doc.report_type != \"Custom Report\"",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
    "fieldname": "columns",
    "fieldtype": "Table",
    "label": "Columns",
@@ -191,7 +207,11 @@
  "idx": 1,
  "index_web_pages_for_search": 1,
  "links": [],
+<<<<<<< HEAD
  "modified": "2022-09-15 13:37:24.531848",
+=======
+ "modified": "2023-04-07 18:18:11.782178",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
  "modified_by": "Administrator",
  "module": "Core",
  "name": "Report",

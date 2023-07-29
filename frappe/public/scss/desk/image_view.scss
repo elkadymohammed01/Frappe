@@ -153,11 +153,14 @@
 				position: relative;
 				width: 100%;
 			}
+<<<<<<< HEAD
 
 			@include broken-img(
 				$height: 175px,
 				$border-radius: 0
 			);
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		}
 
 		.image-title {

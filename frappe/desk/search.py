@@ -6,7 +6,13 @@ import json
 import re
 
 import frappe
+<<<<<<< HEAD
 from frappe import _, is_whitelisted
+=======
+
+# Backward compatbility
+from frappe import _, is_whitelisted, validate_and_sanitize_search_inputs
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 from frappe.database.schema import SPECIAL_CHAR_PATTERN
 from frappe.permissions import has_permission
 from frappe.utils import cint, cstr, unique
@@ -81,7 +87,19 @@ def search_widget(
 		try:
 			is_whitelisted(frappe.get_attr(query))
 			frappe.response["values"] = frappe.call(
+<<<<<<< HEAD
 				query, doctype, txt, searchfield, start, page_length, filters, as_dict=as_dict
+=======
+				query,
+				doctype,
+				txt,
+				searchfield,
+				start,
+				page_length,
+				filters,
+				as_dict=as_dict,
+				reference_doctype=reference_doctype,
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			)
 		except frappe.exceptions.PermissionError as e:
 			if frappe.local.conf.developer_mode:
@@ -235,10 +253,13 @@ def search_widget(
 def get_std_fields_list(meta, key):
 	# get additional search fields
 	sflist = ["name"]
+<<<<<<< HEAD
 	if meta.search_fields:
 		for d in meta.search_fields.split(","):
 			if d.strip() not in sflist:
 				sflist.append(d.strip())
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 	if meta.title_field and meta.title_field not in sflist:
 		sflist.append(meta.title_field)
@@ -246,6 +267,14 @@ def get_std_fields_list(meta, key):
 	if key not in sflist:
 		sflist.append(key)
 
+<<<<<<< HEAD
+=======
+	if meta.search_fields:
+		for d in meta.search_fields.split(","):
+			if d.strip() not in sflist:
+				sflist.append(d.strip())
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	return sflist
 
 
@@ -285,6 +314,7 @@ def relevance_sorter(key, query, as_dict):
 	return (cstr(value).lower().startswith(query.lower()) is not True, value)
 
 
+<<<<<<< HEAD
 def validate_and_sanitize_search_inputs(fn):
 	@functools.wraps(fn)
 	def wrapper(*args, **kwargs):
@@ -301,6 +331,8 @@ def validate_and_sanitize_search_inputs(fn):
 	return wrapper
 
 
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 @frappe.whitelist()
 def get_names_for_mentions(search_term):
 	users_for_mentions = frappe.cache().get_value("users_for_mentions", get_users_for_mentions)

@@ -189,6 +189,7 @@ $level-margin-right: 8px;
 .list-paging-area, .footnote-area {
 	border-top: 1px solid var(--border-color);
 
+<<<<<<< HEAD
 	.btn-group {
 		box-shadow: var(--drop-shadow);
 		border-radius: var(--border-radius-md);
@@ -212,6 +213,14 @@ $level-margin-right: 8px;
 		}
 	}
 
+=======
+	.btn-group .btn-paging.btn-info {
+		background-color: var(--gray-600);
+		border-color: var(--gray-600);
+		color: var(--white);
+		font-weight: var(--text-bold);
+	}
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 }
 
 .frappe-card {
@@ -395,13 +404,23 @@ input.list-check-all {
 		padding: 0 var(--padding-xs);
 	}
 
+<<<<<<< HEAD
 	.filter-button {
 		margin: 5px;
 		// padding: 4px 8px;
+=======
+	.filter-selector .btn-group {
+		margin: var(--margin-xs);
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	}
 
 	.filter-button.btn-primary-light {
 		color: var(--text-on-blue);
+<<<<<<< HEAD
+=======
+		outline: 1px solid var(--bg-dark-blue);
+		z-index: 1;
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	}
 
 	.sort-selector {

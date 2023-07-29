@@ -365,7 +365,11 @@ class AutoRepeat(Document):
 			error_string += _(
 				"{0}: Failed to attach new recurring document. To enable attaching document in the auto repeat notification email, enable {1} in Print Settings"
 			).format(frappe.bold(_("Note")), frappe.bold(_("Allow Print for Draft")))
+<<<<<<< HEAD
 			attachments = "[]"
+=======
+			attachments = None
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 		if error_string:
 			message = error_string
@@ -374,12 +378,19 @@ class AutoRepeat(Document):
 		elif "{" in self.message:
 			message = frappe.render_template(self.message, {"doc": new_doc})
 
+<<<<<<< HEAD
 		recipients = self.recipients.split("\n")
 
 		make(
 			doctype=new_doc.doctype,
 			name=new_doc.name,
 			recipients=recipients,
+=======
+		make(
+			doctype=new_doc.doctype,
+			name=new_doc.name,
+			recipients=self.recipients,
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			subject=subject,
 			content=message,
 			attachments=attachments,

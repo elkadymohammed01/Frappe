@@ -208,7 +208,10 @@ body {
 	// Overrides for each widgets
 	&.dashboard-widget-box {
 		min-height: 240px;
+<<<<<<< HEAD
 		padding: var(--padding-md) var(--padding-lg);
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 		.filter-chart {
 			background-color: var(--control-bg);
@@ -238,13 +241,23 @@ body {
 		}
 
 		.widget-head {
+<<<<<<< HEAD
 			padding: var(--padding-sm);
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			display: flex;
 			justify-content: space-between;
 			flex-wrap: wrap;
 			gap: 6px;
 		}
 
+<<<<<<< HEAD
+=======
+		.widget-body {
+			padding-top: 7px;
+		}
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		.widget-control {
 			display: flex;
 			align-items: center;
@@ -340,6 +353,10 @@ body {
 		margin-bottom: var(--margin-2xl);
 		padding: var(--padding-lg) !important;
 		background-color: var(--bg-color);
+<<<<<<< HEAD
+=======
+		box-shadow: var(--card-shadow) ;
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 		&.edit-mode:hover {
 			background-color: var(--fg-color);
@@ -560,7 +577,11 @@ body {
 	}
 
 	&.links-widget-box {
+<<<<<<< HEAD
 		padding: 18px 12px;
+=======
+		padding: 12px 7px;
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 		.link-item {
 			display: flex;
@@ -806,6 +827,21 @@ body {
 			}
 		}
 	}
+<<<<<<< HEAD
+=======
+
+	&.custom-block-widget-box {
+		position: relative;
+
+		.widget-head {
+			position: absolute;
+			top: 0;
+			right: 0;
+			padding: 6px;
+			z-index: 1;
+		}
+	}
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 }
 
 .onboarding-success {

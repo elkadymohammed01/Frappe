@@ -84,7 +84,11 @@ frappe.ui.form.on("Auto Email Report", {
 				wrapper
 			);
 
+<<<<<<< HEAD
 			var filters = JSON.parse(frm.doc.filters || "{}");
+=======
+			var filters = {};
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 			let report_filters;
 
@@ -93,8 +97,24 @@ frappe.ui.form.on("Auto Email Report", {
 				frappe.query_reports[frm.doc.reference_report] &&
 				frappe.query_reports[frm.doc.reference_report].filters
 			) {
+<<<<<<< HEAD
 				report_filters = frappe.query_reports[frm.doc.reference_report].filters;
 			} else {
+=======
+				if (frm.doc.filters) {
+					filters = JSON.parse(frm.doc.filters);
+				} else {
+					frappe.db.get_value("Report", frm.doc.report, "json", (r) => {
+						if (r && r.json) {
+							filters = JSON.parse(r.json).filters || {};
+						}
+					});
+				}
+
+				report_filters = frappe.query_reports[frm.doc.reference_report].filters;
+			} else {
+				filters = JSON.parse(frm.doc.filters || "{}");
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				report_filters = frappe.query_reports[frm.doc.report].filters;
 			}
 

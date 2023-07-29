@@ -42,6 +42,15 @@ frappe.ui.form.on("Web Form", {
 		render_list_settings_message(frm);
 	},
 
+<<<<<<< HEAD
+=======
+	anonymous: function (frm) {
+		if (frm.doc.anonymous) {
+			frm.set_value("login_required", 0);
+		}
+	},
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	validate: function (frm) {
 		if (!frm.doc.login_required) {
 			frm.set_value("allow_multiple", 0);

@@ -205,7 +205,10 @@ class DbColumn:
 			self.default
 			and (self.default not in frappe.db.DEFAULT_SHORTCUTS)
 			and not cstr(self.default).startswith(":")
+<<<<<<< HEAD
 			and column_def not in ("text", "longtext")
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		):
 			column_def += f" default {frappe.db.escape(self.default)}"
 
@@ -248,7 +251,10 @@ class DbColumn:
 			self.default_changed(current_def)
 			and (self.default not in frappe.db.DEFAULT_SHORTCUTS)
 			and not cstr(self.default).startswith(":")
+<<<<<<< HEAD
 			and not (column_type in ["text", "longtext"])
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		):
 			self.table.set_default.append(self)
 

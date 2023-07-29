@@ -55,9 +55,18 @@
 												<div class="col grid-static-col col-xs-2">
 													<div class="static-area ellipsis text-right">{{ __("Duration (ms)") }}</div>
 												</div>
+<<<<<<< HEAD
 												<div class="col grid-static-col col-xs-2">
 													<div class="static-area ellipsis text-right">{{ __("Exact Copies") }}</div>
 												</div>
+=======
+												<div class="col grid-static-col col-xs-1">
+													<div class="static-area ellipsis text-right">{{ __("Exact Copies") }}</div>
+												</div>
+												<div class="col grid-static-col col-xs-1">
+													<div class="static-area ellipsis text-right">{{ __("Normalized Copies") }}</div>
+												</div>
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 											</div>
 										</div>
 									</div>
@@ -72,9 +81,18 @@
 													<div class="col grid-static-col col-xs-2">
 														<div class="static-area ellipsis text-right">{{ call.duration }}</div>
 													</div>
+<<<<<<< HEAD
 													<div class="col grid-static-col col-xs-2">
 														<div class="static-area ellipsis text-right">{{ call.exact_copies }}</div>
 													</div>
+=======
+													<div class="col grid-static-col col-xs-1">
+														<div class="static-area ellipsis text-right">{{ call.exact_copies }}</div>
+													</div>
+													<div class="col grid-static-col col-xs-1">
+														<div class="static-area ellipsis text-right">{{ call.normalized_copies }}</div>
+													</div>
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 													<div class="col col-xs-1"><a class="close btn-open-row">
 														<span class="octicon" :class="showing == call.index? 'octicon-triangle-up' : 'octicon-triangle-down'"></span></a>
 													</div>
@@ -99,6 +117,15 @@
 																							<div class="control-value like-disabled-input for-description"><pre>{{ call.query }}</pre></div>
 																						</div>
 																					</div>
+<<<<<<< HEAD
+=======
+																					<div class="frappe-control">
+																						<div class="form-group">
+																							<div class="clearfix"><label class="control-label">{{ __("Normalized Query") }}</label></div>
+																							<div class="control-value like-disabled-input for-description"><pre>{{ call.normalized_query }}</pre></div>
+																						</div>
+																					</div>
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 																					<div class="frappe-control input-max-width">
 																						<div class="form-group">
 																							<div class="clearfix"><label class="control-label">{{ __("Duration (ms)") }}</label></div>
@@ -111,6 +138,16 @@
 																							<div class="control-value like-disabled-input">{{ call.exact_copies }}</div>
 																						</div>
 																					</div>
+<<<<<<< HEAD
+=======
+																					<div class="frappe-control input-max-width">
+																						<div class="form-group">
+																							<div
+																								class="clearfix"><label class="control-label">{{ __("Normalized Copies") }}</label></div>
+																							<div class="control-value like-disabled-input">{{ call.normalized_copies }}</div>
+																						</div>
+																					</div>
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 																					<div class="frappe-control">
 																						<div class="form-group">
 																							<div class="clearfix"><label class="control-label">{{ __("Stack Trace") }}</label></div>

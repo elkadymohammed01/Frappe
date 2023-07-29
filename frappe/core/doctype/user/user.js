@@ -215,7 +215,14 @@ frappe.ui.form.on("User", {
 				});
 			}
 
+<<<<<<< HEAD
 			if (frappe.session.user == doc.name || frappe.user.has_role("System Manager")) {
+=======
+			if (
+				cint(frappe.boot.sysdefaults.enable_two_factor_auth) &&
+				(frappe.session.user == doc.name || frappe.user.has_role("System Manager"))
+			) {
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				frm.add_custom_button(
 					__("Reset OTP Secret"),
 					function () {

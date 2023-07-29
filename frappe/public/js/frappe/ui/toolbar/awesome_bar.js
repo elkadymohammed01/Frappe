@@ -127,7 +127,10 @@ frappe.search.AwesomeBar = class AwesomeBar {
 			}
 		});
 		frappe.search.utils.setup_recent();
+<<<<<<< HEAD
 		frappe.tags.utils.fetch_tags();
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	}
 
 	add_help() {

@@ -74,7 +74,11 @@ def get_transitions(
 
 
 def get_workflow_safe_globals():
+<<<<<<< HEAD
 	# access to Ehsan.db.get_value, frappe.db.get_list, and date time utils.
+=======
+	# access to frappe.db.get_value, frappe.db.get_list, and date time utils.
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	return dict(
 		frappe=frappe._dict(
 			db=frappe._dict(get_value=frappe.db.get_value, get_list=frappe.db.get_list),
@@ -102,6 +106,10 @@ def is_transition_condition_satisfied(transition, doc) -> bool:
 def apply_workflow(doc, action):
 	"""Allow workflow action on the current doc"""
 	doc = frappe.get_doc(frappe.parse_json(doc))
+<<<<<<< HEAD
+=======
+	doc.load_from_db()
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	workflow = get_workflow(doc.doctype)
 	transitions = get_transitions(doc, workflow)
 	user = frappe.session.user
@@ -209,7 +217,11 @@ def validate_workflow(doc):
 
 
 def get_workflow(doctype) -> "Workflow":
+<<<<<<< HEAD
 	return frappe.get_doc("Workflow", get_workflow_name(doctype))
+=======
+	return frappe.get_cached_doc("Workflow", get_workflow_name(doctype))
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 
 def has_approval_access(user, doc, transition):
@@ -227,11 +239,15 @@ def send_email_alert(workflow_name):
 
 
 def get_workflow_field_value(workflow_name, field):
+<<<<<<< HEAD
 	value = frappe.cache().hget("workflow_" + workflow_name, field)
 	if value is None:
 		value = frappe.db.get_value("Workflow", workflow_name, field)
 		frappe.cache().hset("workflow_" + workflow_name, field, value)
 	return value
+=======
+	return frappe.get_cached_value("Workflow", workflow_name, field)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 
 @frappe.whitelist()

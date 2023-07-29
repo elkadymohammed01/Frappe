@@ -1188,6 +1188,16 @@ export default class Grid {
 		// update the parent too (for new rows)
 		this.docfields.find((d) => d.fieldname === fieldname)[property] = value;
 
+<<<<<<< HEAD
+=======
+		if (this.user_defined_columns && this.user_defined_columns.length > 0) {
+			let field = this.user_defined_columns.find((d) => d.fieldname === fieldname);
+			if (field && Object.keys(field).includes(property)) {
+				field[property] = value;
+			}
+		}
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		this.debounced_refresh();
 	}
 }

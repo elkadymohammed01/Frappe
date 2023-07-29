@@ -57,8 +57,13 @@ frappe.ui.form.ControlDateRange = class ControlDateRange extends frappe.ui.form.
 	}
 	format_for_input(value1, value2) {
 		if (value1 && value2) {
+<<<<<<< HEAD
 			value1 = frappe.datetime.str_to_user(value1);
 			value2 = frappe.datetime.str_to_user(value2);
+=======
+			value1 = frappe.datetime.str_to_user(value1, false, true);
+			value2 = frappe.datetime.str_to_user(value2, false, true);
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			return __("{0} to {1}", [value1, value2]);
 		}
 		return "";

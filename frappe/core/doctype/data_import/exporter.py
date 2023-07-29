@@ -199,7 +199,11 @@ class Exporter:
 		# Group children data by parent name
 		grouped_children_data = self.group_children_data_by_parent(child_data)
 		for doc in parent_data:
+<<<<<<< HEAD
 			related_children_docs = grouped_children_data.get(doc.name, {})
+=======
+			related_children_docs = grouped_children_data.get(str(doc.name), {})
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			yield {**doc, **related_children_docs}
 
 	def add_header(self):
@@ -207,9 +211,17 @@ class Exporter:
 		for df in self.fields:
 			is_parent = not df.is_child_table_field
 			if is_parent:
+<<<<<<< HEAD
 				label = _(df.label)
 			else:
 				label = f"{_(df.label)} ({_(df.child_table_df.label)})"
+=======
+				label = _(df.label or df.fieldname)
+			else:
+				label = (
+					f"{_(df.label or df.fieldname)} ({_(df.child_table_df.label or df.child_table_df.fieldname)})"
+				)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 			if label in header:
 				# this label is already in the header,

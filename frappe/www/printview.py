@@ -10,7 +10,11 @@ import frappe
 from frappe import _, get_module_path
 from frappe.core.doctype.access_log.access_log import make_access_log
 from frappe.core.doctype.document_share_key.document_share_key import is_expired
+<<<<<<< HEAD
 from frappe.utils import cint, sanitize_html, strip_html
+=======
+from frappe.utils import cint, escape_html, strip_html
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 from frappe.utils.jinja_globals import is_rtl
 
 no_cache = 1
@@ -22,12 +26,20 @@ def get_context(context):
 	"""Build context for print"""
 	if not ((frappe.form_dict.doctype and frappe.form_dict.name) or frappe.form_dict.doc):
 		return {
+<<<<<<< HEAD
 			"body": sanitize_html(
 				"""<h1>Error</h1>
 				<p>Parameters doctype and name required</p>
 				<pre>%s</pre>"""
 				% repr(frappe.form_dict)
 			)
+=======
+			"body": f"""
+				<h1>Error</h1>
+				<p>Parameters doctype and name required</p>
+				<pre>{escape_html(frappe.as_json(frappe.form_dict, indent=2))}</pre>
+				"""
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		}
 
 	if frappe.form_dict.doc:

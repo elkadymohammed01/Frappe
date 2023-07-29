@@ -27,6 +27,10 @@ from frappe.utils import (
 	now_datetime,
 	today,
 )
+<<<<<<< HEAD
+=======
+from frappe.utils.deprecations import deprecated
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 from frappe.utils.password import check_password, get_password_reset_limit
 from frappe.utils.password import update_password as _update_password
 from frappe.utils.user import get_system_managers
@@ -51,7 +55,11 @@ class User(Document):
 	def onload(self):
 		from frappe.config import get_modules_from_all_apps
 
+<<<<<<< HEAD
 		self.set_onload("all_modules", [m.get("module_name") for m in get_modules_from_all_apps()])
+=======
+		self.set_onload("all_modules", sorted(m.get("module_name") for m in get_modules_from_all_apps()))
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 	def before_insert(self):
 		self.flags.in_insert = True
@@ -74,6 +82,11 @@ class User(Document):
 			self.validate_email_type(self.email)
 			self.validate_email_type(self.name)
 		self.add_system_manager_role()
+<<<<<<< HEAD
+=======
+		self.populate_role_profile_roles()
+		self.check_roles_added()
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		self.set_system_user()
 		self.set_full_name()
 		self.check_enable_disable()
@@ -83,7 +96,10 @@ class User(Document):
 		self.remove_disabled_roles()
 		self.validate_user_email_inbox()
 		ask_pass_update()
+<<<<<<< HEAD
 		self.validate_roles()
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		self.validate_allowed_modules()
 		self.validate_user_image()
 		self.set_time_zone()
@@ -96,12 +112,23 @@ class User(Document):
 		):
 			self.set_social_login_userid("frappe", frappe.generate_hash(length=39))
 
+<<<<<<< HEAD
 	def validate_roles(self):
+=======
+	def populate_role_profile_roles(self):
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		if self.role_profile_name:
 			role_profile = frappe.get_doc("Role Profile", self.role_profile_name)
 			self.set("roles", [])
 			self.append_roles(*[role.role for role in role_profile.roles])
 
+<<<<<<< HEAD
+=======
+	@deprecated
+	def validate_roles(self):
+		self.populate_role_profile_roles()
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	def validate_allowed_modules(self):
 		if self.module_profile:
 			module_profile = frappe.get_doc("Module Profile", self.module_profile)
@@ -281,6 +308,13 @@ class User(Document):
 				self.email_new_password(new_password)
 
 		except frappe.OutgoingEmailError:
+<<<<<<< HEAD
+=======
+			frappe.clear_last_message()
+			frappe.msgprint(
+				_("Please setup default outgoing Email Account from Settings > Email Account"), alert=True
+			)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			# email server not set, don't send email
 			self.log_error("Unable to send new password notification")
 
@@ -650,6 +684,24 @@ class User(Document):
 		if not self.time_zone:
 			self.time_zone = get_system_timezone()
 
+<<<<<<< HEAD
+=======
+	def check_roles_added(self):
+		if self.user_type != "System User" or self.roles or not self.is_new():
+			return
+
+		frappe.msgprint(
+			_("Newly created user {0} has no roles enabled.").format(frappe.bold(self.name)),
+			title=_("No Roles Specified"),
+			indicator="orange",
+			primary_action={
+				"label": _("Add Roles"),
+				"client_action": "frappe.set_route",
+				"args": ["Form", self.doctype, self.name],
+			},
+		)
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 @frappe.whitelist()
 def get_timezones():

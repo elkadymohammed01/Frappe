@@ -13,6 +13,12 @@ frappe.ui.toolbar.Toolbar = class {
 			})
 		);
 		$(".dropdown-toggle").dropdown();
+<<<<<<< HEAD
+=======
+		$("#toolbar-user a[href]").click(function () {
+			$(this).closest(".dropdown-menu").prev().dropdown("toggle");
+		});
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 		this.setup_awesomebar();
 		this.setup_notifications();
@@ -128,11 +134,19 @@ frappe.ui.toolbar.Toolbar = class {
 		if (frappe.boot.desk_settings.search_bar) {
 			let awesome_bar = new frappe.search.AwesomeBar();
 			awesome_bar.setup("#navbar-search");
+<<<<<<< HEAD
 
 			// TODO: Remove this in v14
 			frappe.search.utils.make_function_searchable(function () {
 				frappe.set_route("List", "Client Script");
 			}, __("Custom Script List"));
+=======
+		}
+		if (frappe.model.can_read("RQ Job")) {
+			frappe.search.utils.make_function_searchable(function () {
+				frappe.set_route("List", "RQ Job");
+			}, __("Background Jobs"));
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		}
 	}
 
@@ -290,6 +304,7 @@ frappe.ui.toolbar.setup_session_defaults = function () {
 		},
 	});
 };
+<<<<<<< HEAD
 frappe.ui.toolbar.changeLangAr = function () {
 	frappe
 		.call("frappe.translate.change_user_language", {
@@ -335,3 +350,5 @@ frappe.ui.toolbar.changeLanguage = (e) => {
 		frappe.ui.toolbar.changeLangUr();
 	}
 }
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)

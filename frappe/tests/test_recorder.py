@@ -5,6 +5,10 @@ import sqlparse
 
 import frappe
 import frappe.recorder
+<<<<<<< HEAD
+=======
+from frappe.recorder import normalize_query
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 from frappe.tests.utils import FrappeTestCase
 from frappe.utils import set_request
 from frappe.website.serve import get_response_content
@@ -70,6 +74,10 @@ class TestRecorder(FrappeTestCase):
 		frappe.db.sql("SELECT * FROM tabDocType")
 		frappe.db.sql("COMMIT")
 		frappe.recorder.dump()
+<<<<<<< HEAD
+=======
+		frappe.recorder.post_process()
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 		requests = frappe.recorder.get()
 		request = frappe.recorder.get(requests[0]["uuid"])
@@ -89,6 +97,10 @@ class TestRecorder(FrappeTestCase):
 			frappe.db.sql(query[sql_dialect])
 
 		frappe.recorder.dump()
+<<<<<<< HEAD
+=======
+		frappe.recorder.post_process()
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 		requests = frappe.recorder.get()
 		request = frappe.recorder.get(requests[0]["uuid"])
@@ -113,6 +125,10 @@ class TestRecorder(FrappeTestCase):
 			frappe.db.sql(query[0])
 
 		frappe.recorder.dump()
+<<<<<<< HEAD
+=======
+		frappe.recorder.post_process()
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 		requests = frappe.recorder.get()
 		request = frappe.recorder.get(requests[0]["uuid"])
@@ -135,3 +151,20 @@ class TestRecorderDeco(FrappeTestCase):
 
 		test()
 		self.assertTrue(frappe.recorder.get())
+<<<<<<< HEAD
+=======
+
+
+class TestQueryNormalization(FrappeTestCase):
+	def test_query_normalization(self):
+		test_cases = {
+			"select * from user where name = 'x'": "select * from user where name = ?",
+			"select * from user where a > 5": "select * from user where a > ?",
+			"select * from `user` where a > 5": "select * from `user` where a > ?",
+			"select `name` from `user`": "select `name` from `user`",
+			"select `name` from `user` limit 10": "select `name` from `user` limit ?",
+		}
+
+		for query, normalized in test_cases.items():
+			self.assertEqual(normalize_query(query), normalized)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)

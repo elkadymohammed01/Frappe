@@ -23,7 +23,11 @@ frappe.has_indicator = function (doctype) {
 	return false;
 };
 
+<<<<<<< HEAD
 frappe.get_indicator = function (doc, doctype) {
+=======
+frappe.get_indicator = function (doc, doctype, show_workflow_state) {
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	if (doc.__unsaved) {
 		return [__("Not Saved"), "orange"];
 	}
@@ -40,7 +44,11 @@ frappe.get_indicator = function (doc, doctype) {
 		workflow_fieldname = frappe.workflow.get_state_fieldname(doctype);
 
 	// workflow
+<<<<<<< HEAD
 	if (workflow_fieldname && !without_workflow) {
+=======
+	if (workflow_fieldname && (!without_workflow || show_workflow_state)) {
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		var value = doc[workflow_fieldname];
 		if (value) {
 			var colour = "";

@@ -75,6 +75,26 @@ frappe.Application = class Application {
 
 		// page container
 		this.make_page_container();
+<<<<<<< HEAD
+=======
+		if (
+			!window.Cypress &&
+			frappe.boot.onboarding_tours &&
+			frappe.boot.user.onboarding_status != null
+		) {
+			let pending_tours =
+				frappe.boot.onboarding_tours.findIndex((tour) => {
+					frappe.boot.user.onboarding_status[tour[0]]?.is_complete == true;
+				}) == -1;
+			if (pending_tours && frappe.boot.onboarding_tours.length > 0) {
+				frappe.require("onboarding_tours.bundle.js", () => {
+					frappe.utils.sleep(1000).then(() => {
+						frappe.ui.init_onboarding_tour();
+					});
+				});
+			}
+		}
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		this.set_route();
 
 		// trigger app startup
@@ -136,6 +156,7 @@ frappe.Application = class Application {
 
 		// REDESIGN-TODO: Fix preview popovers
 		this.link_preview = new frappe.ui.LinkPreview();
+<<<<<<< HEAD
 
 		if (!frappe.boot.developer_mode) {
 			if (frappe.user.has_role("System Manager")) {
@@ -157,6 +178,8 @@ frappe.Application = class Application {
 				}, 600000); // check every 10 minutes
 			}
 		}
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	}
 
 	set_route() {
@@ -288,7 +311,11 @@ frappe.Application = class Application {
 	}
 
 	load_user_permissions() {
+<<<<<<< HEAD
 		frappe.defaults.update_user_permissions();
+=======
+		frappe.defaults.load_user_permission_from_boot();
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 		frappe.realtime.on(
 			"update_user_permissions",

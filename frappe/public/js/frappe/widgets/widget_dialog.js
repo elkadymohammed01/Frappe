@@ -350,7 +350,11 @@ class ShortcutDialog extends WidgetDialog {
 				fieldname: "type",
 				label: "Type",
 				reqd: 1,
+<<<<<<< HEAD
 				options: "DocType\nReport\nPage\nDashboard",
+=======
+				options: "DocType\nReport\nPage\nDashboard\nURL",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				onchange: () => {
 					if (this.dialog.get_value("type") == "DocType") {
 						this.dialog.fields_dict.link_to.get_query = () => {
@@ -358,6 +362,10 @@ class ShortcutDialog extends WidgetDialog {
 								query: "frappe.core.report.permitted_documents_for_user.permitted_documents_for_user.query_doctypes",
 								filters: {
 									user: frappe.session.user,
+<<<<<<< HEAD
+=======
+									include_single_doctypes: true,
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 								},
 							};
 						};
@@ -379,7 +387,10 @@ class ShortcutDialog extends WidgetDialog {
 				fieldtype: "Dynamic Link",
 				fieldname: "link_to",
 				label: "Link To",
+<<<<<<< HEAD
 				reqd: 1,
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				options: "type",
 				onchange: () => {
 					const doctype = this.dialog.get_value("link_to");
@@ -404,6 +415,20 @@ class ShortcutDialog extends WidgetDialog {
 						this.hide_filters();
 					}
 				},
+<<<<<<< HEAD
+=======
+				depends_on: (s) => s.type != "URL",
+				mandatory_depends_on: (s) => s.type != "URL",
+			},
+			{
+				fieldtype: "Data",
+				fieldname: "url",
+				label: "URL",
+				options: "URL",
+				default: "",
+				depends_on: (s) => s.type == "URL",
+				mandatory_depends_on: (s) => s.type == "URL",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			},
 			{
 				fieldtype: "Select",
@@ -500,6 +525,22 @@ class ShortcutDialog extends WidgetDialog {
 
 		data.label = data.label ? data.label : frappe.model.unscrub(data.link_to);
 
+<<<<<<< HEAD
+=======
+		if (data.url) {
+			!validate_url(data.url) &&
+				frappe.throw({
+					message: __("<b>{0}</b> is not a valid URL", [data.url]),
+					title: __("Invalid URL"),
+					indicator: "red",
+				});
+
+			if (!data.label) {
+				data.label = "No Label (URL)";
+			}
+		}
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		return data;
 	}
 }
@@ -678,6 +719,32 @@ class NumberCardDialog extends WidgetDialog {
 	}
 }
 
+<<<<<<< HEAD
+=======
+class CustomBlockDialog extends WidgetDialog {
+	constructor(opts) {
+		super(opts);
+	}
+
+	get_fields() {
+		return [
+			{
+				fieldtype: "Link",
+				fieldname: "custom_block_name",
+				label: "Custom Block Name",
+				options: "Custom HTML Block",
+				reqd: 1,
+				get_query: () => {
+					return {
+						query: "frappe.desk.doctype.custom_html_block.custom_html_block.get_custom_blocks_for_user",
+					};
+				},
+			},
+		];
+	}
+}
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 export default function get_dialog_constructor(type) {
 	const widget_map = {
 		chart: ChartDialog,
@@ -686,6 +753,10 @@ export default function get_dialog_constructor(type) {
 		onboarding: OnboardingDialog,
 		quick_list: QuickListDialog,
 		number_card: NumberCardDialog,
+<<<<<<< HEAD
+=======
+		custom_block: CustomBlockDialog,
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	};
 
 	return widget_map[type] || WidgetDialog;

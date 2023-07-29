@@ -1,6 +1,10 @@
 # Copyright (c) 2020, Frappe Technologies and contributors
 # License: MIT. See LICENSE
 
+<<<<<<< HEAD
+=======
+from collections import defaultdict
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 from json import loads
 
 import frappe
@@ -16,7 +20,14 @@ class Workspace(Document):
 	def validate(self):
 		if self.public and not is_workspace_manager() and not disable_saving_as_public():
 			frappe.throw(_("You need to be Workspace Manager to edit this document"))
+<<<<<<< HEAD
 		validate_route_conflict(self.doctype, self.name)
+=======
+		if self.has_value_changed("title"):
+			validate_route_conflict(self.doctype, self.title)
+		else:
+			validate_route_conflict(self.doctype, self.name)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 		try:
 			if not isinstance(loads(self.content), list):
@@ -49,12 +60,31 @@ class Workspace(Document):
 			delete_folder(self.module, "Workspace", self.title)
 
 	@staticmethod
+<<<<<<< HEAD
 	def get_module_page_map():
 		pages = frappe.get_all(
 			"Workspace", fields=["name", "module"], filters={"for_user": ""}, as_list=1
 		)
 
 		return {page[1]: page[0] for page in pages if page[1]}
+=======
+	def get_module_wise_workspaces():
+		workspaces = frappe.get_all(
+			"Workspace",
+			fields=["name", "module"],
+			filters={"for_user": "", "public": 1},
+			order_by="creation",
+		)
+
+		module_workspaces = defaultdict(list)
+
+		for workspace in workspaces:
+			if not workspace.module:
+				continue
+			module_workspaces[workspace.module].append(workspace.name)
+
+		return module_workspaces
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 	def get_link_groups(self):
 		cards = []

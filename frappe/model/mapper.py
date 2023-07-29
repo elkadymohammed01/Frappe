@@ -62,6 +62,10 @@ def get_mapped_doc(
 	postprocess=None,
 	ignore_permissions=False,
 	ignore_child_tables=False,
+<<<<<<< HEAD
+=======
+	cached=False,
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 ):
 
 	apply_strict_user_permissions = frappe.get_system_settings("apply_strict_user_permissions")
@@ -79,7 +83,14 @@ def get_mapped_doc(
 	):
 		target_doc.raise_no_permission_to("create")
 
+<<<<<<< HEAD
 	source_doc = frappe.get_doc(from_doctype, from_docname)
+=======
+	if cached:
+		source_doc = frappe.get_cached_doc(from_doctype, from_docname)
+	else:
+		source_doc = frappe.get_doc(from_doctype, from_docname)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 	if not ignore_permissions:
 		if not source_doc.has_permission("read"):

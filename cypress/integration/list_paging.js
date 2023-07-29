@@ -12,7 +12,11 @@ context("List Paging", () => {
 
 	it("test load more with count selection buttons", () => {
 		cy.visit("/app/todo/view/report");
+<<<<<<< HEAD
 		cy.clear_filters();
+=======
+		cy.get(".filter-x-button").click();
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 		cy.get(".list-paging-area .list-count").should("contain.text", "20 of");
 		cy.get(".list-paging-area .btn-more").click();

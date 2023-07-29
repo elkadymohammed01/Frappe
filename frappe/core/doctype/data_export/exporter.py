@@ -9,6 +9,10 @@ import frappe
 import frappe.permissions
 from frappe import _
 from frappe.core.doctype.access_log.access_log import make_access_log
+<<<<<<< HEAD
+=======
+from frappe.model.utils import is_virtual_doctype
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 from frappe.utils import cint, cstr, format_datetime, format_duration, formatdate, parse_json
 from frappe.utils.csvutils import UnicodeWriter
 
@@ -368,6 +372,11 @@ class DataExporter:
 			if self.all_doctypes:
 				# add child tables
 				for c in self.child_doctypes:
+<<<<<<< HEAD
+=======
+					if is_virtual_doctype(c["doctype"]):
+						continue
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 					child_doctype_table = DocType(c["doctype"])
 					data_row = (
 						frappe.qb.from_(child_doctype_table)
@@ -424,7 +433,11 @@ class DataExporter:
 		os.remove(filename)
 
 		# write out response as a xlsx type
+<<<<<<< HEAD
 		frappe.response["filename"] = self.doctype + ".xlsx"
+=======
+		frappe.response["filename"] = _(self.doctype) + ".xlsx"
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		frappe.response["filecontent"] = xlsx_file.getvalue()
 		frappe.response["type"] = "binary"
 

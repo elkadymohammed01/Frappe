@@ -12,6 +12,18 @@ class DocumentNamingRule(Document):
 	def validate(self):
 		self.validate_fields_in_conditions()
 
+<<<<<<< HEAD
+=======
+	def clear_doctype_map(self):
+		frappe.cache_manager.clear_doctype_map(self.doctype, self.document_type)
+
+	def on_update(self):
+		self.clear_doctype_map()
+
+	def on_trash(self):
+		self.clear_doctype_map()
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	def validate_fields_in_conditions(self):
 		if self.has_value_changed("document_type"):
 			docfields = [x.fieldname for x in frappe.get_meta(self.document_type).fields]
@@ -38,9 +50,12 @@ class DocumentNamingRule(Document):
 
 		doc.name = naming_series + ("%0" + str(self.prefix_digits) + "d") % (counter + 1)
 		frappe.db.set_value(self.doctype, self.name, "counter", counter + 1)
+<<<<<<< HEAD
 
 
 @frappe.whitelist()
 def update_current(name, new_counter):
 	frappe.only_for("System Manager")
 	frappe.db.set_value("Document Naming Rule", name, "counter", new_counter)
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)

@@ -85,9 +85,17 @@ frappe.ui.FieldGroup = class FieldGroup extends frappe.ui.form.Layout {
 		return this.fields_dict[fieldname];
 	}
 
+<<<<<<< HEAD
 	get_values(ignore_errors) {
 		var ret = {};
 		var errors = [];
+=======
+	get_values(ignore_errors, check_invalid) {
+		var ret = {};
+		var errors = [];
+		let invalid = [];
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		for (var key in this.fields_dict) {
 			var f = this.fields_dict[key];
 			if (f.get_value) {
@@ -104,7 +112,16 @@ frappe.ui.FieldGroup = class FieldGroup extends frappe.ui.form.Layout {
 			if (this.is_dialog && f.df.reqd && !f.value) {
 				f.refresh_input();
 			}
+<<<<<<< HEAD
 		}
+=======
+
+			if (f.df.invalid) {
+				invalid.push(__(f.df.label));
+			}
+		}
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		if (errors.length && !ignore_errors) {
 			frappe.msgprint({
 				title: __("Missing Values Required"),
@@ -117,6 +134,22 @@ frappe.ui.FieldGroup = class FieldGroup extends frappe.ui.form.Layout {
 			});
 			return null;
 		}
+<<<<<<< HEAD
+=======
+
+		if (invalid.length && check_invalid) {
+			frappe.msgprint({
+				title: __("Inavlid Values"),
+				message:
+					__("Following fields have invalid values:") +
+					"<br><br><ul><li>" +
+					invalid.join("<li>") +
+					"</ul>",
+				indicator: "orange",
+			});
+			return null;
+		}
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		return ret;
 	}
 

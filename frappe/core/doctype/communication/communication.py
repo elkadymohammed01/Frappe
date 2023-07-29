@@ -397,6 +397,10 @@ def on_doctype_update():
 	"""Add indexes in `tabCommunication`"""
 	frappe.db.add_index("Communication", ["reference_doctype", "reference_name"])
 	frappe.db.add_index("Communication", ["status", "communication_type"])
+<<<<<<< HEAD
+=======
+	frappe.db.add_index("Communication", ["message_id(140)"])
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 
 def has_permission(doc, ptype, user):
@@ -466,7 +470,12 @@ def get_emails(email_strings: list[str]) -> list[str]:
 		if email_string:
 			result = getaddresses([email_string])
 			for email in result:
+<<<<<<< HEAD
 				email_addrs.append(email[1])
+=======
+				if "@" in email[1]:
+					email_addrs.append(email[1])
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 	return email_addrs
 

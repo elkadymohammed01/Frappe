@@ -93,10 +93,24 @@ def add(args=None):
 
 			doc = frappe.get_doc(args["doctype"], args["name"])
 
+<<<<<<< HEAD
 			# if assignee does not have permissions, share
 			if not frappe.has_permission(doc=doc, user=assign_to):
 				frappe.share.add(doc.doctype, doc.name, assign_to)
 				shared_with_users.append(assign_to)
+=======
+			# if assignee does not have permissions, share or inform
+			if not frappe.has_permission(doc=doc, user=assign_to):
+				if frappe.get_system_settings("disable_document_sharing"):
+					msg = _("User {0} is not permitted to access this document.").format(frappe.bold(assign_to))
+					msg += "<br>" + _(
+						"As document sharing is disabled, please give them the required permissions before assigning."
+					)
+					frappe.throw(msg, title=_("Missing Permission"))
+				else:
+					frappe.share.add(doc.doctype, doc.name, assign_to)
+					shared_with_users.append(assign_to)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 			# make this document followed by assigned user
 			if frappe.get_cached_value("User", assign_to, "follow_assigned_documents"):
@@ -140,20 +154,29 @@ def add_multiple(args=None):
 def close_all_assignments(doctype, name):
 	assignments = frappe.get_all(
 		"ToDo",
+<<<<<<< HEAD
 		fields=["allocated_to"],
+=======
+		fields=["allocated_to", "name"],
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		filters=dict(reference_type=doctype, reference_name=name, status=("!=", "Cancelled")),
 	)
 	if not assignments:
 		return False
 
 	for assign_to in assignments:
+<<<<<<< HEAD
 		set_status(doctype, name, assign_to.allocated_to, status="Closed")
+=======
+		set_status(doctype, name, todo=assign_to.name, assign_to=assign_to.allocated_to, status="Closed")
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 	return True
 
 
 @frappe.whitelist()
 def remove(doctype, name, assign_to):
+<<<<<<< HEAD
 	return set_status(doctype, name, assign_to, status="Cancelled")
 
 
@@ -169,6 +192,24 @@ def set_status(doctype, name, assign_to, status="Cancelled"):
 				"status": ("!=", status),
 			},
 		)
+=======
+	return set_status(doctype, name, "", assign_to, status="Cancelled")
+
+
+def set_status(doctype, name, todo=None, assign_to=None, status="Cancelled"):
+	"""remove from todo"""
+	try:
+		if not todo:
+			todo = frappe.db.get_value(
+				"ToDo",
+				{
+					"reference_type": doctype,
+					"reference_name": name,
+					"allocated_to": assign_to,
+					"status": ("!=", status),
+				},
+			)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		if todo:
 			todo = frappe.get_doc("ToDo", todo)
 			todo.status = status
@@ -190,13 +231,25 @@ def clear(doctype, name):
 	Clears assignments, return False if not assigned.
 	"""
 	assignments = frappe.get_all(
+<<<<<<< HEAD
 		"ToDo", fields=["allocated_to"], filters=dict(reference_type=doctype, reference_name=name)
+=======
+		"ToDo",
+		fields=["allocated_to", "name"],
+		filters=dict(reference_type=doctype, reference_name=name),
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	)
 	if not assignments:
 		return False
 
 	for assign_to in assignments:
+<<<<<<< HEAD
 		set_status(doctype, name, assign_to.allocated_to, "Cancelled")
+=======
+		set_status(
+			doctype, name, todo=assign_to.name, assign_to=assign_to.allocated_to, status="Cancelled"
+		)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 	return True
 

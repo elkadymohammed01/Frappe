@@ -73,7 +73,11 @@ export default class Widget {
 	}
 
 	make_widget() {
+<<<<<<< HEAD
 		this.widget = $(`<div class="widget card shadow-primary" data-widget-name="${this.name ? this.name : ""}">
+=======
+		this.widget = $(`<div class="widget" data-widget-name="${this.name ? this.name : ""}">
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			<div class="widget-head">
 				<div class="widget-label">
 					<div class="widget-title"></div>
@@ -100,7 +104,11 @@ export default class Widget {
 
 		if (this.icon) {
 			let icon = frappe.utils.icon(this.icon, "lg");
+<<<<<<< HEAD
 			this.title_field[0].innerHTML = `<span class="ellipsis" title="${title}">${icon} ${title}</span>`;
+=======
+			this.title_field[0].innerHTML = `${icon} <span class="ellipsis" title="${title}">${title}</span>`;
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		} else {
 			this.title_field[0].innerHTML = `<span class="ellipsis" title="${title}">${title}</span>`;
 			if (max_chars) {

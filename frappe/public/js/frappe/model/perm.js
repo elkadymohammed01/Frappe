@@ -35,9 +35,13 @@ $.extend(frappe.perm, {
 
 	doctype_perm: {},
 
+<<<<<<< HEAD
 	has_perm: (doctype, permlevel, ptype, doc) => {
 		if (!permlevel) permlevel = 0;
 
+=======
+	has_perm: (doctype, permlevel = 0, ptype = "read", doc) => {
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		const perms = frappe.perm.get_perm(doctype, doc);
 		return !!perms?.[permlevel]?.[ptype];
 	},

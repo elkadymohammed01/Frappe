@@ -1,7 +1,11 @@
 .filter-icon.active {
+<<<<<<< HEAD
 	use {
 		stroke: var(--text-on-blue);
 	}
+=======
+	--icon-stroke: var(--text-on-blue);
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 }
 
 .filter-popover {

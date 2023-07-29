@@ -15,6 +15,12 @@ from typing import Any, Literal, Optional, TypeVar, Union
 from urllib.parse import quote, urljoin
 
 from click import secho
+<<<<<<< HEAD
+=======
+from dateutil import parser
+from dateutil.parser import ParserError
+from dateutil.relativedelta import relativedelta
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 import frappe
 from frappe.desk.utils import slug
@@ -81,9 +87,12 @@ def getdate(
 	Converts string date (yyyy-mm-dd) to datetime.date object.
 	If no input is provided, current date is returned.
 	"""
+<<<<<<< HEAD
 	from dateutil import parser
 	from dateutil.parser._parser import ParserError
 
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	if not string_date:
 		return get_datetime().date()
 	if isinstance(string_date, datetime.datetime):
@@ -106,7 +115,10 @@ def getdate(
 def get_datetime(
 	datetime_str: Optional["DateTimeLikeObject"] = None,
 ) -> datetime.datetime | None:
+<<<<<<< HEAD
 	from dateutil import parser
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 	if datetime_str is None:
 		return now_datetime()
@@ -142,9 +154,12 @@ def get_timedelta(time: str | None = None) -> datetime.timedelta | None:
 	Returns:
 	        datetime.timedelta: Timedelta object equivalent of the passed `time` string
 	"""
+<<<<<<< HEAD
 	from dateutil import parser
 	from dateutil.parser import ParserError
 
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	time = time or "0:0:0"
 
 	try:
@@ -162,8 +177,11 @@ def get_timedelta(time: str | None = None) -> datetime.timedelta | None:
 
 
 def to_timedelta(time_str: str | datetime.time) -> datetime.timedelta:
+<<<<<<< HEAD
 	from dateutil import parser
 
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	if isinstance(time_str, datetime.time):
 		time_str = str(time_str)
 
@@ -238,9 +256,12 @@ def add_to_date(
 	as_datetime=False,
 ) -> DateTimeLikeObject:
 	"""Adds `days` to the given date"""
+<<<<<<< HEAD
 	from dateutil import parser
 	from dateutil.parser._parser import ParserError
 	from dateutil.relativedelta import relativedelta
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 	if date is None:
 		date = now_datetime()
@@ -511,9 +532,12 @@ def get_year_ending(date):
 
 
 def get_time(time_str: str) -> datetime.time:
+<<<<<<< HEAD
 	from dateutil import parser
 	from dateutil.parser import ParserError
 
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	if isinstance(time_str, datetime.datetime):
 		return time_str.time()
 	elif isinstance(time_str, datetime.time):
@@ -1110,12 +1134,21 @@ def _round_away_from_zero(num, precision):
 
 
 def _bankers_rounding(num, precision):
+<<<<<<< HEAD
 	if num == 0:
 		return 0.0
 
 	multiplier = 10**precision
 	num = round(num * multiplier, 12)
 
+=======
+	multiplier = 10**precision
+	num = round(num * multiplier, 12)
+
+	if num == 0:
+		return 0.0
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	floor_num = math.floor(num)
 	decimal_part = num - floor_num
 
@@ -1544,6 +1577,7 @@ def pretty_date(iso_datetime: datetime.datetime | str) -> str:
 		return _("Yesterday")
 	elif dt_diff_days < 7.0:
 		return _("{0} days ago").format(cint(dt_diff_days))
+<<<<<<< HEAD
 	elif dt_diff_days < 12:
 		return _("1 week ago")
 	elif dt_diff_days < 31.0:
@@ -1553,6 +1587,17 @@ def pretty_date(iso_datetime: datetime.datetime | str) -> str:
 	elif dt_diff_days < 365.0:
 		return _("{0} months ago").format(cint(math.ceil(dt_diff_days / 30.0)))
 	elif dt_diff_days < 550.0:
+=======
+	elif dt_diff_days < 14:
+		return _("1 week ago")
+	elif dt_diff_days < 31.0:
+		return _("{0} weeks ago").format(dt_diff_days // 7)
+	elif dt_diff_days < 61.0:
+		return _("1 month ago")
+	elif dt_diff_days < 365.0:
+		return _("{0} months ago").format(dt_diff_days // 30)
+	elif dt_diff_days < 730.0:
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		return _("1 year ago")
 	else:
 		return f"{cint(math.floor(dt_diff_days / 365.0))} years ago"
@@ -2229,3 +2274,14 @@ def get_job_name(key: str, doctype: str = None, doc_name: str = None) -> str:
 	if doc_name:
 		job_name += f"_{doc_name}"
 	return job_name
+<<<<<<< HEAD
+=======
+
+
+# This is used in test to count memory overhead of default imports.
+def _get_rss_memory_usage():
+	import psutil
+
+	rss = psutil.Process().memory_info().rss // (1024 * 1024)
+	return rss
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)

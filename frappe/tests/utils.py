@@ -4,6 +4,10 @@ import signal
 import unittest
 from contextlib import contextmanager
 from typing import Sequence
+<<<<<<< HEAD
+=======
+from unittest.mock import patch
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 import frappe
 from frappe.model.base_document import BaseDocument
@@ -91,6 +95,29 @@ class FrappeTestCase(unittest.TestCase):
 		finally:
 			frappe.db.sql = orig_sql
 
+<<<<<<< HEAD
+=======
+	@contextmanager
+	def assertRowsRead(self, count):
+		rows_read = 0
+
+		def _sql_with_count(*args, **kwargs):
+			nonlocal rows_read
+
+			ret = orig_sql(*args, **kwargs)
+			# count of last touched rows as per DB-API 2.0 https://peps.python.org/pep-0249/#rowcount
+			rows_read += cint(frappe.db._cursor.rowcount)
+			return ret
+
+		try:
+			orig_sql = frappe.db.sql
+			frappe.db.sql = _sql_with_count
+			yield
+			self.assertLessEqual(rows_read, count, msg="Queries read more rows than expected")
+		finally:
+			frappe.db.sql = orig_sql
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 def _commit_watcher():
 	import traceback
@@ -142,7 +169,11 @@ def change_settings(doctype, settings_dict):
 		# change setting
 		for key, value in settings_dict.items():
 			setattr(settings, key, value)
+<<<<<<< HEAD
 		settings.save()
+=======
+		settings.save(ignore_permissions=True)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		# singles are cached by default, clear to avoid flake
 		frappe.db.value_cache[settings] = {}
 		yield  # yield control to calling function
@@ -152,7 +183,11 @@ def change_settings(doctype, settings_dict):
 		settings = frappe.get_doc(doctype)
 		for key, value in previous_settings.items():
 			setattr(settings, key, value)
+<<<<<<< HEAD
 		settings.save()
+=======
+		settings.save(ignore_permissions=True)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 
 def timeout(seconds=30, error_message="Test timed out."):
@@ -176,3 +211,19 @@ def timeout(seconds=30, error_message="Test timed out."):
 		return wrapper
 
 	return decorator
+<<<<<<< HEAD
+=======
+
+
+@contextmanager
+def patch_hooks(overridden_hoooks):
+	get_hooks = frappe.get_hooks
+
+	def patched_hooks(hook=None, default="_KEEP_DEFAULT_LIST", app_name=None):
+		if hook in overridden_hoooks:
+			return overridden_hoooks[hook]
+		return get_hooks(hook, default, app_name)
+
+	with patch.object(frappe, "get_hooks", patched_hooks):
+		yield
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)

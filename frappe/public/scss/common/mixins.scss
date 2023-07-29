@@ -45,6 +45,7 @@
 	$background-color: var(--bg-color),
 	$border-radius: var(--border-radius),
 ) {
+<<<<<<< HEAD
 
 	@if $content {
 		img:after {
@@ -84,3 +85,7 @@
 // 	width: 100%;
 // 	text-align: center;
 // }
+=======
+	// Deprecated: Does not work as expected anymore. Also, this never worked in Safari.
+}
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)

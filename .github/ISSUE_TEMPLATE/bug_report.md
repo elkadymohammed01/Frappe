@@ -7,7 +7,11 @@ labels: bug
 <!--
 Welcome to the Frappe Framework issue tracker! Before creating an issue, please heed the following:
 
+<<<<<<< HEAD
 1. This tracker should only be used to report bugs and request features / enhancements to Ehsan
+=======
+1. This tracker should only be used to report bugs and request features / enhancements to Frappe
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
     - For questions and general support, use https://stackoverflow.com/questions/tagged/frappe
     - For documentation issues, refer to https://frappeframework.com/docs/user/en or the developer cheetsheet https://github.com/frappe/frappe/wiki/Developer-Cheatsheet
 2. Use the search function before creating a new issue. Duplicates will be closed and directed to

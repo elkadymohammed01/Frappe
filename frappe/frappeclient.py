@@ -4,8 +4,11 @@ FrappeClient is a library that helps you connect with other frappe systems
 import base64
 import json
 
+<<<<<<< HEAD
 import requests
 
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 import frappe
 from frappe.utils.data import cstr
 
@@ -37,6 +40,11 @@ class FrappeClient:
 		api_secret=None,
 		frappe_authorization_source=None,
 	):
+<<<<<<< HEAD
+=======
+		import requests
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		self.headers = {
 			"Accept": "application/json",
 			"content-type": "application/x-www-form-urlencoded",
@@ -390,12 +398,18 @@ class FrappeClient:
 
 class FrappeOAuth2Client(FrappeClient):
 	def __init__(self, url, access_token, verify=True):
+<<<<<<< HEAD
+=======
+		import requests
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		self.access_token = access_token
 		self.headers = {
 			"Authorization": "Bearer " + access_token,
 			"content-type": "application/x-www-form-urlencoded",
 		}
 		self.verify = verify
+<<<<<<< HEAD
 		self.session = OAuth2Session(self.headers)
 		self.url = url
 
@@ -429,3 +443,7 @@ class OAuth2Session:
 	def put(self, url, data, verify):
 		res = requests.put(url, data=data, headers=self.headers, verify=verify)
 		return res
+=======
+		self.session = requests.session()
+		self.url = url
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)

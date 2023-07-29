@@ -76,6 +76,10 @@ class TestBackgroundJobs(FrappeTestCase):
 				at_front=False,
 				failure_ttl=RQ_JOB_FAILURE_TTL,
 				result_ttl=RQ_RESULTS_TTL,
+<<<<<<< HEAD
+=======
+				job_id=None,
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			)
 
 	def test_job_hooks(self):

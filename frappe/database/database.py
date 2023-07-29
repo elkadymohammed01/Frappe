@@ -14,7 +14,10 @@ from pypika.terms import Criterion, NullValue
 
 import frappe
 import frappe.defaults
+<<<<<<< HEAD
 import frappe.model.meta
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 from frappe import _
 from frappe.database.utils import (
 	DefaultOrderBy,
@@ -102,6 +105,11 @@ class Database:
 
 		self.password = password or frappe.conf.db_password
 		self.value_cache = {}
+<<<<<<< HEAD
+=======
+		self.logger = frappe.logger("database")
+		self.logger.setLevel("WARNING")
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		# self.db_type: str
 		# self.last_query (lazy) attribute of last sql query executed
 
@@ -119,7 +127,11 @@ class Database:
 			if execution_timeout := get_query_execution_timeout():
 				self.set_execution_timeout(execution_timeout)
 		except Exception as e:
+<<<<<<< HEAD
 			frappe.logger("database").warning(f"Couldn't set execution timeout {e}")
+=======
+			self.logger.warning(f"Couldn't set execution timeout {e}")
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 	def set_execution_timeout(self, seconds: int):
 		"""Set session speicifc timeout on exeuction of statements.
@@ -287,7 +299,17 @@ class Database:
 			return self.convert_to_lists(self.last_result, formatted, as_utf8)
 		return self.last_result
 
+<<<<<<< HEAD
 	def _log_query(self, mogrified_query: str, debug: bool = False, explain: bool = False) -> None:
+=======
+	def _log_query(
+		self,
+		mogrified_query: str,
+		debug: bool = False,
+		explain: bool = False,
+		unmogrified_query: str = "",
+	) -> None:
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		"""Takes the query and logs it to various interfaces according to the settings."""
 		_query = None
 
@@ -305,6 +327,15 @@ class Database:
 			_query = _query or str(mogrified_query)
 			frappe.log(f"<<<< query\n{_query}\n>>>>")
 
+<<<<<<< HEAD
+=======
+		if unmogrified_query and is_query_type(
+			unmogrified_query, ("alter", "drop", "create", "truncate", "rename")
+		):
+			_query = _query or str(mogrified_query)
+			self.logger.warning("DDL Query made to DB:\n" + _query)
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		if frappe.flags.in_migrate:
 			_query = _query or str(mogrified_query)
 			self.log_touched_tables(_query)
@@ -316,7 +347,11 @@ class Database:
 		# like cursor._transformed_statement from the cursor object. We can also avoid setting
 		# mogrified_query if we don't need to log it.
 		mogrified_query = self.lazy_mogrify(query, values)
+<<<<<<< HEAD
 		self._log_query(mogrified_query, debug, explain)
+=======
+		self._log_query(mogrified_query, debug, explain, unmogrified_query=query)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		return mogrified_query
 
 	def mogrify(self, query: Query, values: QueryValues):
@@ -654,10 +689,17 @@ class Database:
 						return []
 
 			if as_dict:
+<<<<<<< HEAD
 				return values and [values] or []
 
 			if isinstance(fields, list):
 				return [map(values.get, fields)]
+=======
+				return [values] if values else []
+
+			if isinstance(fields, list):
+				return [list(map(values.get, fields))]
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 		else:
 			r = frappe.qb.engine.get_query(
@@ -1039,7 +1081,11 @@ class Database:
 				if hasattr(obj, "on_rollback"):
 					obj.on_rollback()
 			frappe.local.rollback_observers = []
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			frappe.local.realtime_log = []
 			frappe.flags.enqueue_after_commit = []
 
@@ -1344,6 +1390,10 @@ def enqueue_jobs_after_commit():
 				kwargs=job.get("queue_args"),
 				failure_ttl=frappe.conf.get("rq_job_failure_ttl") or RQ_JOB_FAILURE_TTL,
 				result_ttl=frappe.conf.get("rq_results_ttl") or RQ_RESULTS_TTL,
+<<<<<<< HEAD
+=======
+				job_id=job.get("job_id"),
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			)
 		frappe.flags.enqueue_after_commit = []
 

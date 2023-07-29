@@ -96,7 +96,11 @@ class SocialLoginKey(Document):
 			"icon": "fa fa-github",
 			"authorize_url": "https://github.com/login/oauth/authorize",
 			"access_token_url": "https://github.com/login/oauth/access_token",
+<<<<<<< HEAD
 			"redirect_url": "/api/method/frappe.www.login.login_via_github",
+=======
+			"redirect_url": "/api/method/frappe.integrations.oauth2_logins.login_via_github",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			"api_endpoint": "user",
 			"api_endpoint_args": None,
 			"auth_url_data": json.dumps({"scope": "user:email"}),
@@ -110,7 +114,11 @@ class SocialLoginKey(Document):
 			"icon": "fa fa-google",
 			"authorize_url": "https://accounts.google.com/o/oauth2/auth",
 			"access_token_url": "https://accounts.google.com/o/oauth2/token",
+<<<<<<< HEAD
 			"redirect_url": "/api/method/frappe.www.login.login_via_google",
+=======
+			"redirect_url": "/api/method/frappe.integrations.oauth2_logins.login_via_google",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			"api_endpoint": "oauth2/v2/userinfo",
 			"api_endpoint_args": None,
 			"auth_url_data": json.dumps(
@@ -129,7 +137,11 @@ class SocialLoginKey(Document):
 			"icon": "fa fa-facebook",
 			"authorize_url": "https://www.facebook.com/dialog/oauth",
 			"access_token_url": "https://graph.facebook.com/oauth/access_token",
+<<<<<<< HEAD
 			"redirect_url": "/api/method/frappe.www.login.login_via_facebook",
+=======
+			"redirect_url": "/api/method/frappe.integrations.oauth2_logins.login_via_facebook",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			"api_endpoint": "/v2.5/me",
 			"api_endpoint_args": json.dumps(
 				{"fields": "first_name,last_name,email,gender,location,verified,picture"}
@@ -144,7 +156,11 @@ class SocialLoginKey(Document):
 			"enable_social_login": 1,
 			"custom_base_url": 1,
 			"icon": "/assets/frappe/images/frappe-favicon.svg",
+<<<<<<< HEAD
 			"redirect_url": "/api/method/frappe.www.login.login_via_frappe",
+=======
+			"redirect_url": "/api/method/frappe.integrations.oauth2_logins.login_via_frappe",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			"api_endpoint": "/api/method/frappe.integrations.oauth2.openid_profile",
 			"api_endpoint_args": None,
 			"authorize_url": "/api/method/frappe.integrations.oauth2.authorize",

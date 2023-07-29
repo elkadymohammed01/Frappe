@@ -11,7 +11,11 @@ from werkzeug.test import TestResponse
 
 import frappe
 from frappe.installer import update_site_config
+<<<<<<< HEAD
 from frappe.tests.utils import FrappeTestCase
+=======
+from frappe.tests.utils import FrappeTestCase, patch_hooks
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 from frappe.utils import get_site_url, get_test_client
 
 try:
@@ -302,6 +306,7 @@ class TestReadOnlyMode(FrappeAPITestCase):
 class TestWSGIApp(FrappeAPITestCase):
 	def test_request_hooks(self):
 		self.addCleanup(lambda: _test_REQ_HOOK.clear())
+<<<<<<< HEAD
 		get_hooks = frappe.get_hooks
 
 		def patch_request_hooks(event: str, *args, **kwargs):
@@ -314,6 +319,15 @@ class TestWSGIApp(FrappeAPITestCase):
 			return patched_hooks[event]
 
 		with patch("frappe.get_hooks", patch_request_hooks):
+=======
+
+		with patch_hooks(
+			{
+				"before_request": ["frappe.tests.test_api.before_request"],
+				"after_request": ["frappe.tests.test_api.after_request"],
+			}
+		):
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			self.assertIsNone(_test_REQ_HOOK.get("before_request"))
 			self.assertIsNone(_test_REQ_HOOK.get("after_request"))
 			res = self.get("/api/method/ping")

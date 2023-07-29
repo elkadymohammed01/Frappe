@@ -202,6 +202,7 @@ frappe.dashboard_utils = {
 	},
 
 	get_all_filters(doc) {
+<<<<<<< HEAD
 		let filters = JSON.parse(doc.filters_json || "null");
 		let dynamic_filters = JSON.parse(doc.dynamic_filters_json || "null");
 
@@ -210,6 +211,18 @@ frappe.dashboard_utils = {
 		}
 
 		if ($.isArray(dynamic_filters)) {
+=======
+		let filters = doc.filters_json ? JSON.parse(doc.filters_json) : null;
+		let dynamic_filters = doc.dynamic_filters_json
+			? JSON.parse(doc.dynamic_filters_json)
+			: null;
+
+		if (!dynamic_filters || !Object.keys(dynamic_filters).length) {
+			return filters;
+		}
+
+		if (Array.isArray(dynamic_filters)) {
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			dynamic_filters.forEach((f) => {
 				try {
 					f[3] = eval(f[3]);

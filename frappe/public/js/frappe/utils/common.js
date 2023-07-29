@@ -154,6 +154,10 @@ frappe.palette = [
 ];
 
 frappe.get_palette = function (txt) {
+<<<<<<< HEAD
+=======
+	if (!txt) return frappe.palette[8]; // breaks when undefined
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	var idx = cint((parseInt(md5(txt).substr(4, 2), 16) + 1) / 5.33);
 	return frappe.palette[idx % 8];
 };

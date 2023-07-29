@@ -97,11 +97,14 @@
 						color: transparent;
 						position: relative;
 					}
+<<<<<<< HEAD
 
 					@include broken-img(
 						$height: 70px,
 						$top: -15px,
 					);
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				}
 			}
 

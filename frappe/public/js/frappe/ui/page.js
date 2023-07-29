@@ -99,6 +99,7 @@ frappe.ui.Page = class Page {
 			this.add_view(
 				"main",
 				`
+<<<<<<< HEAD
 				<div class="row layout-main col-12">
 					<div class="col-lg-2 layout-side-section m-2" style="background: linear-gradient(195deg, #42424a 0%, #191919 100%);border-radius: 25px;"></div>
 					<div class="col layout-main-section-wrapper">
@@ -141,6 +142,11 @@ frappe.ui.Page = class Page {
 							</div>
 						</div>
 						</div>
+=======
+				<div class="row layout-main">
+					<div class="col-lg-2 layout-side-section"></div>
+					<div class="col layout-main-section-wrapper">
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 						<div class="layout-main-section"></div>
 						<div class="layout-footer hide"></div>
 					</div>
@@ -208,7 +214,11 @@ frappe.ui.Page = class Page {
 		let sidebar_toggle = $(".page-head").find(".sidebar-toggle-btn");
 		let sidebar_wrapper = this.wrapper.find(".layout-side-section");
 		if (this.disable_sidebar_toggle || !sidebar_wrapper.length) {
+<<<<<<< HEAD
 			sidebar_toggle.css("display", "none");
+=======
+			sidebar_toggle.remove();
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		} else {
 			sidebar_toggle.attr("title", __("Toggle Sidebar")).tooltip({
 				delay: { show: 600, hide: 100 },
@@ -263,7 +273,11 @@ frappe.ui.Page = class Page {
 	add_action_icon(icon, click, css_class = "", tooltip_label) {
 		const button = $(`
 			<button class="text-muted btn btn-default ${css_class} icon-btn">
+<<<<<<< HEAD
 				<img src="/assets/frappe/icons/workspace/${icon}.png" style="width: 25px">
+=======
+				${frappe.utils.icon(icon)}
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			</button>
 		`);
 

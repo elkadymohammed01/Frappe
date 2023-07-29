@@ -32,8 +32,11 @@ class Translation(Document):
 
 @frappe.whitelist()
 def create_translations(translation_map, language):
+<<<<<<< HEAD
 	from frappe.frappeclient import FrappeClient
 
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	translation_map = json.loads(translation_map)
 	translation_map_to_send = frappe._dict({})
 	# first create / update local user translations
@@ -74,6 +77,7 @@ def create_translations(translation_map, language):
 			doc.insert()
 			translation_map_to_send[source_id].name = doc.name
 
+<<<<<<< HEAD
 	params = {
 		"language": language,
 		"contributor_email": frappe.session.user,
@@ -87,6 +91,8 @@ def create_translations(translation_map, language):
 	for local_docname, remote_docname in added_translations.items():
 		frappe.db.set_value("Translation", local_docname, "contribution_docname", remote_docname)
 
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 def clear_user_translation_cache(lang):
 	frappe.cache().hdel(USER_TRANSLATION_KEY, lang)

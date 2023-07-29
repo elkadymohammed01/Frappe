@@ -48,8 +48,13 @@ export default class Tab {
 			hide = true;
 		}
 
+<<<<<<< HEAD
 		if (!hide && !this.df.show_dashboard) {
 			// show only if there is at least one visibe section or control
+=======
+		if (!hide) {
+			// show only if there is at least one visible section or control
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			hide = true;
 			if (
 				this.wrapper.find(
@@ -78,6 +83,12 @@ export default class Tab {
 	hide() {
 		this.parent.hide();
 	}
+<<<<<<< HEAD
+=======
+	replace_field(fieldobj) {
+		fieldobj.tab = this;
+	}
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 	set_active() {
 		this.parent.find(".nav-link").tab("show");

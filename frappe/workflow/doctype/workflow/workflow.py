@@ -17,7 +17,10 @@ class Workflow(Document):
 	def on_update(self):
 		self.update_doc_status()
 		frappe.clear_cache(doctype=self.document_type)
+<<<<<<< HEAD
 		frappe.cache().delete_key("workflow_" + self.name)  # clear cache created in model/workflow.py
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 	def create_custom_field_for_workflow_state(self):
 		frappe.clear_cache(doctype=self.document_type)
@@ -126,6 +129,10 @@ class Workflow(Document):
 
 @frappe.whitelist()
 def get_fieldnames_for(doctype):
+<<<<<<< HEAD
+=======
+	frappe.has_permission(doctype=doctype, ptype="read", throw=True)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	return [
 		f.fieldname for f in frappe.get_meta(doctype).fields if f.fieldname not in no_value_fields
 	]
@@ -133,6 +140,10 @@ def get_fieldnames_for(doctype):
 
 @frappe.whitelist()
 def get_workflow_state_count(doctype, workflow_state_field, states):
+<<<<<<< HEAD
+=======
+	frappe.has_permission(doctype=doctype, ptype="read", throw=True)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	states = frappe.parse_json(states)
 	result = frappe.get_all(
 		doctype,

@@ -108,10 +108,17 @@ def sync_customizations(app=None):
 						with open(os.path.join(folder, fname)) as f:
 							data = json.loads(f.read())
 						if data.get("sync_on_migrate"):
+<<<<<<< HEAD
 							sync_customizations_for_doctype(data, folder)
 
 
 def sync_customizations_for_doctype(data, folder):
+=======
+							sync_customizations_for_doctype(data, folder, fname)
+
+
+def sync_customizations_for_doctype(data, folder, filename: str = ""):
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	"""Sync doctype customzations for a particular data set"""
 	from frappe.core.doctype.doctype.doctype import validate_fields_for_doctype
 
@@ -154,6 +161,14 @@ def sync_customizations_for_doctype(data, folder):
 			):
 				sync_single_doctype(doc_type)
 
+<<<<<<< HEAD
+=======
+	if not frappe.db.exists("DocType", doctype):
+		print(_("DocType {0} does not exist.").format(doctype))
+		print(_("Skipping fixture syncing for doctyoe {0} from file {1} ").format(doctype, filename))
+		return
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	if data["custom_fields"]:
 		sync("custom_fields", "Custom Field", "dt")
 		update_schema = True

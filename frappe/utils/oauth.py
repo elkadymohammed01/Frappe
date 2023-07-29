@@ -5,8 +5,11 @@ import base64
 import json
 from typing import TYPE_CHECKING, Callable
 
+<<<<<<< HEAD
 import jwt
 
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 import frappe
 import frappe.utils
 from frappe import _
@@ -126,6 +129,12 @@ def login_via_oauth2_id_token(
 def get_info_via_oauth(
 	provider: str, code: str, decoder: Callable | None = None, id_token: bool = False
 ):
+<<<<<<< HEAD
+=======
+
+	import jwt
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	flow = get_oauth2_flow(provider)
 	oauth2_providers = get_oauth2_providers()
 

@@ -8,6 +8,7 @@ from frappe.utils import cint
 
 
 class BulkUpdate(Document):
+<<<<<<< HEAD
 	pass
 
 
@@ -28,6 +29,26 @@ def update(doctype, field, value, condition="", limit=500):
 	data = {}
 	data[field] = value
 	return submit_cancel_or_update_docs(doctype, docnames, "update", data)
+=======
+	@frappe.whitelist()
+	def bulk_update(self):
+		self.check_permission("write")
+		limit = self.limit if self.limit and cint(self.limit) < 500 else 500
+
+		condition = ""
+		if self.condition:
+			if ";" in self.condition:
+				frappe.throw(_("; not allowed in condition"))
+
+			condition = f" where {self.condition}"
+
+		docnames = frappe.db.sql_list(
+			f"""select name from `tab{self.document_type}`{condition} limit {limit} offset 0"""
+		)
+		return submit_cancel_or_update_docs(
+			self.document_type, docnames, "update", {self.field: self.update_value}
+		)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 
 @frappe.whitelist()

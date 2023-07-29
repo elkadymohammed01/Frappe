@@ -109,6 +109,10 @@ class AutoEmailReport(Document):
 			filters=self.filters,
 			as_dict=True,
 			ignore_prepared_report=True,
+<<<<<<< HEAD
+=======
+			are_default_filters=False,
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		)
 
 		# add serial numbers

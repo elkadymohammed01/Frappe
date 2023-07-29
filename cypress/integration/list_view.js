@@ -54,12 +54,17 @@ context("List View", () => {
 					method: "POST",
 					url: "api/method/frappe.model.workflow.bulk_workflow_approval",
 				}).as("bulk-approval");
+<<<<<<< HEAD
 				cy.intercept({
 					method: "POST",
 					url: "api/method/frappe.desk.reportview.get",
 				}).as("real-time-update");
 				cy.wrap(elements).contains("Approve").click();
 				cy.wait(["@bulk-approval", "@real-time-update"]);
+=======
+				cy.wrap(elements).contains("Approve").click();
+				cy.wait("@bulk-approval");
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				cy.wait(300);
 				cy.get_open_dialog().find(".btn-modal-close").click();
 				cy.reload();

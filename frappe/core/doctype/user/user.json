@@ -87,7 +87,12 @@
   "api_key",
   "generate_keys",
   "column_break_65",
+<<<<<<< HEAD
   "api_secret"
+=======
+  "api_secret",
+  "onboarding_status"
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
  ],
  "fields": [
   {
@@ -206,6 +211,10 @@
    "read_only": 1
   },
   {
+<<<<<<< HEAD
+=======
+   "allow_in_quick_entry": 1,
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
    "fieldname": "role_profile_name",
    "fieldtype": "Link",
    "label": "Role Profile",
@@ -660,6 +669,16 @@
    "fieldname": "follow_assigned_documents",
    "fieldtype": "Check",
    "label": "Auto follow documents that are assigned to you"
+<<<<<<< HEAD
+=======
+  },
+  {
+   "default": "{}",
+   "fieldname": "onboarding_status",
+   "fieldtype": "Small Text",
+   "hidden": 1,
+   "label": "Onboarding Status"
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
   }
  ],
  "icon": "fa fa-user",
@@ -722,7 +741,11 @@
    "link_fieldname": "user"
   }
  ],
+<<<<<<< HEAD
  "modified": "2022-09-19 16:05:46.485242",
+=======
+ "modified": "2023-06-05 17:26:04.127555",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
  "modified_by": "Administrator",
  "module": "Core",
  "name": "User",

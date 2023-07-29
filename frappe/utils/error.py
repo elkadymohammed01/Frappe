@@ -8,12 +8,18 @@ import inspect
 import json
 import linecache
 import os
+<<<<<<< HEAD
 import pydoc
 import sys
 import traceback
 
 from ldap3.core.exceptions import LDAPException
 
+=======
+import sys
+import traceback
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 import frappe
 from frappe.utils import cstr, encode
 
@@ -21,16 +27,42 @@ EXCLUDE_EXCEPTIONS = (
 	frappe.AuthenticationError,
 	frappe.CSRFTokenError,  # CSRF covers OAuth too
 	frappe.SecurityException,
+<<<<<<< HEAD
 	LDAPException,
 	frappe.InReadOnlyMode,
 )
 
+=======
+	frappe.InReadOnlyMode,
+)
+
+LDAP_BASE_EXCEPTION = "LDAPException"
+
+
+def _is_ldap_exception(e):
+	"""Check if exception is from LDAP library.
+
+	This is a hack but ensures that LDAP is not imported unless it's required. This is tested in
+	unittests in case the exception changes in future.
+	"""
+
+	for t in type(e).__mro__:
+		if t.__name__ == LDAP_BASE_EXCEPTION:
+			return True
+
+	return False
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 def make_error_snapshot(exception):
 	if frappe.conf.disable_error_snapshot:
 		return
 
+<<<<<<< HEAD
 	if isinstance(exception, EXCLUDE_EXCEPTIONS):
+=======
+	if isinstance(exception, EXCLUDE_EXCEPTIONS) or _is_ldap_exception(exception):
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		return
 
 	logger = frappe.logger(with_more_info=True)
@@ -57,6 +89,11 @@ def make_error_snapshot(exception):
 
 
 def get_snapshot(exception, context=10):
+<<<<<<< HEAD
+=======
+	import pydoc
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	"""
 	Return a dict describing a given traceback (based on cgitb.text)
 	"""

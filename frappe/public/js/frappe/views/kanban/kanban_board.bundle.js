@@ -317,6 +317,10 @@ frappe.provide("frappe.views");
 				return state.columns;
 			}, make_columns);
 			prepare();
+<<<<<<< HEAD
+=======
+			make_columns();
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			store.watch((state, getters) => {
 				return state.cur_list;
 			}, setup_restore_columns);

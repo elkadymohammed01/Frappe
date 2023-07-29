@@ -24,6 +24,13 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 	constructor(opts) {
 		super(opts);
 		this.show();
+<<<<<<< HEAD
+=======
+		this.debounced_refresh = frappe.utils.debounce(
+			this.process_document_refreshes.bind(this),
+			2000
+		);
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	}
 
 	has_permissions() {
@@ -80,8 +87,13 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 
 		this.view = "List";
 		// initialize with saved order by
+<<<<<<< HEAD
 		this.sort_by = this.view_user_settings.sort_by || "modified";
 		this.sort_order = this.view_user_settings.sort_order || "desc";
+=======
+		this.sort_by = this.view_user_settings.sort_by || this.sort_by || "modified";
+		this.sort_order = this.view_user_settings.sort_order || this.sort_order || "desc";
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 		// build menu items
 		this.menu_items = this.menu_items.concat(this.get_menu_items());
@@ -136,7 +148,11 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 		this.workflow_action_items = {};
 
 		const actions = this.actions_menu_items.concat(this.workflow_action_menu_items);
+<<<<<<< HEAD
 		actions.map((item) => {
+=======
+		actions.forEach((item) => {
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			const $item = this.page.add_actions_menu_item(item.label, item.action, item.standard);
 			if (item.class) {
 				$item.addClass(item.class);
@@ -308,6 +324,10 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 			this.render_header(refresh_header);
 			this.update_checkbox();
 			this.update_url_with_filters();
+<<<<<<< HEAD
+=======
+			this.setup_realtime_updates();
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		});
 	}
 
@@ -455,6 +475,7 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 	get_no_result_message() {
 		let help_link = this.get_documentation_link();
 		let filters = this.filter_area && this.filter_area.get();
+<<<<<<< HEAD
 		let no_result_message =
 			filters && filters.length
 				? __("No {0} found", [__(this.doctype)])
@@ -471,6 +492,22 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 						[__(this.doctype)],
 						"Create a new document from list view"
 				  );
+=======
+
+		let has_filters_set = filters && filters.length;
+		let no_result_message = has_filters_set
+			? __("No {0} found with matching filters. Clear filters to see all {0}.", [
+					__(this.doctype),
+			  ])
+			: __("You haven't created a {0} yet", [__(this.doctype)]);
+		let new_button_label = has_filters_set
+			? __("Create a new {0}", [__(this.doctype)], "Create a new document from list view")
+			: __(
+					"Create your first {0}",
+					[__(this.doctype)],
+					"Create a new document from list view"
+			  );
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		let empty_state_image =
 			this.settings.empty_state_image ||
 			"/assets/frappe/images/ui-states/list-empty-state.svg";
@@ -542,7 +579,10 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 		if (toggle) {
 			this.page.show_actions_menu();
 			this.page.clear_primary_action();
+<<<<<<< HEAD
 			this.toggle_workflow_actions();
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		} else {
 			this.page.hide_actions_menu();
 			this.set_primary_action();
@@ -584,16 +624,22 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 			</div>
 		`);
 		this.setup_new_doc_event();
+<<<<<<< HEAD
 		if (this.list_view_settings && !this.list_view_settings.disable_sidebar_stats) {
 			this.list_sidebar && this.list_sidebar.reload_stats();
 		}
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		this.toggle_paging && this.$paging_area.toggle(true);
 	}
 
 	render() {
 		this.render_list();
 		this.set_rows_as_checked();
+<<<<<<< HEAD
 		this.on_row_checked();
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		this.render_count();
 	}
 
@@ -708,10 +754,18 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 	}
 
 	get_column_html(col, doc) {
+<<<<<<< HEAD
 		if (col.type === "Status") {
 			return `
 				<div class="list-row-col hidden-xs ellipsis">
 					${this.get_indicator_html(doc)}
+=======
+		if (col.type === "Status" || col.df?.options == "Workflow State") {
+			let show_workflow_state = col.df?.options == "Workflow State";
+			return `
+				<div class="list-row-col hidden-xs ellipsis">
+					${this.get_indicator_html(doc, show_workflow_state)}
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				</div>
 			`;
 		}
@@ -999,7 +1053,11 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 					href="${this.get_form_link(doc)}"
 					title="${escaped_subject}"
 					data-doctype="${this.doctype}"
+<<<<<<< HEAD
 					data-name="${doc.name}">
+=======
+					data-name="${escaped_subject}">
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 					${subject}
 				</a>
 			</span>
@@ -1008,8 +1066,13 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 		return subject_html;
 	}
 
+<<<<<<< HEAD
 	get_indicator_html(doc) {
 		const indicator = frappe.get_indicator(doc, this.doctype);
+=======
+	get_indicator_html(doc, show_workflow_state) {
+		const indicator = frappe.get_indicator(doc, this.doctype, show_workflow_state);
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		// sequence is important
 		const docstatus_description = [
 			__("Document is in draft state"),
@@ -1021,7 +1084,11 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 			return `<span class="indicator-pill ${indicator[1]} filterable ellipsis"
 				data-filter='${indicator[2]}' title='${title}'>
 				<span class="ellipsis"> ${__(indicator[0])}</span>
+<<<<<<< HEAD
 			<span>`;
+=======
+			</span>`;
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		}
 		return "";
 	}
@@ -1044,6 +1111,10 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 	setup_events() {
 		this.setup_filterable();
 		this.setup_list_click();
+<<<<<<< HEAD
+=======
+		this.setup_drag_click();
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		this.setup_tag_event();
 		this.setup_new_doc_event();
 		this.setup_check_events();
@@ -1220,6 +1291,39 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 		});
 	}
 
+<<<<<<< HEAD
+=======
+	setup_drag_click() {
+		/*
+			Click on the check box in the list view and
+			drag through the rows to select.
+
+			Do it again to unselect.
+
+			If the first click is on checked checkbox, then it will unselect rows on drag,
+			else if it is unchecked checkbox, it will select rows on drag.
+		*/
+		this.dragClick = false;
+		this.$result.on("mousedown", ".list-row-checkbox", (e) => {
+			this.dragClick = true;
+			this.check = !e.target.checked;
+		});
+		$(document).on("mouseup", () => {
+			this.dragClick = false;
+		});
+		this.$result.on("mousemove", ".level.list-row", (e) => {
+			if (this.dragClick) {
+				this.check_row_on_drag(e, this.check);
+			}
+		});
+	}
+
+	check_row_on_drag(event, check = true) {
+		$(event.target).find(".list-row-checkbox").prop("checked", check);
+		this.on_row_checked();
+	}
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	setup_action_handler() {
 		this.$result.on("click", ".btn-action", (e) => {
 			const $button = $(e.currentTarget);
@@ -1279,6 +1383,14 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 
 			this.update_checkbox($target);
 		});
+<<<<<<< HEAD
+=======
+
+		let me = this;
+		this.page.actions_btn_group.on("show.bs.dropdown", () => {
+			me.toggle_workflow_actions();
+		});
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	}
 
 	setup_like() {
@@ -1322,17 +1434,31 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 	setup_realtime_updates() {
 		this.pending_document_refreshes = [];
 
+<<<<<<< HEAD
 		if (this.list_view_settings && this.list_view_settings.disable_auto_refresh) {
 			return;
 		}
 		frappe.socketio.doctype_subscribe(this.doctype);
+=======
+		if (this.list_view_settings?.disable_auto_refresh || this.realtime_events_setup) {
+			return;
+		}
+		frappe.socketio.doctype_subscribe(this.doctype);
+		frappe.realtime.off("list_update");
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		frappe.realtime.on("list_update", (data) => {
 			if (data?.doctype !== this.doctype) {
 				return;
 			}
 
+<<<<<<< HEAD
 			if (!frappe.get_doc(data?.doctype, data?.name)?.__unsaved) {
 				frappe.model.remove_from_locals(data.doctype, data.name);
+=======
+			// if some bulk operation is happening by selecting list items, don't refresh
+			if (this.$checks && this.$checks.length) {
+				return;
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			}
 
 			if (this.avoid_realtime_update()) {
@@ -1340,8 +1466,19 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 			}
 
 			this.pending_document_refreshes.push(data);
+<<<<<<< HEAD
 			frappe.utils.debounce(this.process_document_refreshes.bind(this), 1000)();
 		});
+=======
+			this.debounced_refresh();
+		});
+		this.realtime_events_setup = true;
+	}
+
+	disable_realtime_updates() {
+		frappe.socketio.doctype_unsubscribe(this.doctype);
+		this.realtime_events_setup = false;
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	}
 
 	process_document_refreshes() {
@@ -1351,6 +1488,10 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 		if (!cur_list || route[0] != "List" || cur_list.doctype != route[1]) {
 			// wait till user is back on list view before refreshing
 			this.pending_document_refreshes = [];
+<<<<<<< HEAD
+=======
+			this.disable_realtime_updates();
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			return;
 		}
 
@@ -1623,6 +1764,11 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 
 	get_workflow_action_menu_items() {
 		const workflow_actions = [];
+<<<<<<< HEAD
+=======
+		const me = this;
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		if (frappe.model.has_workflow(this.doctype)) {
 			const actions = frappe.workflow.get_all_transition_actions(this.doctype);
 			actions.forEach((action) => {
@@ -1630,11 +1776,24 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 					label: __(action),
 					name: action,
 					action: () => {
+<<<<<<< HEAD
 						frappe.xcall("frappe.model.workflow.bulk_workflow_approval", {
 							docnames: this.get_checked_items(true),
 							doctype: this.doctype,
 							action: action,
 						});
+=======
+						me.disable_list_update = true;
+						frappe
+							.xcall("frappe.model.workflow.bulk_workflow_approval", {
+								docnames: this.get_checked_items(true),
+								doctype: this.doctype,
+								action: action,
+							})
+							.finally(() => {
+								me.disable_list_update = false;
+							});
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 					},
 					is_workflow_action: true,
 				});
@@ -1645,7 +1804,16 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 
 	toggle_workflow_actions() {
 		if (!frappe.model.has_workflow(this.doctype)) return;
+<<<<<<< HEAD
 		const checked_items = this.get_checked_items();
+=======
+
+		Object.keys(this.workflow_action_items).forEach((key) => {
+			this.workflow_action_items[key].addClass("disabled");
+		});
+		const checked_items = this.get_checked_items();
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		frappe
 			.xcall("frappe.model.workflow.get_common_transition_actions", {
 				docs: checked_items,
@@ -1653,6 +1821,10 @@ frappe.views.ListView = class ListView extends frappe.views.BaseList {
 			})
 			.then((actions) => {
 				Object.keys(this.workflow_action_items).forEach((key) => {
+<<<<<<< HEAD
+=======
+					this.workflow_action_items[key].removeClass("disabled");
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 					this.workflow_action_items[key].toggle(actions.includes(key));
 				});
 			});

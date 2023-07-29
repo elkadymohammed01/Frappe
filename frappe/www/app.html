@@ -15,11 +15,19 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="white">
 		<meta name="mobile-web-app-capable" content="yes">
+<<<<<<< HEAD
 		<title>Ehsan</title>
 		<link rel="shortcut icon"
 			href="/assets/frappe/ehsan.png" type="image/x-icon">
 		<link rel="icon"
 			href="/assets/frappe/ehsan.png" type="image/x-icon">
+=======
+		<title>Frappe</title>
+		<link rel="shortcut icon"
+			href="{{ favicon or "/assets/frappe/images/frappe-favicon.svg" }}" type="image/x-icon">
+		<link rel="icon"
+			href="{{ favicon or "/assets/frappe/images/frappe-favicon.svg" }}" type="image/x-icon">
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		{% for include in include_css -%}
 		{{ include_style(include) }}
 		{%- endfor -%}

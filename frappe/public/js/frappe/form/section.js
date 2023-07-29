@@ -82,6 +82,19 @@ export default class Section {
 		}
 	}
 
+<<<<<<< HEAD
+=======
+	replace_field(fieldname, fieldobj) {
+		if (this.fields_dict[fieldname]?.df) {
+			const olfldobj = this.fields_dict[fieldname];
+			const idx = this.fields_list.findIndex((e) => e == olfldobj);
+			this.fields_list.splice(idx, 1, fieldobj);
+			this.fields_dict[fieldname] = fieldobj;
+			fieldobj.section = this;
+		}
+	}
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	refresh(hide) {
 		if (!this.df) return;
 		// hide if explicitly hidden
@@ -104,12 +117,16 @@ export default class Section {
 
 		this.set_icon(hide);
 
+<<<<<<< HEAD
 		// refresh signature fields
 		this.fields_list.forEach((f) => {
 			if (f.df.fieldtype == "Signature") {
 				f.refresh();
 			}
 		});
+=======
+		this.fields_list.forEach((f) => f.on_section_collapse && f.on_section_collapse(hide));
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 		// save state for next reload ('' is falsy)
 		if (this.df.css_class)

@@ -330,7 +330,11 @@ export default {
 	margin-bottom: 0;
 }
 
+<<<<<<< HEAD
 .control-font >>> .frappe-control[data-fieldname="font"] label {
+=======
+.control-font :deep(.frappe-control[data-fieldname="font"] label) {
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	display: none;
 }
 </style>

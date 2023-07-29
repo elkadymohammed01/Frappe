@@ -56,6 +56,28 @@ login.bind_events = function () {
 		return false;
 	});
 
+<<<<<<< HEAD
+=======
+	$(".form-login-with-email-link").on("submit", function (event) {
+		event.preventDefault();
+		var args = {};
+		args.cmd = "frappe.www.login.send_login_link";
+		args.email = ($("#login_with_email_link_email").val() || "").trim();
+		if (!args.email) {
+			login.set_status('{{ _("Valid Login id required.") }}', 'red');
+			return false;
+		}
+		login.call(args).then(() => {
+			login.set_status('{{ _("Login link sent to your email") }}', 'blue');
+			$("#login_with_email_link_email").val("");
+		}).catch(() => {
+			login.set_status('{{ _("Send login link") }}', 'blue');
+		});
+
+		return false;
+	});
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	$(".toggle-password").click(function () {
 		var input = $($(this).attr("toggle"));
 		if (input.attr("type") == "password") {
@@ -88,6 +110,10 @@ login.bind_events = function () {
 login.route = function () {
 	var route = window.location.hash.slice(1);
 	if (!route) route = "login";
+<<<<<<< HEAD
+=======
+	route = route.replaceAll("-", "_");
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	login[route]();
 }
 
@@ -96,6 +122,10 @@ login.reset_sections = function (hide) {
 		$("section.for-login").toggle(false);
 		$("section.for-email-login").toggle(false);
 		$("section.for-forgot").toggle(false);
+<<<<<<< HEAD
+=======
+		$("section.for-login-with-email-link").toggle(false);
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		$("section.for-signup").toggle(false);
 	}
 	$('section:not(.signup-disabled) .indicator').each(function () {
@@ -123,10 +153,28 @@ login.steptwo = function () {
 
 login.forgot = function () {
 	login.reset_sections();
+<<<<<<< HEAD
+=======
+	if ($("#login_email").val()) {
+		$("#forgot_email").val($("#login_email").val());
+	}
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	$(".for-forgot").toggle(true);
 	$("#forgot_email").focus();
 }
 
+<<<<<<< HEAD
+=======
+login.login_with_email_link = function () {
+	login.reset_sections();
+	if ($("#login_email").val()) {
+		$("#login_with_email_link_email").val($("#login_email").val());
+	}
+	$(".for-login-with-email-link").toggle(true);
+	$("#login_with_email_link_email").focus();
+}
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 login.signup = function () {
 	login.reset_sections();
 	$(".for-signup").toggle(true);
@@ -272,7 +320,11 @@ frappe.ready(function () {
 		$(window).trigger("hashchange");
 	}
 
+<<<<<<< HEAD
 	$(".form-signup, .form-forgot").removeClass("hide");
+=======
+	$(".form-signup, .form-forgot, .form-login-with-email-link").removeClass("hide");
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	$(document).trigger('login_rendered');
 });
 

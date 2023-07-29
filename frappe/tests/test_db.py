@@ -140,6 +140,7 @@ class TestDB(FrappeTestCase):
 			frappe.db.get_value("DocType", "DocField", order_by="creation desc, modified asc, name", run=0),
 		)
 
+<<<<<<< HEAD
 	def test_get_value_limits(self):
 		# check both dict and list style filters
 		filters = [{"enabled": 1}, [["enabled", "=", 1]]]
@@ -161,6 +162,8 @@ class TestDB(FrappeTestCase):
 			frappe.db.exists("User", filter)
 			self.assertGreaterEqual(1, cint(frappe.db._cursor.rowcount))
 
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	def test_escape(self):
 		frappe.db.escape("香港濟生堂製藥有限公司 - IT".encode())
 
@@ -765,6 +768,7 @@ class TestDBSetValue(FrappeTestCase):
 	def test_set_value(self):
 		self.todo1.reload()
 
+<<<<<<< HEAD
 		with patch.object(Database, "sql") as sql_called:
 			frappe.db.set_value(
 				self.todo1.doctype,
@@ -780,6 +784,22 @@ class TestDBSetValue(FrappeTestCase):
 				self.assertTrue(modify_query("UPDATE `tabToDo` SET") in first_query)
 			if frappe.conf.db_type == "mariadb":
 				self.assertTrue("UPDATE `tabToDo` SET" in first_query)
+=======
+		frappe.db.set_value(
+			self.todo1.doctype,
+			self.todo1.name,
+			"description",
+			f"{self.todo1.description}-edit by `test_for_update`",
+		)
+		query = frappe.db.last_query
+
+		if frappe.conf.db_type == "postgres":
+			from frappe.database.postgres.database import modify_query
+
+			self.assertTrue(modify_query("UPDATE `tabToDo` SET") in str(query))
+		if frappe.conf.db_type == "mariadb":
+			self.assertTrue("UPDATE `tabToDo` SET" in query)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 	def test_cleared_cache(self):
 		self.todo2.reload()
@@ -935,3 +955,37 @@ class TestTransactionManagement(FrappeTestCase):
 
 		frappe.db.commit()
 		self.assertEqual(_get_transaction_id(), _get_transaction_id())
+<<<<<<< HEAD
+=======
+
+
+# Treat same DB as replica for tests, a separate connection will be opened
+class TestReplicaConnections(FrappeTestCase):
+	def test_switching_to_replica(self):
+		with patch.dict(frappe.local.conf, {"read_from_replica": 1, "replica_host": "localhost"}):
+
+			def db_id():
+				return id(frappe.local.db)
+
+			write_connection = db_id()
+			read_only_connection = None
+
+			@frappe.read_only()
+			def outer():
+				nonlocal read_only_connection
+				read_only_connection = db_id()
+
+				# A new connection should be opened
+				self.assertNotEqual(read_only_connection, write_connection)
+				inner()
+				# calling nested read only function shouldn't change connection
+				self.assertEqual(read_only_connection, db_id())
+
+			@frappe.read_only()
+			def inner():
+				# calling nested read only function shouldn't change connection
+				self.assertEqual(read_only_connection, db_id())
+
+			outer()
+			self.assertEqual(write_connection, db_id())
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)

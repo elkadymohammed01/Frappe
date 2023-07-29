@@ -11,6 +11,31 @@ from frappe.modules.import_file import import_file_by_path
 from frappe.modules.patch_handler import _patch_mode
 from frappe.utils import update_progress_bar
 
+<<<<<<< HEAD
+=======
+IMPORTABLE_DOCTYPES = [
+	("core", "doctype"),
+	("core", "page"),
+	("core", "report"),
+	("desk", "dashboard_chart_source"),
+	("printing", "print_format"),
+	("website", "web_page"),
+	("website", "website_theme"),
+	("website", "web_form"),
+	("website", "web_template"),
+	("email", "notification"),
+	("printing", "print_style"),
+	("desk", "workspace"),
+	("desk", "onboarding_step"),
+	("desk", "module_onboarding"),
+	("desk", "form_tour"),
+	("custom", "client_script"),
+	("core", "server_script"),
+	("custom", "custom_field"),
+	("custom", "property_setter"),
+]
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 def sync_all(force=0, reset_permissions=False):
 	_patch_mode(True)
@@ -66,10 +91,22 @@ def sync_for(app_name, force=0, reset_permissions=False):
 			"workspace_shortcut",
 			"workspace_quick_list",
 			"workspace_number_card",
+<<<<<<< HEAD
+=======
+			"workspace_custom_block",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			"workspace",
 		]:
 			files.append(os.path.join(FRAPPE_PATH, "desk", "doctype", desk_module, f"{desk_module}.json"))
 
+<<<<<<< HEAD
+=======
+		for module_name, document_type in IMPORTABLE_DOCTYPES:
+			file = os.path.join(FRAPPE_PATH, module_name, "doctype", document_type, f"{document_type}.json")
+			if file not in files:
+				files.append(file)
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	for module_name in frappe.local.app_modules.get(app_name) or []:
 		folder = os.path.dirname(frappe.get_module(app_name + "." + module_name).__file__)
 		files = get_doc_files(files=files, start_path=folder)
@@ -96,6 +133,7 @@ def get_doc_files(files, start_path):
 
 	files = files or []
 
+<<<<<<< HEAD
 	# load in sequence - warning for devs
 	document_types = [
 		"doctype",
@@ -119,6 +157,9 @@ def get_doc_files(files, start_path):
 		"property_setter",
 	]
 	for doctype in document_types:
+=======
+	for _module, doctype in IMPORTABLE_DOCTYPES:
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		doctype_path = os.path.join(start_path, doctype)
 		if os.path.exists(doctype_path):
 			for docname in os.listdir(doctype_path):

@@ -339,6 +339,10 @@ class DocType(Document):
 			"name",
 			"parent",
 			"creation",
+<<<<<<< HEAD
+=======
+			"owner",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			"modified",
 			"modified_by",
 			"parentfield",
@@ -1489,6 +1493,10 @@ def get_fields_not_allowed_in_list_view(meta) -> list[str]:
 	not_allowed_in_list_view.append("Attach Image")
 	if meta.istable:
 		not_allowed_in_list_view.remove("Button")
+<<<<<<< HEAD
+=======
+		not_allowed_in_list_view.remove("HTML")
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	return not_allowed_in_list_view
 
 
@@ -1677,7 +1685,13 @@ def make_module_and_roles(doc, perm_fieldname="permissions"):
 
 		for role in list(set(roles)):
 			if frappe.db.table_exists("Role", cached=False) and not frappe.db.exists("Role", role):
+<<<<<<< HEAD
 				r = frappe.get_doc(dict(doctype="Role", role_name=role, desk_access=1))
+=======
+				r = frappe.new_doc("Role")
+				r.role_name = role
+				r.desk_access = 1
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				r.flags.ignore_mandatory = r.flags.ignore_permissions = True
 				r.insert()
 	except frappe.DoesNotExistError as e:

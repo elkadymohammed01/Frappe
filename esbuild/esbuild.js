@@ -86,7 +86,14 @@ const NODE_PATHS = [].concat(
 
 execute()
 	.then(() => RUN_BUILD_COMMAND && run_build_command_for_apps(APPS))
+<<<<<<< HEAD
 	.catch((e) => console.error(e));
+=======
+	.catch((e) => {
+		console.error(e);
+		throw e;
+	});
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 if (WATCH_MODE) {
 	// listen for open files in editor event
@@ -182,7 +189,11 @@ function get_all_files_to_build(apps) {
 	for (let app of apps) {
 		let public_path = get_public_path(app);
 		include_patterns.push(
+<<<<<<< HEAD
 			path.resolve(public_path, "**", "*.bundle.{js,ts,css,sass,scss,less,styl}")
+=======
+			path.resolve(public_path, "**", "*.bundle.{js,ts,css,sass,scss,less,styl,jsx}")
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		);
 		ignore_patterns.push(
 			path.resolve(public_path, "node_modules"),

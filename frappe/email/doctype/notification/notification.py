@@ -282,6 +282,7 @@ def get_context(context):
 						email_ids = email_ids_value.replace(",", "\n")
 						recipients = recipients + email_ids.split("\n")
 
+<<<<<<< HEAD
 			if recipient.cc and "{" in recipient.cc:
 				recipient.cc = frappe.render_template(recipient.cc, context)
 
@@ -299,6 +300,14 @@ def get_context(context):
 			# For sending emails to specified role
 			if recipient.receiver_by_role:
 				emails = get_info_based_on_role(recipient.receiver_by_role, "email")
+=======
+			cc.extend(get_emails_from_template(recipient.cc, context))
+			bcc.extend(get_emails_from_template(recipient.bcc, context))
+
+			# For sending emails to specified role
+			if recipient.receiver_by_role:
+				emails = get_info_based_on_role(recipient.receiver_by_role, "email", ignore_permissions=True)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 				for email in emails:
 					recipients = recipients + email.split("\n")
@@ -485,3 +494,14 @@ def get_assignees(doc):
 	recipients = [d.allocated_to for d in assignees]
 
 	return recipients
+<<<<<<< HEAD
+=======
+
+
+def get_emails_from_template(template, context):
+	if not template:
+		return ()
+
+	emails = frappe.render_template(template, context) if "{" in template else template
+	return filter(None, emails.replace(",", "\n").split("\n"))
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)

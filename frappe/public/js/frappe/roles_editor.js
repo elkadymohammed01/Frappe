@@ -59,7 +59,11 @@ frappe.RoleEditor = class {
 				const $body = $(this.perm_dialog.body);
 				if (!permissions.length) {
 					$body.append(`<div class="text-muted text-center padding">
+<<<<<<< HEAD
 						${__("{0} role does not have permission on any doctype", [role])}
+=======
+						${__("{0} role does not have permission on any doctype", [__(role)])}
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 					</div>`);
 				} else {
 					$body.append(`
@@ -68,7 +72,11 @@ frappe.RoleEditor = class {
 								<tr>
 									<th> ${__("Document Type")} </th>
 									<th> ${__("Level")} </th>
+<<<<<<< HEAD
 									${frappe.perm.rights.map((p) => `<th> ${frappe.unscrub(p)}</th>`).join("")}
+=======
+									${frappe.perm.rights.map((p) => `<th> ${__(frappe.unscrub(p))}</th>`).join("")}
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 								</tr>
 							</thead>
 							<tbody></tbody>
@@ -77,7 +85,11 @@ frappe.RoleEditor = class {
 					permissions.forEach((perm) => {
 						$body.find("tbody").append(`
 							<tr>
+<<<<<<< HEAD
 								<td>${perm.parent}</td>
+=======
+								<td>${__(perm.parent)}</td>
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 								<td>${perm.permlevel}</td>
 								${frappe.perm.rights
 									.map(
@@ -91,7 +103,11 @@ frappe.RoleEditor = class {
 						`);
 					});
 				}
+<<<<<<< HEAD
 				this.perm_dialog.set_title(role);
+=======
+				this.perm_dialog.set_title(__(role));
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				this.perm_dialog.show();
 			});
 	}
@@ -102,8 +118,15 @@ frappe.RoleEditor = class {
 
 		this.perm_dialog.$wrapper
 			.find(".modal-dialog")
+<<<<<<< HEAD
 			.css("width", "1200px")
 			.css("max-width", "80vw");
+=======
+			.css("width", "auto")
+			.css("max-width", "1200px");
+
+		this.perm_dialog.$wrapper.find(".modal-body").css("overflow", "overlay");
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	}
 	show() {
 		this.reset();

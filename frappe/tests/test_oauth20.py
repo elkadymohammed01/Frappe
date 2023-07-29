@@ -4,7 +4,10 @@
 import unittest
 from urllib.parse import parse_qs, urljoin, urlparse
 
+<<<<<<< HEAD
 import jwt
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 import requests
 
 import frappe
@@ -330,11 +333,20 @@ class TestOAuth20(unittest.TestCase):
 		self.assertTrue(payload.get("nonce") == nonce)
 
 	def decode_id_token(self, id_token):
+<<<<<<< HEAD
+=======
+		import jwt
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		return jwt.decode(
 			id_token,
 			audience=self.client_id,
 			key=self.client_secret,
 			algorithms=["HS256"],
+<<<<<<< HEAD
+=======
+			options={"verify_signature": True, "require": ["exp", "iat", "aud"]},
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		)
 
 

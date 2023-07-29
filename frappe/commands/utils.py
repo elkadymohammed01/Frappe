@@ -22,7 +22,15 @@ DATA_IMPORT_DEPRECATION = (
 @click.option("--app", help="Build assets for app")
 @click.option("--apps", help="Build assets for specific apps")
 @click.option(
+<<<<<<< HEAD
 	"--hard-link", is_flag=True, default=False, help="Copy the files instead of symlinking"
+=======
+	"--hard-link",
+	is_flag=True,
+	default=False,
+	help="Copy the files instead of symlinking",
+	envvar="FRAPPE_HARD_LINK_ASSETS",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 )
 @click.option(
 	"--make-copy",
@@ -580,7 +588,11 @@ def jupyter(context):
 	print(
 		"""
 Starting Jupyter notebook
+<<<<<<< HEAD
 Run the following in your first cell to connect notebook to Ehsan
+=======
+Run the following in your first cell to connect notebook to frappe
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 ```
 import frappe
 frappe.init(site='{site}', sites_path='{sites_path}')

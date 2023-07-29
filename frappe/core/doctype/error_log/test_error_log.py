@@ -1,7 +1,15 @@
 # Copyright (c) 2015, Frappe Technologies and Contributors
 # License: MIT. See LICENSE
+<<<<<<< HEAD
 import frappe
 from frappe.tests.utils import FrappeTestCase
+=======
+from ldap3.core.exceptions import LDAPException, LDAPInappropriateAuthenticationResult
+
+import frappe
+from frappe.tests.utils import FrappeTestCase
+from frappe.utils.error import _is_ldap_exception
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 # test_records = frappe.get_test_records('Error Log')
 
@@ -12,3 +20,12 @@ class TestErrorLog(FrappeTestCase):
 		doc = frappe.new_doc("Error Log")
 		error = doc.log_error("This is an error")
 		self.assertEqual(error.doctype, "Error Log")
+<<<<<<< HEAD
+=======
+
+	def test_ldap_exceptions(self):
+		exc = [LDAPException, LDAPInappropriateAuthenticationResult]
+
+		for e in exc:
+			self.assertTrue(_is_ldap_exception(e()))
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)

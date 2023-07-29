@@ -598,6 +598,10 @@ docfield_properties = {
 	"label": "Data",
 	"fieldtype": "Select",
 	"options": "Text",
+<<<<<<< HEAD
+=======
+	"sort_options": "Check",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	"fetch_from": "Small Text",
 	"fetch_if_empty": "Check",
 	"show_dashboard": "Check",

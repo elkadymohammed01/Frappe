@@ -106,7 +106,11 @@ frappe.ui.Slide = class Slide {
 	}
 
 	set_values(ignore_errors) {
+<<<<<<< HEAD
 		this.values = this.form.get_values(ignore_errors);
+=======
+		this.values = this.form.get_values(ignore_errors, true);
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		if (this.values === null) {
 			return false;
 		}

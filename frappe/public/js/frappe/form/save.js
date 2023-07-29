@@ -64,7 +64,14 @@ frappe.ui.form.save = function (frm, action, callback, btn) {
 
 			const is_empty_row = function (cells) {
 				for (let i = 0; i < cells.length; i++) {
+<<<<<<< HEAD
 					if (locals[doc.doctype][doc.name][cells[i].fieldname]) {
+=======
+					if (
+						locals[doc.doctype][doc.name] &&
+						locals[doc.doctype][doc.name][cells[i].fieldname]
+					) {
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 						return false;
 					}
 				}

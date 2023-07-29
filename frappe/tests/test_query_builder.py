@@ -13,6 +13,11 @@ from frappe.query_builder.functions import (
 	Date,
 	GroupConcat,
 	Match,
+<<<<<<< HEAD
+=======
+	Round,
+	Truncate,
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	UnixTimestamp,
 )
 from frappe.query_builder.utils import db_type_is
@@ -153,6 +158,23 @@ class TestCustomFunctionsMariaDB(FrappeTestCase):
 			"SELECT `tabred`.`other`,CONCAT(`tabNote`.`name`,'') FROM `tabred`,`tabNote`",
 		)
 
+<<<<<<< HEAD
+=======
+	def test_round(self):
+		note = frappe.qb.DocType("Note")
+
+		query = frappe.qb.from_(note).select(Round(note.price))
+		self.assertEqual("select round(`price`,0) from `tabnote`", str(query).lower())
+
+		query = frappe.qb.from_(note).select(Round(note.price, 3))
+		self.assertEqual("select round(`price`,3) from `tabnote`", str(query).lower())
+
+	def test_truncate(self):
+		note = frappe.qb.DocType("Note")
+		query = frappe.qb.from_(note).select(Truncate(note.price, 3))
+		self.assertEqual("select truncate(`price`,3) from `tabnote`", str(query).lower())
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 @run_only_if(db_type_is.POSTGRES)
 class TestCustomFunctionsPostgres(FrappeTestCase):
@@ -283,6 +305,23 @@ class TestCustomFunctionsPostgres(FrappeTestCase):
 			'SELECT "tabred"."other",CAST("tabNote"."name" AS VARCHAR) FROM "tabred","tabNote"',
 		)
 
+<<<<<<< HEAD
+=======
+	def test_round(self):
+		note = frappe.qb.DocType("Note")
+
+		query = frappe.qb.from_(note).select(Round(note.price))
+		self.assertEqual('select round("price",0) from "tabnote"', str(query).lower())
+
+		query = frappe.qb.from_(note).select(Round(note.price, 3))
+		self.assertEqual('select round("price",3) from "tabnote"', str(query).lower())
+
+	def test_truncate(self):
+		note = frappe.qb.DocType("Note")
+		query = frappe.qb.from_(note).select(Truncate(note.price, 3))
+		self.assertEqual('select truncate("price",3) from "tabnote"', str(query).lower())
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 class TestBuilderBase:
 	def test_adding_tabs(self):

@@ -8,7 +8,10 @@ from unittest.mock import patch
 import frappe
 import frappe.translate
 from frappe import _
+<<<<<<< HEAD
 from frappe.core.doctype.translation.test_translation import clear_translation_cache
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 from frappe.tests.utils import FrappeTestCase
 from frappe.translate import (
 	extract_javascript,
@@ -39,15 +42,21 @@ class TestTranslate(FrappeTestCase):
 		if self._testMethodName in self.guest_sessions_required:
 			frappe.set_user("Guest")
 
+<<<<<<< HEAD
 		clear_translation_cache()
 
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	def tearDown(self):
 		frappe.form_dict.pop("_lang", None)
 		if self._testMethodName in self.guest_sessions_required:
 			frappe.set_user("Administrator")
 
+<<<<<<< HEAD
 		clear_translation_cache()
 
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	def test_extract_message_from_file(self):
 		data = frappe.translate.get_messages_from_file(translation_string_file)
 		exp_filename = "apps/frappe/frappe/tests/translation_test_file.txt"

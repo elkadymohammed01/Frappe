@@ -35,6 +35,10 @@ frappe.form.formatters = {
 	},
 	Data: function (value, df) {
 		if (df && df.options == "URL") {
+<<<<<<< HEAD
+=======
+			if (!value) return;
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			return `<a href="${value}" title="Open Link" target="_blank">${value}</a>`;
 		}
 		value = value == null ? "" : value;
@@ -102,8 +106,20 @@ frappe.form.formatters = {
 	},
 	Currency: function (value, docfield, options, doc) {
 		var currency = frappe.meta.get_field_currency(docfield, doc);
+<<<<<<< HEAD
 		var precision =
 			docfield.precision || cint(frappe.boot.sysdefaults.currency_precision) || 2;
+=======
+
+		let precision;
+		if (typeof docfield.precision == "number") {
+			precision = docfield.precision;
+		} else {
+			precision = cint(
+				docfield.precision || frappe.boot.sysdefaults.currency_precision || 2
+			);
+		}
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 		// If you change anything below, it's going to hurt a company in UAE, a bit.
 		if (precision > 2) {
@@ -186,7 +202,11 @@ frappe.form.formatters = {
 			return value;
 		}
 		if (value) {
+<<<<<<< HEAD
 			value = frappe.datetime.str_to_user(value);
+=======
+			value = frappe.datetime.str_to_user(value, false, true);
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			// handle invalid date
 			if (value === "Invalid date") {
 				value = null;
@@ -364,8 +384,19 @@ frappe.form.formatters = {
 		</div>`
 			: "";
 	},
+<<<<<<< HEAD
 };
 
+=======
+	Attach: format_attachment_url,
+	AttachImage: format_attachment_url,
+};
+
+function format_attachment_url(url) {
+	return url ? `<a href="${url}" target="_blank">${url}</a>` : "";
+}
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 frappe.form.get_formatter = function (fieldtype) {
 	if (!fieldtype) fieldtype = "Data";
 	return frappe.form.formatters[fieldtype.replace(/ /g, "")] || frappe.form.formatters.Data;

@@ -95,7 +95,11 @@ def get_docinfo(doc=None, doctype=None, name=None):
 		if not doc.has_permission("read"):
 			raise frappe.PermissionError
 
+<<<<<<< HEAD
 	all_communications = _get_communications(doc.doctype, doc.name)
+=======
+	all_communications = _get_communications(doc.doctype, doc.name, limit=21)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	automated_messages = [
 		msg for msg in all_communications if msg["communication_type"] == "Automated Message"
 	]
@@ -206,11 +210,20 @@ def get_versions(doc):
 
 @frappe.whitelist()
 def get_communications(doctype, name, start=0, limit=20):
+<<<<<<< HEAD
+=======
+	from frappe.utils import cint
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	doc = frappe.get_doc(doctype, name)
 	if not doc.has_permission("read"):
 		raise frappe.PermissionError
 
+<<<<<<< HEAD
 	return _get_communications(doctype, name, start, limit)
+=======
+	return _get_communications(doctype, name, cint(start), cint(limit))
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 
 def get_comments(

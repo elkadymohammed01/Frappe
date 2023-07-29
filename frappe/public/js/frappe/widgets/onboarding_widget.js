@@ -33,7 +33,17 @@ export default class OnboardingWidget extends Widget {
 			this.add_step(step, index);
 		});
 
+<<<<<<< HEAD
 		this.show_step(this.steps[0]);
+=======
+		let first_incomplete_step = this.steps.findIndex((s) => !s.is_skipped && !s.is_complete);
+
+		if (first_incomplete_step == -1) {
+			first_incomplete_step = 0;
+		}
+
+		this.show_step(this.steps[first_incomplete_step]);
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	}
 
 	add_step(step, index) {
@@ -411,10 +421,16 @@ export default class OnboardingWidget extends Widget {
 						});
 					};
 				} else {
+<<<<<<< HEAD
 					frappe.msgprint({
 						message: __("Let us continue with the onboarding"),
 						title: __("Document Saved"),
 					});
+=======
+					frappe.show_alert(
+						__("Document Saved") + "<br>" + __("Let us continue with the onboarding")
+					);
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 					this.mark_complete(step);
 				}
 			},
@@ -439,6 +455,10 @@ export default class OnboardingWidget extends Widget {
 		};
 
 		this.update_step_status(step, "is_complete", 1, callback);
+<<<<<<< HEAD
+=======
+		this.activate_next_step(step);
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	}
 
 	skip_step(step) {
@@ -452,6 +472,19 @@ export default class OnboardingWidget extends Widget {
 		};
 
 		this.update_step_status(step, "is_skipped", 1, callback);
+<<<<<<< HEAD
+=======
+		this.activate_next_step(step);
+	}
+
+	activate_next_step(step) {
+		let current_step_index = this.steps.findIndex((s) => s == step);
+		let next_step = this.steps[current_step_index + 1];
+
+		if (!next_step) return;
+
+		this.show_step(next_step);
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	}
 
 	update_step_status(step, status, value, callback) {
@@ -515,7 +548,15 @@ export default class OnboardingWidget extends Widget {
 
 	set_body() {
 		this.widget.addClass("onboarding-widget-box");
+<<<<<<< HEAD
 			this.widget.hide();
+=======
+		if (this.is_dismissed()) {
+			this.widget.hide();
+		} else {
+			this.make_body();
+		}
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	}
 
 	is_dismissed() {
@@ -549,6 +590,10 @@ export default class OnboardingWidget extends Widget {
 			localStorage.setItem("dismissed-onboarding", JSON.stringify(dismissed));
 			this.delete(true, true);
 			this.widget.closest(".ce-block").hide();
+<<<<<<< HEAD
+=======
+			frappe.telemetry.capture("dismissed_" + frappe.scrub(this.title), "frappe_onboarding");
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		});
 		dismiss.appendTo(this.action_area);
 	}

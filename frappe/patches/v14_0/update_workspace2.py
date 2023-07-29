@@ -5,6 +5,7 @@ from frappe import _
 
 
 def execute():
+<<<<<<< HEAD
 	frappe.reload_doc("desk", "doctype", "workspace", force=True)
 
 	child_tables = frappe.get_all(
@@ -22,11 +23,21 @@ def execute():
 		content = create_content(doc)
 		update_workspace(doc, seq, content)
 	frappe.db.commit()
+=======
+	for seq, workspace in enumerate(frappe.get_all("Workspace")):
+		doc = frappe.get_doc("Workspace", workspace.name)
+		content = create_content(doc)
+		update_workspace(doc, seq, content)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 
 def create_content(doc):
 	content = []
+<<<<<<< HEAD
 	if doc.onboarding:
+=======
+	if doc.get("onboarding"):
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		content.append({"type": "onboarding", "data": {"onboarding_name": doc.onboarding, "col": 12}})
 	if doc.charts:
 		invalid_links = []
@@ -44,7 +55,11 @@ def create_content(doc):
 		content.append(
 			{
 				"type": "header",
+<<<<<<< HEAD
 				"data": {"text": doc.shortcuts_label or _("Your Shortcuts"), "level": 4, "col": 12},
+=======
+				"data": {"text": doc.get("shortcuts_label") or _("Your Shortcuts"), "level": 4, "col": 12},
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			}
 		)
 		for s in doc.shortcuts:
@@ -60,7 +75,11 @@ def create_content(doc):
 		content.append(
 			{
 				"type": "header",
+<<<<<<< HEAD
 				"data": {"text": doc.cards_label or _("Reports & Masters"), "level": 4, "col": 12},
+=======
+				"data": {"text": doc.get("cards_label") or _("Reports & Masters"), "level": 4, "col": 12},
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			}
 		)
 		for l in doc.links:
@@ -74,11 +93,24 @@ def create_content(doc):
 
 
 def update_workspace(doc, seq, content):
+<<<<<<< HEAD
 	if not doc.title and not doc.content and not doc.is_standard and not doc.public:
 		doc.sequence_id = seq + 1
 		doc.content = json.dumps(content)
 		doc.public = 0 if doc.for_user else 1
 		doc.title = doc.extends or doc.label
+=======
+	if (
+		not doc.title
+		and (not doc.content or doc.content == "[]")
+		and not doc.get("is_standard")
+		and not doc.public
+	):
+		doc.sequence_id = seq + 1
+		doc.content = json.dumps(content)
+		doc.public = 0 if doc.for_user else 1
+		doc.title = doc.get("extends") or doc.get("label")
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		doc.extends = ""
 		doc.category = ""
 		doc.onboarding = ""

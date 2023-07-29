@@ -30,6 +30,7 @@ frappe.ui.form.on("System Settings", {
 			frm.set_value("bypass_restrict_ip_check_if_2fa_enabled", 0);
 		}
 	},
+<<<<<<< HEAD
 	enable_prepared_report_auto_deletion: function (frm) {
 		if (frm.doc.enable_prepared_report_auto_deletion) {
 			if (!frm.doc.prepared_report_expiry_period) {
@@ -37,6 +38,8 @@ frappe.ui.form.on("System Settings", {
 			}
 		}
 	},
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	on_update: function (frm) {
 		if (frappe.boot.time_zone && frappe.boot.time_zone.system !== frm.doc.time_zone) {
 			// Clear cache after saving to refresh the values of boot.

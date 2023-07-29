@@ -172,7 +172,11 @@ def is_valid_access_token(access_token: str) -> bool:
 def callback(state: str, code: str = None, error: str = None) -> None:
 	"""Common callback for google integrations.
 	Invokes functions using `frappe.get_attr` and also adds required (keyworded) arguments
+<<<<<<< HEAD
 	along with committing and redirecting us back to Ehsan site."""
+=======
+	along with committing and redirecting us back to frappe site."""
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 	state = json.loads(state)
 	redirect = state.pop("redirect", "/app")

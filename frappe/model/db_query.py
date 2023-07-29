@@ -68,6 +68,10 @@ class DatabaseQuery:
 		self.ignore_ifnull = False
 		self.flags = frappe._dict()
 		self.reference_doctype = None
+<<<<<<< HEAD
+=======
+		self.permission_map = {}
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 	@property
 	def doctype_meta(self):
@@ -115,6 +119,7 @@ class DatabaseQuery:
 		parent_doctype=None,
 	) -> list:
 
+<<<<<<< HEAD
 		if (
 			not ignore_permissions
 			and not frappe.has_permission(self.doctype, "select", user=user, parent_doctype=parent_doctype)
@@ -124,6 +129,10 @@ class DatabaseQuery:
 				frappe.bold(self.doctype)
 			)
 			raise frappe.PermissionError(self.doctype)
+=======
+		if not ignore_permissions:
+			self.check_read_permission(self.doctype, parent_doctype=parent_doctype)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 		# filters and fields swappable
 		# its hard to remember what comes first
@@ -495,6 +504,7 @@ class DatabaseQuery:
 			frappe._dict(doctype=doctype, fieldname=fieldname, table_name=f"`tab{doctype}`")
 		)
 
+<<<<<<< HEAD
 	def check_read_permission(self, doctype):
 		if not self.flags.ignore_permissions and not frappe.has_permission(
 			doctype,
@@ -503,6 +513,28 @@ class DatabaseQuery:
 		):
 			frappe.flags.error_message = _("Insufficient Permission for {0}").format(frappe.bold(doctype))
 			raise frappe.PermissionError(doctype)
+=======
+	def check_read_permission(self, doctype: str, parent_doctype: str | None = None):
+		if self.flags.ignore_permissions:
+			return
+
+		if doctype not in self.permission_map:
+			self._set_permission_map(doctype, parent_doctype)
+
+		return self.permission_map[doctype]
+
+	def _set_permission_map(self, doctype: str, parent_doctype: str | None = None):
+		ptype = "select" if frappe.only_has_select_perm(doctype) else "read"
+		val = frappe.has_permission(
+			doctype,
+			ptype=ptype,
+			parent_doctype=parent_doctype or self.doctype,
+		)
+		if not val:
+			frappe.flags.error_message = _("Insufficient Permission for {0}").format(frappe.bold(doctype))
+			raise frappe.PermissionError(doctype)
+		self.permission_map[doctype] = ptype
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 	def set_field_tables(self):
 		"""If there are more than one table, the fieldname must not be ambiguous.
@@ -610,7 +642,15 @@ class DatabaseQuery:
 			return
 
 		asterisk_fields = []
+<<<<<<< HEAD
 		permitted_fields = get_permitted_fields(doctype=self.doctype, parenttype=self.parent_doctype)
+=======
+		permitted_fields = get_permitted_fields(
+			doctype=self.doctype,
+			parenttype=self.parent_doctype,
+			permission_type=self.permission_map.get(self.doctype),
+		)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 		for i, field in enumerate(self.fields):
 			if "distinct" in field.lower():

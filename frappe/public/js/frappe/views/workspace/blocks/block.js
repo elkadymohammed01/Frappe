@@ -323,7 +323,11 @@ export default class Block {
 			node.classList.add("col-xs-12");
 			node.classList.add("col-sm-6");
 			col = "col-md-" + width;
+<<<<<<< HEAD
 		} else if (width == 3) {
+=======
+		} else if (width == 3 || width == 2) {
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			node.classList.add("col-xs-12");
 			node.classList.add("col-sm-6");
 			node.classList.add("col-md-4");

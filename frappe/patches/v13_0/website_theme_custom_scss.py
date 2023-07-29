@@ -4,7 +4,12 @@ import frappe
 def execute():
 	frappe.reload_doc("website", "doctype", "website_theme_ignore_app")
 	frappe.reload_doc("website", "doctype", "color")
+<<<<<<< HEAD
 	frappe.reload_doc("website", "doctype", "website_theme", force=True)
+=======
+	frappe.reload_doc("website", "doctype", "website_theme")
+	frappe.reload_doc("website", "doctype", "website_settings")
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 	for theme in frappe.get_all("Website Theme"):
 		doc = frappe.get_doc("Website Theme", theme.name)

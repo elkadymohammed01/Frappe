@@ -24,6 +24,13 @@
 					margin-top: 0;
 					margin-bottom: 0;
 					padding-bottom: 2px;
+<<<<<<< HEAD
+=======
+
+					@include media-breakpoint-down(sm) {
+						font-size: 1.25rem;
+					}
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				}
 
 				.web-form-header {
@@ -34,6 +41,13 @@
 					background-color: var(--fg-color);
 					padding: 2rem 2rem 0;
 
+<<<<<<< HEAD
+=======
+					@include media-breakpoint-down(sm) {
+						padding: 1.5rem 1.5rem 0;
+					}
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 					.breadcrumb-container {
 						padding: 0px;
 						margin: 0 0 2rem;
@@ -79,6 +93,13 @@
 
 							p {
 								color: var(--text-muted);
+<<<<<<< HEAD
+=======
+
+								@include media-breakpoint-down(sm) {
+									font-size: var(--text-xs);
+								}
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 							}
 						}
 					}
@@ -92,10 +113,24 @@
 					border-bottom-left-radius: var(--border-radius);
 					border-bottom-right-radius: var(--border-radius);
 
+<<<<<<< HEAD
+=======
+					@include media-breakpoint-down(sm) {
+						padding: 1rem 1.5rem 1.5rem;
+					}
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 					.web-form-wrapper {
 						.form-control {
 							color: var(--text-color);
 							background-color: var(--control-bg);
+<<<<<<< HEAD
+=======
+
+							@include media-breakpoint-down(sm) {
+								font-size: var(--text-sm);
+							}
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 						}
 
 						.form-section {
@@ -109,9 +144,25 @@
 						.form-column {
 							padding: 0 var(--padding-sm);
 
+<<<<<<< HEAD
 							.frappe-control {
 								position: relative;
 
+=======
+							.form-group {
+								@include media-breakpoint-down(sm) {
+									margin-bottom: 0.5rem;
+								}
+							}
+
+							.frappe-control {
+								position: relative;
+
+								@include media-breakpoint-down(sm) {
+									font-size: var(--text-sm);
+								}
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 								&[data-fieldtype="Rating"] {
 									.like-disabled-input {
 										background-color: unset;
@@ -190,6 +241,13 @@
 					.web-form-footer {
 						margin-top: 1rem;
 
+<<<<<<< HEAD
+=======
+						@include media-breakpoint-down(sm) {
+							margin-top: 0.5rem;
+						}
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 						.web-form-actions {
 							display: flex;
 							justify-content: space-between;
@@ -197,6 +255,13 @@
 
 							.btn {
 								font-size: var(--text-base);
+<<<<<<< HEAD
+=======
+
+								@include media-breakpoint-down(sm) {
+									font-size: var(--text-sm);
+								}
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 							}
 
 							.btn-link {
@@ -290,6 +355,13 @@
 									width: 100%;
 									justify-content: center;
 									margin-bottom: 1.5rem;
+<<<<<<< HEAD
+=======
+
+									&:empty {
+										margin: 0;
+									}
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 								}
 							}
 

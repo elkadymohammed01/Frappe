@@ -28,7 +28,11 @@ frappe.views.Container = class Container {
 		});
 	}
 	add_page(label) {
+<<<<<<< HEAD
 		var page = $('<div class="page-container"></div>')
+=======
+		var page = $('<div class="content page-container"></div>')
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			.attr("id", "page-" + label)
 			.attr("data-page-route", label)
 			.hide()

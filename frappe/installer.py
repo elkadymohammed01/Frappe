@@ -288,6 +288,12 @@ def install_app(name, verbose=False, set_as_patched=True, force=False):
 		if out is False:
 			return
 
+<<<<<<< HEAD
+=======
+	for fn in frappe.get_hooks("before_app_install"):
+		frappe.get_attr(fn)(name)
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	if name != "frappe":
 		add_module_defs(name, ignore_if_duplicate=force)
 
@@ -303,6 +309,12 @@ def install_app(name, verbose=False, set_as_patched=True, force=False):
 	for after_install in app_hooks.after_install or []:
 		frappe.get_attr(after_install)()
 
+<<<<<<< HEAD
+=======
+	for fn in frappe.get_hooks("after_app_install"):
+		frappe.get_attr(fn)(name)
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	sync_jobs()
 	sync_fixtures(name)
 	sync_customizations(name)
@@ -370,6 +382,12 @@ def remove_app(app_name, dry_run=False, yes=False, no_backup=False, force=False)
 	for before_uninstall in app_hooks.before_uninstall or []:
 		frappe.get_attr(before_uninstall)()
 
+<<<<<<< HEAD
+=======
+	for fn in frappe.get_hooks("before_app_uninstall"):
+		frappe.get_attr(fn)(app_name)
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	modules = frappe.get_all("Module Def", filters={"app_name": app_name}, pluck="name")
 
 	drop_doctypes = _delete_modules(modules, dry_run=dry_run)
@@ -383,6 +401,12 @@ def remove_app(app_name, dry_run=False, yes=False, no_backup=False, force=False)
 	for after_uninstall in app_hooks.after_uninstall or []:
 		frappe.get_attr(after_uninstall)()
 
+<<<<<<< HEAD
+=======
+	for fn in frappe.get_hooks("after_app_uninstall"):
+		frappe.get_attr(fn)(app_name)
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	click.secho(f"Uninstalled App {app_name} from Site {site}", fg="green")
 	frappe.flags.in_uninstall = False
 

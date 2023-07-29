@@ -10,6 +10,10 @@ from openpyxl.styles import Font
 from openpyxl.utils import get_column_letter
 
 import frappe
+<<<<<<< HEAD
+=======
+from frappe import _
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 from frappe.utils.html_utils import unescape_html
 
 ILLEGAL_CHARACTERS_RE = re.compile(r"[\000-\010]|[\013-\014]|[\016-\037]")
@@ -110,6 +114,10 @@ def read_xls_file_from_attached_file(content):
 def build_xlsx_response(data, filename):
 	xlsx_file = make_xlsx(data, filename)
 	# write out response as a xlsx type
+<<<<<<< HEAD
 	frappe.response["filename"] = filename + ".xlsx"
+=======
+	frappe.response["filename"] = _(filename) + ".xlsx"
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	frappe.response["filecontent"] = xlsx_file.getvalue()
 	frappe.response["type"] = "binary"

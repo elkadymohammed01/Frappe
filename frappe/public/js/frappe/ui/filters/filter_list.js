@@ -14,9 +14,37 @@ frappe.ui.FilterGroup = class {
 
 	make_popover() {
 		this.init_filter_popover();
+<<<<<<< HEAD
 		this.set_popover_events();
 	}
 
+=======
+		this.set_clear_all_filters_event();
+		this.set_popover_events();
+	}
+
+	set_clear_all_filters_event() {
+		if (!this.filter_x_button) return;
+
+		this.filter_x_button.on("click", () => {
+			this.toggle_empty_filters(true);
+			if (typeof this.base_list !== "undefined") {
+				// It's a list view. Clear all the filters, also the ones in the
+				// FilterArea outside this FilterGroup
+				this.base_list.filter_area.clear();
+			} else {
+				// Not a list view, just clear the filters in this FilterGroup
+				this.clear_filters();
+			}
+			this.update_filter_button();
+		});
+	}
+
+	hide_popover() {
+		this.filter_button.popover("hide");
+	}
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	init_filter_popover() {
 		this.filter_button.popover({
 			content: this.get_filter_area_template(),
@@ -54,7 +82,11 @@ frappe.ui.FilterGroup = class {
 					!$(e.target).is(this.filter_button) &&
 					!in_datepicker
 				) {
+<<<<<<< HEAD
 					this.wrapper && this.filter_button.popover("hide");
+=======
+					this.wrapper && this.hide_popover();
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				}
 			}
 		});
@@ -85,7 +117,11 @@ frappe.ui.FilterGroup = class {
 		// REDESIGN-TODO: (Temporary) Review and find best solution for this
 		frappe.router.on("change", () => {
 			if (this.wrapper && this.wrapper.is(":visible")) {
+<<<<<<< HEAD
 				this.filter_button.popover("hide");
+=======
+				this.hide_popover();
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			}
 		});
 	}
@@ -130,11 +166,18 @@ frappe.ui.FilterGroup = class {
 			this.toggle_empty_filters(true);
 			this.clear_filters();
 			this.on_change();
+<<<<<<< HEAD
 		});
 
 		this.wrapper.find(".apply-filters").on("click", () => {
 			this.filter_button.popover("hide");
 		});
+=======
+			this.hide_popover();
+		});
+
+		this.wrapper.find(".apply-filters").on("click", () => this.hide_popover());
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	}
 
 	add_filters(filters) {

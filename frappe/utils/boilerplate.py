@@ -377,6 +377,25 @@ app_license = "{app_license}"
 # before_uninstall = "{app_name}.uninstall.before_uninstall"
 # after_uninstall = "{app_name}.uninstall.after_uninstall"
 
+<<<<<<< HEAD
+=======
+# Integration Setup
+# ------------------
+# To set up dependencies/integrations with other apps
+# Name of the app being installed is passed as an argument
+
+# before_app_install = "{app_name}.utils.before_app_install"
+# after_app_install = "{app_name}.utils.after_app_install"
+
+# Integration Cleanup
+# -------------------
+# To clean up dependencies/integrations with other apps
+# Name of the app being uninstalled is passed as an argument
+
+# before_app_uninstall = "{app_name}.utils.before_app_uninstall"
+# after_app_uninstall = "{app_name}.utils.after_app_uninstall"
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 # Desk Notifications
 # ------------------
 # See frappe.core.notifications.get_notification_config

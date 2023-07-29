@@ -312,6 +312,12 @@ export function get_columns_for_picker(doctype) {
 		if (["lft", "rgt"].includes(df.fieldname)) {
 			keep = false;
 		}
+<<<<<<< HEAD
+=======
+		if (df.is_virtual) {
+			keep = false;
+		}
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		return keep;
 	};
 

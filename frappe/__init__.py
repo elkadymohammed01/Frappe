@@ -11,11 +11,19 @@ be used to build database driven apps.
 Read the documentation: https://frappeframework.com/docs
 """
 import functools
+<<<<<<< HEAD
+=======
+import gc
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 import importlib
 import inspect
 import json
 import os
 import re
+<<<<<<< HEAD
+=======
+import unicodedata
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 import warnings
 from typing import TYPE_CHECKING, Any, Callable, Literal, Optional, overload
 
@@ -42,7 +50,11 @@ from .utils.jinja import (
 )
 from .utils.lazy_loader import lazy_import
 
+<<<<<<< HEAD
 __version__ = "14.29.0"
+=======
+__version__ = "14.42.0"
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 __title__ = "Frappe Framework"
 
 controllers = {}
@@ -55,6 +67,10 @@ re._MAXCACHE = (
 	50  # reduced from default 512 given we are already maintaining this on parent worker
 )
 
+<<<<<<< HEAD
+=======
+_tune_gc = bool(sbool(os.environ.get("FRAPPE_TUNE_GC", True)))
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 if _dev_server:
 	warnings.simplefilter("always", DeprecationWarning)
@@ -182,9 +198,15 @@ if TYPE_CHECKING:
 # end: static analysis hack
 
 
+<<<<<<< HEAD
 def init(site: str, sites_path: str = ".", new_site: bool = False) -> None:
 	"""Initialize frappe for the current site. Reset thread locals `frappe.local`"""
 	if getattr(local, "initialised", None):
+=======
+def init(site: str, sites_path: str = ".", new_site: bool = False, force=False) -> None:
+	"""Initialize frappe for the current site. Reset thread locals `frappe.local`"""
+	if getattr(local, "initialised", None) and not force:
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		return
 
 	local.error_log = []
@@ -273,9 +295,18 @@ def connect(
 		set_user("Administrator")
 
 
+<<<<<<< HEAD
 def connect_replica():
 	from frappe.database import get_db
 
+=======
+def connect_replica() -> bool:
+	from frappe.database import get_db
+
+	if local and hasattr(local, "replica_db") and hasattr(local, "primary_db"):
+		return False
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	user = local.conf.db_name
 	password = local.conf.db_password
 	port = local.conf.replica_db_port
@@ -290,6 +321,11 @@ def connect_replica():
 	local.primary_db = local.db
 	local.db = local.replica_db
 
+<<<<<<< HEAD
+=======
+	return True
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 def get_site_config(sites_path: str | None = None, site_path: str | None = None) -> dict[str, Any]:
 	"""Returns `site_config.json` combined with `sites/common_site_config.json`.
@@ -782,13 +818,26 @@ def is_whitelisted(method):
 def read_only():
 	def innfn(fn):
 		def wrapper_fn(*args, **kwargs):
+<<<<<<< HEAD
 			if conf.read_from_replica:
 				connect_replica()
+=======
+
+			# frappe.read_only could be called from nested functions, in such cases don't swap the
+			# connection again.
+			switched_connection = False
+			if conf.read_from_replica:
+				switched_connection = connect_replica()
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 			try:
 				retval = fn(*args, **get_newargs(fn, kwargs))
 			finally:
+<<<<<<< HEAD
 				if local and hasattr(local, "primary_db"):
+=======
+				if switched_connection and local and hasattr(local, "primary_db"):
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 					local.db.close()
 					local.db = local.primary_db
 
@@ -1290,7 +1339,11 @@ def reload_doc(
 	return frappe.modules.reload_doc(module, dt, dn, force=force, reset_permissions=reset_permissions)
 
 
+<<<<<<< HEAD
 @whitelist()
+=======
+@whitelist(methods=["POST", "PUT"])
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 def rename_doc(
 	doctype: str,
 	old: str,
@@ -2263,6 +2316,10 @@ def bold(text):
 def safe_eval(code, eval_globals=None, eval_locals=None):
 	"""A safer `eval`"""
 	whitelisted_globals = {"int": int, "float": float, "long": int, "round": round}
+<<<<<<< HEAD
+=======
+	code = unicodedata.normalize("NFKC", code)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 	UNSAFE_ATTRIBUTES = {
 		# Generator Attributes
@@ -2420,4 +2477,34 @@ def mock(type, size=1, locale="en"):
 	return squashify(results)
 
 
+<<<<<<< HEAD
 from frappe.desk.search import validate_and_sanitize_search_inputs  # noqa
+=======
+def validate_and_sanitize_search_inputs(fn):
+	@functools.wraps(fn)
+	def wrapper(*args, **kwargs):
+		from frappe.desk.search import sanitize_searchfield
+		from frappe.utils import cint
+
+		kwargs.update(dict(zip(fn.__code__.co_varnames, args)))
+		sanitize_searchfield(kwargs["searchfield"])
+		kwargs["start"] = cint(kwargs["start"])
+		kwargs["page_len"] = cint(kwargs["page_len"])
+
+		if kwargs["doctype"] and not db.exists("DocType", kwargs["doctype"]):
+			return []
+
+		return fn(**kwargs)
+
+	return wrapper
+
+
+if _tune_gc:
+	# generational GC gets triggered after certain allocs (g0) which is 700 by default.
+	# This number is quite small for frappe where a single query can potentially create 700+
+	# objects easily.
+	# Bump this number higher, this will make GC less aggressive but that improves performance of
+	# everything else.
+	g0, g1, g2 = gc.get_threshold()  # defaults are 700, 10, 10.
+	gc.set_threshold(g0 * 10, g1 * 2, g2 * 2)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)

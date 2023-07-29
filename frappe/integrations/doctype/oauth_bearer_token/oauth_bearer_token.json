@@ -67,6 +67,10 @@
   {
    "fieldname": "status",
    "fieldtype": "Select",
+<<<<<<< HEAD
+=======
+   "in_list_view": 1,
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
    "in_standard_filter": 1,
    "label": "Status",
    "options": "Active\nRevoked",
@@ -74,10 +78,18 @@
   }
  ],
  "links": [],
+<<<<<<< HEAD
  "modified": "2021-04-26 06:40:34.922441",
  "modified_by": "Administrator",
  "module": "Integrations",
  "name": "OAuth Bearer Token",
+=======
+ "modified": "2023-04-07 07:08:00.249740",
+ "modified_by": "Administrator",
+ "module": "Integrations",
+ "name": "OAuth Bearer Token",
+ "naming_rule": "By fieldname",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
  "owner": "Administrator",
  "permissions": [
   {
@@ -92,5 +104,10 @@
   }
  ],
  "sort_field": "modified",
+<<<<<<< HEAD
  "sort_order": "DESC"
+=======
+ "sort_order": "DESC",
+ "states": []
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 }

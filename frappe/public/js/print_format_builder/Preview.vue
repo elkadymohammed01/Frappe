@@ -126,7 +126,11 @@ export default {
 	margin-top: auto;
 	margin-bottom: 1.2rem;
 }
+<<<<<<< HEAD
 .preview-control >>> .form-control {
+=======
+.preview-control :deep(.form-control) {
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	background: var(--control-bg-on-gray);
 }
 </style>

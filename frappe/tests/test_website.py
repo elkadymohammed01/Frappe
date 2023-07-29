@@ -1,6 +1,10 @@
 from unittest.mock import patch
 
 import frappe
+<<<<<<< HEAD
+=======
+from frappe import get_hooks
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 from frappe.tests.utils import FrappeTestCase
 from frappe.utils import set_request
 from frappe.website.page_renderers.static_page import StaticPage
@@ -67,6 +71,7 @@ class TestWebsite(FrappeTestCase):
 		self.assertEqual(get_home_page(), "login")
 		frappe.set_user("Administrator")
 
+<<<<<<< HEAD
 		from frappe import get_hooks
 
 		def patched_get_hooks(hook, value):
@@ -78,6 +83,8 @@ class TestWebsite(FrappeTestCase):
 
 			return wrapper
 
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		# test homepage via hooks
 		clear_website_cache()
 		with patch.object(
@@ -236,6 +243,10 @@ class TestWebsite(FrappeTestCase):
 
 	def test_printview_page(self):
 		frappe.db.value_cache[("DocType", "Language", "name")] = (("Language",),)
+<<<<<<< HEAD
+=======
+		frappe.set_user("Administrator")
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		content = get_response_content("/Language/ru")
 		self.assertIn('<div class="print-format">', content)
 		self.assertIn("<div>Language</div>", content)
@@ -394,6 +405,19 @@ class TestWebsite(FrappeTestCase):
 			frappe.set_user("Guest")
 
 
+<<<<<<< HEAD
+=======
+def patched_get_hooks(hook, value):
+	def wrapper(*args, **kwargs):
+		return_value = get_hooks(*args, **kwargs)
+		if args[0] == hook:
+			return_value = value
+		return return_value
+
+	return wrapper
+
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 class CustomPageRenderer:
 	def __init__(self, path, status_code=None):
 		self.path = path

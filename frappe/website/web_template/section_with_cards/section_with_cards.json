@@ -49,7 +49,11 @@
   },
   {
    "fieldname": "card_1_url",
+<<<<<<< HEAD
    "fieldtype": "Data",
+=======
+   "fieldtype": "Small Text",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
    "label": "URL",
    "reqd": 0
   },
@@ -79,7 +83,11 @@
   },
   {
    "fieldname": "card_2_url",
+<<<<<<< HEAD
    "fieldtype": "Data",
+=======
+   "fieldtype": "Small Text",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
    "label": "URL",
    "reqd": 0
   },
@@ -109,7 +117,11 @@
   },
   {
    "fieldname": "card_3_url",
+<<<<<<< HEAD
    "fieldtype": "Data",
+=======
+   "fieldtype": "Small Text",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
    "label": "URL",
    "reqd": 0
   },
@@ -139,7 +151,11 @@
   },
   {
    "fieldname": "card_4_url",
+<<<<<<< HEAD
    "fieldtype": "Data",
+=======
+   "fieldtype": "Small Text",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
    "label": "URL",
    "reqd": 0
   },
@@ -169,7 +185,11 @@
   },
   {
    "fieldname": "card_5_url",
+<<<<<<< HEAD
    "fieldtype": "Data",
+=======
+   "fieldtype": "Small Text",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
    "label": "URL",
    "reqd": 0
   },
@@ -199,7 +219,11 @@
   },
   {
    "fieldname": "card_6_url",
+<<<<<<< HEAD
    "fieldtype": "Data",
+=======
+   "fieldtype": "Small Text",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
    "label": "URL",
    "reqd": 0
   },
@@ -229,7 +253,11 @@
   },
   {
    "fieldname": "card_7_url",
+<<<<<<< HEAD
    "fieldtype": "Data",
+=======
+   "fieldtype": "Small Text",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
    "label": "URL",
    "reqd": 0
   },
@@ -259,7 +287,11 @@
   },
   {
    "fieldname": "card_8_url",
+<<<<<<< HEAD
    "fieldtype": "Data",
+=======
+   "fieldtype": "Small Text",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
    "label": "URL",
    "reqd": 0
   },
@@ -289,13 +321,21 @@
   },
   {
    "fieldname": "card_9_url",
+<<<<<<< HEAD
    "fieldtype": "Data",
+=======
+   "fieldtype": "Small Text",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
    "label": "URL",
    "reqd": 0
   }
  ],
  "idx": 0,
+<<<<<<< HEAD
  "modified": "2021-05-03 13:26:34.470232",
+=======
+ "modified": "2023-06-05 13:26:34.470232",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
  "modified_by": "Administrator",
  "module": "Website",
  "name": "Section with Cards",

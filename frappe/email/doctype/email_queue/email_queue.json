@@ -67,10 +67,16 @@
   },
   {
    "fieldname": "message_id",
+<<<<<<< HEAD
    "fieldtype": "Data",
    "label": "Message ID",
    "read_only": 1,
    "search_index": 1
+=======
+   "fieldtype": "Small Text",
+   "label": "Message ID",
+   "read_only": 1
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
   },
   {
    "fieldname": "reference_doctype",
@@ -153,7 +159,11 @@
  "idx": 1,
  "in_create": 1,
  "links": [],
+<<<<<<< HEAD
  "modified": "2022-07-12 15:17:37.934316",
+=======
+ "modified": "2023-03-16 12:15:17.850292",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
  "modified_by": "Administrator",
  "module": "Email",
  "name": "Email Queue",

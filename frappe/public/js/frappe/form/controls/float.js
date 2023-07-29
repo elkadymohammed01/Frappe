@@ -6,6 +6,10 @@ frappe.ui.form.ControlFloat = class ControlFloat extends frappe.ui.form.ControlI
 			else {
 				let value = this.get_input_value();
 				this.parse_validate_and_set_in_model(value, e);
+<<<<<<< HEAD
+=======
+				this.refresh();
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			}
 		};
 		// convert to number format on focusout since focus converts it to flt.

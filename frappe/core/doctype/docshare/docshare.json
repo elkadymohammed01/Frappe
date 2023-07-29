@@ -67,7 +67,12 @@
    "default": "0",
    "fieldname": "everyone",
    "fieldtype": "Check",
+<<<<<<< HEAD
    "label": "Everyone"
+=======
+   "label": "Everyone",
+   "search_index": 1
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
   },
   {
    "default": "1",
@@ -85,10 +90,18 @@
  ],
  "in_create": 1,
  "links": [],
+<<<<<<< HEAD
  "modified": "2021-04-04 11:38:50.813312",
  "modified_by": "Administrator",
  "module": "Core",
  "name": "DocShare",
+=======
+ "modified": "2023-06-15 18:02:51.877533",
+ "modified_by": "Administrator",
+ "module": "Core",
+ "name": "DocShare",
+ "naming_rule": "Random",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
  "owner": "Administrator",
  "permissions": [
   {
@@ -106,5 +119,9 @@
  "read_only": 1,
  "sort_field": "modified",
  "sort_order": "DESC",
+<<<<<<< HEAD
+=======
+ "states": [],
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
  "track_changes": 1
 }

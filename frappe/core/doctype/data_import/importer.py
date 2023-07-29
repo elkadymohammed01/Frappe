@@ -690,7 +690,11 @@ class Row:
 		df = col.df
 		if df.fieldtype == "Select":
 			select_options = get_select_options(df)
+<<<<<<< HEAD
 			if select_options and value not in select_options:
+=======
+			if select_options and cstr(value) not in select_options:
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				options_string = ", ".join(frappe.bold(d) for d in select_options)
 				msg = _("Value must be one of {0}").format(options_string)
 				self.warnings.append(

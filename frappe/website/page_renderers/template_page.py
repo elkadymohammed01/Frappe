@@ -109,8 +109,12 @@ class TemplatePage(BaseTemplatePage):
 		super().post_process_context()
 
 	def add_sidebar_and_breadcrumbs(self):
+<<<<<<< HEAD
 		if self.basepath:
 			self.context.sidebar_items = get_sidebar_items(self.context.website_sidebar, self.basepath)
+=======
+		self.context.sidebar_items = get_sidebar_items(self.context.website_sidebar, self.basepath)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 		if self.context.add_breadcrumbs and not self.context.parents:
 			parent_path = os.path.dirname(self.path)

@@ -7,7 +7,11 @@ frappe.ui.form.ControlCurrency = class ControlCurrency extends frappe.ui.form.Co
 	get_precision() {
 		// always round based on field precision or currency's precision
 		// this method is also called in this.parse()
+<<<<<<< HEAD
 		if (!this.df.precision) {
+=======
+		if (typeof this.df.precision != "number" && !this.df.precision) {
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			if (frappe.boot.sysdefaults.currency_precision) {
 				this.df.precision = frappe.boot.sysdefaults.currency_precision;
 			} else {

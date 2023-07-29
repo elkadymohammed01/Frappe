@@ -5,7 +5,10 @@ import json
 import os
 import subprocess  # nosec
 
+<<<<<<< HEAD
 import requests
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 from semantic_version import Version
 
 import frappe
@@ -231,6 +234,10 @@ def check_release_on_github(app: str):
 	                organization name, if the application exists, otherwise None.
 	"""
 
+<<<<<<< HEAD
+=======
+	import requests
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	from giturlparse import parse
 	from giturlparse.parser import ParserError
 

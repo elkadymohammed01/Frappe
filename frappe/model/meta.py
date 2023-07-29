@@ -533,7 +533,11 @@ class Meta(Document):
 
 		return self.high_permlevel_fields
 
+<<<<<<< HEAD
 	def get_permitted_fieldnames(self, parenttype=None, *, user=None):
+=======
+	def get_permitted_fieldnames(self, parenttype=None, *, user=None, permission_type="read"):
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		"""Build list of `fieldname` with read perm level and all the higher perm levels defined.
 
 		Note: If permissions are not defined for DocType, return all the fields with value.
@@ -543,10 +547,25 @@ class Meta(Document):
 		if self.istable and not parenttype:
 			return permitted_fieldnames
 
+<<<<<<< HEAD
 		if not self.get_permissions(parenttype=parenttype):
 			return self.get_fieldnames_with_value()
 
 		permlevel_access = set(self.get_permlevel_access("read", parenttype, user=user))
+=======
+		if not permission_type:
+			permission_type = "select" if frappe.only_has_select_perm(self.name, user=user) else "read"
+
+		if permission_type == "select":
+			return self.get_search_fields()
+
+		if not self.get_permissions(parenttype=parenttype):
+			return self.get_fieldnames_with_value()
+
+		permlevel_access = set(
+			self.get_permlevel_access(permission_type=permission_type, parenttype=parenttype, user=user)
+		)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 		for df in self.get_fieldnames_with_value(with_field_meta=True, with_virtual_fields=True):
 			if df.permlevel in permlevel_access:

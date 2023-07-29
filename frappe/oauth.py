@@ -3,7 +3,11 @@ import datetime
 import hashlib
 import re
 from http import cookies
+<<<<<<< HEAD
 from urllib.parse import unquote, urlparse
+=======
+from urllib.parse import unquote, urljoin, urlparse
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 import jwt
 import pytz
@@ -331,6 +335,11 @@ class OAuthWebRequestValidator(RequestValidator):
 
 		userinfo = get_userinfo(user)
 
+<<<<<<< HEAD
+=======
+		id_token["exp"] = id_token.get("iat") + token.get("expires_in")
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		if userinfo.get("iss"):
 			id_token["iss"] = userinfo.get("iss")
 
@@ -363,6 +372,10 @@ class OAuthWebRequestValidator(RequestValidator):
 
 	def get_jwt_bearer_token(self, token, token_handler, request):
 		now = datetime.datetime.now()
+<<<<<<< HEAD
+=======
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		id_token = dict(
 			aud=token.client_id,
 			iat=round(now.timestamp()),
@@ -575,7 +588,11 @@ def get_userinfo(user):
 		if frappe.utils.validate_url(user.user_image, valid_schemes=valid_url_schemes):
 			picture = user.user_image
 		else:
+<<<<<<< HEAD
 			picture = frappe_server_url + "/" + user.user_image
+=======
+			picture = urljoin(frappe_server_url, user.user_image)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 	userinfo = frappe._dict(
 		{

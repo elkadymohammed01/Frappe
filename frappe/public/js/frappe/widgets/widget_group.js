@@ -6,6 +6,10 @@ import OnboardingWidget from "../widgets/onboarding_widget";
 import NewWidget from "../widgets/new_widget";
 import NumberCardWidget from "../widgets/number_card_widget";
 import QuickListWidget from "../widgets/quick_list_widget";
+<<<<<<< HEAD
+=======
+import CustomBlock from "../widgets/custom_block_widget";
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 frappe.provide("frappe.widget");
 
@@ -17,6 +21,10 @@ frappe.widget.widget_factory = {
 	onboarding: OnboardingWidget,
 	number_card: NumberCardWidget,
 	quick_list: QuickListWidget,
+<<<<<<< HEAD
+=======
+	custom_block: CustomBlock,
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 };
 
 frappe.widget.make_widget = (opts) => {

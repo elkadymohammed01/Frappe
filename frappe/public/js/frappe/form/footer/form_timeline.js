@@ -155,7 +155,10 @@ class FormTimeline extends BaseTimeline {
 
 	prepare_timeline_contents() {
 		this.timeline_items.push(...this.get_communication_timeline_contents());
+<<<<<<< HEAD
 		this.timeline_items.push(...this.get_auto_messages_timeline_contents());
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		this.timeline_items.push(...this.get_comment_timeline_contents());
 		if (!this.only_communication) {
 			this.timeline_items.push(...this.get_view_timeline_contents());
@@ -198,7 +201,43 @@ class FormTimeline extends BaseTimeline {
 		return view_timeline_contents;
 	}
 
+<<<<<<< HEAD
 	get_communication_timeline_contents() {
+=======
+	get_communication_timeline_contents(more_communications, more_automated_messages) {
+		let email_communications =
+			this.get_email_communication_timeline_contents(more_communications);
+		let automated_messages = this.get_auto_messages_timeline_contents(more_automated_messages);
+		let all_communications = email_communications.concat(automated_messages);
+
+		if (all_communications.length > 20) {
+			all_communications.pop();
+
+			if (more_communications || more_automated_messages) {
+				all_communications.forEach((message) => {
+					if (message.communication_type == "Automated Message") {
+						this.doc_info.automated_messages.push(message);
+					} else {
+						this.doc_info.communications.push(message);
+					}
+				});
+			}
+
+			let last_communication_time =
+				all_communications[all_communications.length - 1].creation;
+			let load_more_button = {
+				creation: last_communication_time,
+				content: __("Load More Communications", null, "Form timeline"),
+				name: "load-more",
+			};
+			all_communications.push(load_more_button);
+		}
+
+		return all_communications;
+	}
+
+	get_email_communication_timeline_contents(more_items) {
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		let communication_timeline_contents = [];
 		let icon_set = {
 			Email: "mail",
@@ -206,7 +245,12 @@ class FormTimeline extends BaseTimeline {
 			Meeting: "calendar",
 			Other: "dot-horizontal",
 		};
+<<<<<<< HEAD
 		(this.doc_info.communications || []).forEach((communication) => {
+=======
+		let items = more_items ? more_items : this.doc_info.communications || [];
+		items.forEach((communication) => {
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			let medium = communication.communication_medium;
 			communication_timeline_contents.push({
 				icon: icon_set[medium],
@@ -219,9 +263,47 @@ class FormTimeline extends BaseTimeline {
 				name: communication.name,
 			});
 		});
+<<<<<<< HEAD
 		return communication_timeline_contents;
 	}
 
+=======
+
+		return communication_timeline_contents;
+	}
+
+	async get_more_communication_timeline_contents() {
+		let more_items = [];
+		let start =
+			this.doc_info.communications.length + this.doc_info.automated_messages.length - 1;
+		let response = await frappe.call({
+			method: "frappe.desk.form.load.get_communications",
+			args: {
+				doctype: this.doc_info.doctype,
+				name: this.doc_info.name,
+				start: start,
+				limit: 21,
+			},
+		});
+		if (response.message) {
+			let email_communications = [];
+			let automated_messages = [];
+			response.message.forEach((message) => {
+				if (message.communication_type == "Automated Message") {
+					automated_messages.push(message);
+				} else {
+					email_communications.push(message);
+				}
+			});
+			more_items = this.get_communication_timeline_contents(
+				email_communications,
+				automated_messages
+			);
+		}
+		return more_items;
+	}
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	get_communication_timeline_content(doc, allow_reply = true) {
 		doc._url = frappe.utils.get_form_link("Communication", doc.name);
 		this.set_communication_doc_status(doc);
@@ -253,9 +335,16 @@ class FormTimeline extends BaseTimeline {
 		doc._doc_status_indicator = indicator_color;
 	}
 
+<<<<<<< HEAD
 	get_auto_messages_timeline_contents() {
 		let auto_messages_timeline_contents = [];
 		(this.doc_info.automated_messages || []).forEach((message) => {
+=======
+	get_auto_messages_timeline_contents(more_items) {
+		let auto_messages_timeline_contents = [];
+		let items = more_items ? more_items : this.doc_info.automated_messages || [];
+		items.forEach((message) => {
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			auto_messages_timeline_contents.push({
 				icon: "notification",
 				icon_size: "sm",
@@ -582,6 +671,7 @@ class FormTimeline extends BaseTimeline {
 	}
 
 	get_last_email(from_recipient) {
+<<<<<<< HEAD
 		let last_email = null;
 		let communications = this.frm.get_docinfo().communications || [];
 		let email = this.get_recipient();
@@ -606,6 +696,28 @@ class FormTimeline extends BaseTimeline {
 			});
 
 		return last_email;
+=======
+		/**
+		 * Return the latest email communication.
+		 *
+		 * @param {boolean} from_recipient If true, only considers emails where current form's recipient is the sender.
+		 * @returns {object|null} The latest email communication, or null if no communication is found.
+		 */
+
+		const communications = this.frm.get_docinfo().communications || [];
+		const recipient = this.get_recipient();
+
+		const filtered_records = communications
+			.filter(
+				(record) =>
+					record.communication_type === "Communication" &&
+					record.communication_medium === "Email" &&
+					(!from_recipient || record.sender === recipient)
+			)
+			.sort((a, b) => b.creation - a.creation);
+
+		return filtered_records[0] || null;
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	}
 
 	delete_comment(comment_name) {

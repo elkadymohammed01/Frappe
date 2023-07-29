@@ -140,7 +140,11 @@ def get_default_contact(doctype, name):
 		where
 			dl.link_doctype=%s and
 			dl.link_name=%s and
+<<<<<<< HEAD
 			dl.parenttype = 'Contact' """,
+=======
+			dl.parenttype = 'Contact'""",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		(doctype, name),
 		as_dict=True,
 	)

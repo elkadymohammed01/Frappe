@@ -11,7 +11,11 @@ class EmailQueueRecipient(Document):
 	def is_mail_to_be_sent(self):
 		return self.status == "Not Sent"
 
+<<<<<<< HEAD
 	def is_main_sent(self):
+=======
+	def is_mail_sent(self):
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		return self.status == "Sent"
 
 	def update_db(self, commit=False, **kwargs):

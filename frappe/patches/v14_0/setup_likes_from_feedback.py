@@ -4,6 +4,12 @@ import frappe
 def execute():
 	frappe.reload_doctype("Comment")
 
+<<<<<<< HEAD
+=======
+	if not frappe.db.table_exists("Feedback"):
+		return
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	if frappe.db.count("Feedback") > 20000:
 		frappe.db.auto_commit_on_many_writes = True
 

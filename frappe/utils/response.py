@@ -223,6 +223,7 @@ def download_backup(path):
 def download_private_file(path: str) -> Response:
 	"""Checks permissions and sends back private file"""
 
+<<<<<<< HEAD
 	can_access = False
 	files = frappe.get_all("File", filters={"file_url": path}, pluck="name")
 	# this file might be attached to multiple documents
@@ -234,6 +235,18 @@ def download_private_file(path: str) -> Response:
 			break
 
 	if not can_access:
+=======
+	files = frappe.get_all("File", filters={"file_url": path}, fields="*")
+	# this file might be attached to multiple documents
+	# if the file is accessible from any one of those documents
+	# then it should be downloadable
+	for file_data in files:
+		file: "File" = frappe.get_doc(doctype="File", **file_data)
+		if file.is_downloadable():
+			break
+
+	else:
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		raise Forbidden(_("You don't have permission to access this file"))
 
 	make_access_log(doctype="File", document=file.name, file_type=os.path.splitext(path)[-1][1:])

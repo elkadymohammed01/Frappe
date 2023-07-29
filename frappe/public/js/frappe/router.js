@@ -31,20 +31,36 @@ window.addEventListener("popstate", (e) => {
 	return false;
 });
 
+<<<<<<< HEAD
 // routing v2, capture all clicks so that the target is managed with push-state
 $("body").on("click", "a", function (e) {
 	let override = (route) => {
+=======
+// Capture all clicks so that the target is managed with push-state
+$("body").on("click", "a", function (e) {
+	const target_element = e.currentTarget;
+	const href = target_element.getAttribute("href");
+	const is_on_same_host = target_element.hostname === window.location.hostname;
+
+	const override = (route) => {
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		e.preventDefault();
 		frappe.set_route(route);
 		return false;
 	};
 
+<<<<<<< HEAD
 	const target_element = e.currentTarget;
 	const href = target_element.getAttribute("href");
 	const is_on_same_host = target_element.hostname === window.location.hostname;
 
 	// click handled, but not by href
 	if (
+=======
+	// click handled, but not by href
+	if (
+		!is_on_same_host || // external link
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		target_element.getAttribute("onclick") || // has a handler
 		e.ctrlKey ||
 		e.metaKey || // open in a new tab
@@ -53,18 +69,26 @@ $("body").on("click", "a", function (e) {
 		return;
 	}
 
+<<<<<<< HEAD
 	if (href === "") {
 		return override("/app");
 	}
 
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	if (href && href.startsWith("#")) {
 		// target startswith "#", this is a v1 style route, so remake it.
 		return override(target_element.hash);
 	}
 
+<<<<<<< HEAD
 	if (is_on_same_host && frappe.router.is_app_route(target_element.pathname)) {
 		// target has "/app, this is a v2 style route.
 
+=======
+	if (frappe.router.is_app_route(target_element.pathname)) {
+		// target has "/app, this is a v2 style route.
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		if (target_element.search) {
 			frappe.route_options = {};
 			let params = new URLSearchParams(target_element.search);
@@ -72,7 +96,14 @@ $("body").on("click", "a", function (e) {
 				frappe.route_options[key] = value;
 			}
 		}
+<<<<<<< HEAD
 		return override(target_element.pathname + target_element.hash);
+=======
+		if (target_element.hash) {
+			frappe.route_hash = target_element.hash;
+		}
+		return override(target_element.pathname);
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	}
 });
 
@@ -139,6 +170,15 @@ frappe.router = {
 		if (!frappe.app) return;
 
 		let sub_path = this.get_sub_path();
+<<<<<<< HEAD
+=======
+		if (frappe.boot.setup_complete) {
+			!frappe.re_route["setup-wizard"] && (frappe.re_route["setup-wizard"] = "app");
+		} else if (!sub_path.startsWith("setup-wizard")) {
+			frappe.re_route["setup-wizard"] && delete frappe.re_route["setup-wizard"];
+			frappe.set_route(["setup-wizard"]);
+		}
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		if (this.re_route(sub_path)) return;
 
 		this.current_sub_path = sub_path;
@@ -203,7 +243,11 @@ frappe.router = {
 						? meta.default_view
 						: null
 				);
+<<<<<<< HEAD
 			} else if (route[1] && route[1] !== "view" && !route[2]) {
+=======
+			} else if (route[1] && route[1] !== "view") {
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				let docname = route[1];
 				if (route.length > 2) {
 					docname = route.slice(1).join("/");
@@ -346,8 +390,13 @@ frappe.router = {
 			route = this.get_route_from_arguments(route);
 			route = this.convert_from_standard_route(route);
 			let sub_path = this.make_url(route);
+<<<<<<< HEAD
 			// replace each # occurrences in the URL with encoded character except for last
 			// sub_path = sub_path.replace(/[#](?=.*[#])/g, "%23");
+=======
+			sub_path += frappe.route_hash || "";
+			frappe.route_hash = null;
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 			if (frappe.open_in_new_tab) {
 				localStorage["route_options"] = JSON.stringify(frappe.route_options);
 				window.open(sub_path, "_blank");

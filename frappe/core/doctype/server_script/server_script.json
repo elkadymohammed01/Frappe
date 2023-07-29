@@ -9,6 +9,10 @@
   "script_type",
   "reference_doctype",
   "event_frequency",
+<<<<<<< HEAD
+=======
+  "cron_format",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
   "doctype_event",
   "api_method",
   "allow_guest",
@@ -95,13 +99,26 @@
    "fieldtype": "Select",
    "label": "Event Frequency",
    "mandatory_depends_on": "eval:doc.script_type == \"Scheduler Event\"",
+<<<<<<< HEAD
    "options": "All\nHourly\nDaily\nWeekly\nMonthly\nYearly\nHourly Long\nDaily Long\nWeekly Long\nMonthly Long"
+=======
+   "options": "All\nHourly\nDaily\nWeekly\nMonthly\nYearly\nHourly Long\nDaily Long\nWeekly Long\nMonthly Long\nCron"
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
   },
   {
    "fieldname": "module",
    "fieldtype": "Link",
    "label": "Module (for export)",
    "options": "Module Def"
+<<<<<<< HEAD
+=======
+  },
+  {
+   "depends_on": "eval:doc.event_frequency==='Cron'",
+   "fieldname": "cron_format",
+   "fieldtype": "Data",
+   "label": "Cron Format"
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
   }
  ],
  "index_web_pages_for_search": 1,

@@ -111,14 +111,22 @@ export default class KanbanSettings {
 		fields_html.html(`
 			<div class="form-group">
 				<div class="clearfix">
+<<<<<<< HEAD
 					<label class="control-label" style="padding-right: 0px;">Fields</label>
+=======
+					<label class="control-label" style="padding-right: 0px;">${__("Fields")}</label>
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				</div>
 				<div class="control-input-wrapper">
 				${fields}
 				</div>
 				<p class="help-box small text-muted">
 					<a class="add-new-fields text-muted">
+<<<<<<< HEAD
 						+ Add / Remove Fields
+=======
+						${__("+ Add / Remove Fields")}
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 					</a>
 				</p>
 			</div>

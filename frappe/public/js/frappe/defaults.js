@@ -3,10 +3,21 @@
 
 frappe.defaults = {
 	get_user_default: function (key) {
+<<<<<<< HEAD
 		var defaults = frappe.boot.user.defaults;
 		var d = defaults[key];
 		if (!d && frappe.defaults.is_a_user_permission_key(key))
 			d = defaults[frappe.model.scrub(key)];
+=======
+		let defaults = frappe.boot.user.defaults;
+		let d = defaults[key];
+		if (!d && frappe.defaults.is_a_user_permission_key(key)) {
+			d = defaults[frappe.model.scrub(key)];
+			// Check for default user permission values
+			user_default = this.get_user_permission_default(key, defaults);
+			if (user_default) d = user_default;
+		}
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		if ($.isArray(d)) d = d[0];
 
 		if (!frappe.defaults.in_user_permission(key, d)) {
@@ -15,6 +26,30 @@ frappe.defaults = {
 
 		return d;
 	},
+<<<<<<< HEAD
+=======
+
+	get_user_permission_default: function (key, defaults) {
+		let permissions = this.get_user_permissions();
+		let user_default = null;
+		if (permissions[key]) {
+			permissions[key].forEach((item) => {
+				if (defaults[key] == item.doc) {
+					user_default = item.doc;
+				}
+			});
+
+			permissions[key].forEach((item) => {
+				if (item.is_default) {
+					user_default = item.doc;
+				}
+			});
+		}
+
+		return user_default;
+	},
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	get_user_defaults: function (key) {
 		var defaults = frappe.boot.user.defaults;
 		var d = defaults[key];
@@ -105,4 +140,15 @@ frappe.defaults = {
 			}
 		});
 	},
+<<<<<<< HEAD
+=======
+
+	load_user_permission_from_boot: function () {
+		if (frappe.boot.user.user_permissions) {
+			this._user_permissions = Object.assign({}, frappe.boot.user.user_permissions);
+		} else {
+			frappe.defaults.update_user_permissions();
+		}
+	},
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 };

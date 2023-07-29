@@ -441,6 +441,7 @@ $.extend(frappe, {
 					language_switcher.val(language);
 					document.documentElement.lang = language;
 					language_switcher.change(() => {
+<<<<<<< HEAD
 						let lang = language_switcher.val();
 						frappe
 							.call("frappe.translate.set_preferred_language_cookie", {
@@ -449,6 +450,11 @@ $.extend(frappe, {
 							.then(() => {
 								window.location.reload();
 							});
+=======
+						const lang = language_switcher.val();
+						document.cookie = `preferred_language=${lang}`;
+						window.location.reload();
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 					});
 				});
 		}

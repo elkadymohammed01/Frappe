@@ -37,8 +37,11 @@ $input-height: 28px !default;
 	--cyan-100: #c7fcfc;
 	--cyan-50 : #dafafa;
 
+<<<<<<< HEAD
 	--selected-dark:#D81B60 ;
 	--selected:  #EC407A	;
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	--green-900: #2D401D;
 	--green-800: #44622A;
 	--green-700: #518B21;
@@ -155,7 +158,11 @@ $input-height: 28px !default;
 	// SVG Colors
 	--icon-fill: transparent;
 	--icon-fill-bg: var(--fg-color);
+<<<<<<< HEAD
 	--icon-stroke: var(--gray-700);
+=======
+	--icon-stroke: var(--gray-900);
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 	// Background Text Color Pairs
 	--bg-blue: var(--blue-100);
@@ -232,7 +239,11 @@ $input-height: 28px !default;
 	--btn-default-hover-bg: var(--gray-300);
 
 	// Other Colors
+<<<<<<< HEAD
 	--sidebar-select-color: var(--selected);
+=======
+	--sidebar-select-color: var(--gray-200);
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 	--scrollbar-thumb-color: var(--gray-400);
 	--scrollbar-track-color: var(--gray-200);
@@ -244,6 +255,11 @@ $input-height: 28px !default;
 	--highlight-color: var(--gray-50);
 	--yellow-highlight-color: var(--yellow-50);
 
+<<<<<<< HEAD
+=======
+	--btn-group-border-color: var(--gray-300);
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	--highlight-shadow: 1px 1px 10px var(--blue-50), 0px 0px 4px var(--blue-600);
 
 	// code block

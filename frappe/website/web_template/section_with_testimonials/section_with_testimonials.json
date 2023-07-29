@@ -56,13 +56,21 @@
   },
   {
    "fieldname": "url",
+<<<<<<< HEAD
    "fieldtype": "Data",
+=======
+   "fieldtype": "Small Text",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
    "label": "URL",
    "reqd": 0
   }
  ],
  "idx": 0,
+<<<<<<< HEAD
  "modified": "2022-03-21 15:39:39.044104",
+=======
+ "modified": "2023-06-05 13:26:34.470232",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
  "modified_by": "Administrator",
  "module": "Website",
  "name": "Section with Testimonials",

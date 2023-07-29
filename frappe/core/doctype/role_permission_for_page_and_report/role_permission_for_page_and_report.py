@@ -67,7 +67,11 @@ class RolePermissionforPageandReport(Document):
 		if self.report:
 			# intentionally written update query in frappe.db.sql instead of frappe.db.set_value
 			frappe.db.sql(
+<<<<<<< HEAD
 				""" update `tabReport` set disable_prepared_report = %s
+=======
+				"""update `tabReport` set disable_prepared_report = %s
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				where name = %s""",
 				(self.disable_prepared_report, self.report),
 			)

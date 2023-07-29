@@ -43,7 +43,11 @@
   },
   {
    "fieldname": "url",
+<<<<<<< HEAD
    "fieldtype": "Data",
+=======
+   "fieldtype": "Small Text",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
    "label": "URL",
    "reqd": 0
   },
@@ -55,7 +59,11 @@
   }
  ],
  "idx": 2,
+<<<<<<< HEAD
  "modified": "2020-10-26 17:43:08.219285",
+=======
+ "modified": "2023-06-05 13:26:34.470232",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
  "modified_by": "Administrator",
  "module": "Website",
  "name": "Section with Features",

@@ -298,7 +298,13 @@ class BaseDocument:
 		self, sanitize=True, convert_dates_to_str=False, ignore_nulls=False, ignore_virtual=False
 	) -> dict:
 		d = _dict()
+<<<<<<< HEAD
 		permitted_fields = get_permitted_fields(doctype=self.doctype)
+=======
+		permitted_fields = get_permitted_fields(
+			doctype=self.doctype, parenttype=getattr(self, "parenttype", None)
+		)
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 
 		for fieldname in self.meta.get_valid_columns():
 			field_value = getattr(self, fieldname, None)
@@ -522,7 +528,11 @@ class BaseDocument:
 
 				if not ignore_if_duplicate:
 					frappe.msgprint(
+<<<<<<< HEAD
 						_("{0} {1} already exists").format(self.doctype, frappe.bold(self.name)),
+=======
+						_("{0} {1} already exists").format(_(self.doctype), frappe.bold(self.name)),
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 						title=_("Duplicate Name"),
 						indicator="red",
 					)

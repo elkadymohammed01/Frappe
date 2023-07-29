@@ -9,7 +9,10 @@ from frappe.build import scrub_html_template
 from frappe.model.meta import Meta
 from frappe.model.utils import render_include
 from frappe.modules import get_module_path, load_doctype_module, scrub
+<<<<<<< HEAD
 from frappe.translate import extract_messages_from_code, make_dict_from_messages
+=======
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 from frappe.utils import get_html_format
 from frappe.utils.data import get_link_to_form
 
@@ -259,6 +262,11 @@ class FormMeta(Meta):
 				self.set("__form_grid_templates", templates)
 
 	def set_translations(self, lang):
+<<<<<<< HEAD
+=======
+		from frappe.translate import extract_messages_from_code, make_dict_from_messages
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		self.set("__messages", frappe.get_lang_dict("doctype", self.name))
 
 		# set translations for grid templates

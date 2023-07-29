@@ -27,9 +27,17 @@
 			</div>
 		{% endif %}
 
+<<<<<<< HEAD
 		<div class="print-format {% if landscape %} landscape {% endif %}"
 				{% if columns.length > 20 %}
 					style="font-size: 4.0pt"
+=======
+		<div class="print-format {% if landscape %}landscape{% endif %}"
+				{% if columns.length > 20 %}
+					{% if can_use_smaller_font %}
+						style="font-size: 4.0pt"
+					{% endif %}
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 				{% endif %}
 			>
 			{% if print_settings.letter_head %}

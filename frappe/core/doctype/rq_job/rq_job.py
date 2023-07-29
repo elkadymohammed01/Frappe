@@ -5,7 +5,11 @@ import functools
 import re
 
 from rq.command import send_stop_job_command
+<<<<<<< HEAD
 from rq.exceptions import InvalidJobOperation
+=======
+from rq.exceptions import InvalidJobOperation, NoSuchJobError
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 from rq.job import Job
 from rq.queue import Queue
 
@@ -40,9 +44,20 @@ def check_permissions(method):
 
 class RQJob(Document):
 	def load_from_db(self):
+<<<<<<< HEAD
 		job = Job.fetch(self.name, connection=get_redis_conn())
 		if not for_current_site(job):
 			raise frappe.PermissionError
+=======
+		try:
+			job = Job.fetch(self.name, connection=get_redis_conn())
+		except NoSuchJobError:
+			raise frappe.DoesNotExistError
+
+		if not for_current_site(job):
+			raise frappe.PermissionError
+
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		super(Document, self).__init__(serialize_job(job))
 		self._job_obj = job
 

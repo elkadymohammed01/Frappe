@@ -64,6 +64,12 @@ def setup_complete(args):
 
 @frappe.task()
 def process_setup_stages(stages, user_input, is_background_task=False):
+<<<<<<< HEAD
+=======
+	from frappe.utils.telemetry import capture
+
+	capture("initated_server_side", "setup")
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	try:
 		frappe.flags.in_setup_wizard = True
 		current_task = None
@@ -88,6 +94,10 @@ def process_setup_stages(stages, user_input, is_background_task=False):
 		)
 	else:
 		run_setup_success(user_input)
+<<<<<<< HEAD
+=======
+		capture("completed_server_side", "setup")
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		if not is_background_task:
 			return {"status": "ok"}
 		frappe.publish_realtime("setup_task", {"status": "ok"}, user=frappe.session.user)
@@ -170,6 +180,10 @@ def update_system_settings(args):
 			"number_format": number_format,
 			"enable_scheduler": 1 if not frappe.flags.in_test else 0,
 			"backup_limit": 3,  # Default for downloadable backups
+<<<<<<< HEAD
+=======
+			"enable_telemetry": cint(args.get("enable_telemetry")),
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 		}
 	)
 	system_settings.save()
@@ -371,7 +385,11 @@ def email_setup_wizard_exception(traceback, args):
 		traceback=traceback,
 		args="\n".join(pretty_args),
 		user=frappe.session.user,
+<<<<<<< HEAD
 		headers=frappe.request.headers,
+=======
+		headers=frappe.request.headers if frappe.request else "[no request]",
+>>>>>>> 65c3c38821 (chore(release): Bumped to Version 14.42.0)
 	)
 
 	frappe.sendmail(
